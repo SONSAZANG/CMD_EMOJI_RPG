@@ -22,7 +22,7 @@ void GameManager::Run()
 {
 	cout << "TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
 
-	CreatePlayer();
+	CreatePlayerBase();
 
 	int testCount = 0;
 	while (IsPlaying)
@@ -39,7 +39,7 @@ void GameManager::Run()
 	}
 }
 
-void GameManager::CreatePlayer()
+void GameManager::CreatePlayerBase()
 {
 	// 플레이어 생성
 	string playername;

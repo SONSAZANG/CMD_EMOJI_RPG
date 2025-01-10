@@ -2,6 +2,7 @@
 
 #include "../01_core/singleton_base.h"
 #include "../02_manager/MonsterSpawnManager.h"
+#include "../02_manager/player_manager.h"
 #include <iostream>
 using namespace std;
 class GameManager : public SingletonBase<GameManager>
@@ -9,7 +10,7 @@ class GameManager : public SingletonBase<GameManager>
 public:
 	void Loading();
 	void Run();
-	void CreatePlayer();
+	void CreatePlayerBase();
 	void SpawnMonster();
 	void Battle();
 	void VisitShop();
