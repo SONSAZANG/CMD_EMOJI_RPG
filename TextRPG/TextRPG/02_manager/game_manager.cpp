@@ -1,15 +1,15 @@
-#include "game_manager.h"
+ï»¿#include "game_manager.h"
 #include "player_manager.h"
 #include "../03_ingame/player/player.h"
 #include "windows.h"
 
 void GameManager::Loading()
 {
-	cout << "°ÔÀÓÀ» ½ÇÇàÇÕ´Ï´Ù." << endl;
+	cout << "ê²Œìž„ì„ ì‹¤í–‰í•©ë‹ˆë‹¤." << endl;
 
 	for (int i = 0; i < 10; i++)
 	{
-		Sleep(500); // 0.5ÃÊ Delay
+		Sleep(500); // 0.5ì´ˆ Delay
 		cout << "-";
 	}
 	cout << endl;
@@ -19,7 +19,7 @@ void GameManager::Loading()
 
 void GameManager::Run()
 {
-	cout << "TEAM17 TEXTRPG °ÔÀÓÀÌ ½ÇÇàµÇ¾ú½À´Ï´Ù." << endl;
+	cout << "TEAM17 TEXTRPG ê²Œìž„ì´ ì‹¤í–‰ë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 
 	CreatePlayer();
 
@@ -40,30 +40,30 @@ void GameManager::Run()
 
 void GameManager::CreatePlayer()
 {
-	// ÇÃ·¹ÀÌ¾î »ý¼º
-	cout << "ÇÃ·¹ÀÌ¾î »ý¼º ¿Ï·á" << endl;
+	// í”Œë ˆì´ì–´ ìƒì„±
+	cout << "í”Œë ˆì´ì–´ ìƒì„± ì™„ë£Œ" << endl;
 	PlayerManager* playerManager = PlayerManager::GetInstance();
 	Player player = playerManager->CreatePlayer();
-	cout << "»ý¼ºµÈ ÇÃ·¹ÀÌ¾î Ã¼·Â: " << player.GetHp() << endl;
+	cout << "ìƒì„±ëœ í”Œë ˆì´ì–´ ì²´ë ¥: " << player.GetHp() << " ë ˆë²¨: " << playerManager->GetLevel() << endl;
 }
 
 void GameManager::Battle()
 {
-	// ¸ó½ºÅÍ »ý¼º ÈÄ ÀüÅõ
-	cout << "¸ó½ºÅÍ »ý¼º ¿Ï·á" << endl;
-	cout << "ÀüÅõ ½ÃÀÛ" << endl;
-	cout << "ÀüÅõ Á¾·á" << endl;
+	// ëª¬ìŠ¤í„° ìƒì„± í›„ ì „íˆ¬
+	cout << "ëª¬ìŠ¤í„° ìƒì„± ì™„ë£Œ" << endl;
+	cout << "ì „íˆ¬ ì‹œìž‘" << endl;
+	cout << "ì „íˆ¬ ì¢…ë£Œ" << endl;
 }
 
 void GameManager::VisitShop()
 {
-	// ÀüÅõ ÈÄ »óÁ¡ ¹æ¹®
-	// »óÈ²¿¡ µû¶ó¼­ ÀÎº¥Åä¸® Ãâ·Â ÇÊ¿ä
-	cout << "»óÁ¡ ¹æ¹® ¿Ï·á" << endl;
+	// ì „íˆ¬ í›„ ìƒì  ë°©ë¬¸
+	// ìƒí™©ì— ë”°ë¼ì„œ ì¸ë²¤í† ë¦¬ ì¶œë ¥ í•„ìš”
+	cout << "ìƒì  ë°©ë¬¸ ì™„ë£Œ" << endl;
 }
 
 void GameManager::Exit()
 {
-	// º¸½º¸ó½ºÅÍ Á¦°Å ÈÄ Á¾·á
-	cout << "°ÔÀÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù." << endl;
+	// ë³´ìŠ¤ëª¬ìŠ¤í„° ì œê±° í›„ ì¢…ë£Œ
+	cout << "ê²Œìž„ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 }

@@ -3,6 +3,7 @@
 #include "../01_core/singleton_base.h"
 #include "../03_ingame/player/player.h"
 #include <iostream>
+#include <string>
 
 class PlayerManager : public SingletonBase<PlayerManager>
 {
@@ -14,4 +15,8 @@ private:
 
 public:
 	Player CreatePlayer();
+	int GetLevel();
+
+private:
+	int level;
 };
