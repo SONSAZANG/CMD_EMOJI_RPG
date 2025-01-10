@@ -45,6 +45,8 @@ void GameManager::CreatePlayer()
 	PlayerManager* playerManager = PlayerManager::GetInstance();
 	Player player = playerManager->CreatePlayer();
 	cout << "생성된 플레이어 체력: " << player.GetHp() << " 레벨: " << playerManager->GetLevel() << endl;
+
+	cout << "가윤) 민수 요즘 맘에 안들어" << endl;
 }
 
 void GameManager::Battle()
