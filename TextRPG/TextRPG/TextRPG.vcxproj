@@ -130,6 +130,8 @@
     <ClCompile Include="01_core\singleton_base.h" />
     <ClCompile Include="02_manager\Battle_Manager.cpp" />
     <ClCompile Include="02_manager\game_manager.cpp" />
+    <ClCompile Include="02_manager\Monsters.cpp" />
+    <ClCompile Include="02_manager\MonsterSpawnManager.cpp" />
     <ClCompile Include="02_manager\player_manager.cpp" />
     <ClCompile Include="03_ingame\player\player.cpp" />
     <ClCompile Include="TextRPG.cpp" />
@@ -137,6 +139,8 @@
   <ItemGroup>
     <ClInclude Include="02_manager\Battle_Manager.h" />
     <ClInclude Include="02_manager\game_manager.h" />
+    <ClInclude Include="02_manager\Monsters.h" />
+    <ClInclude Include="02_manager\MonsterSpawnManager.h" />
     <ClInclude Include="02_manager\player_manager.h" />
     <ClInclude Include="03_ingame\player\player.h" />
   </ItemGroup>

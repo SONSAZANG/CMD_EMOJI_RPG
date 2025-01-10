@@ -2,6 +2,7 @@
 #include "player_manager.h"
 #include "Battle_Manager.h"
 #include "../03_ingame/player/player.h"
+#include "Monsters.h"
 #include "windows.h"
 
 
@@ -23,7 +24,7 @@ void GameManager::Run()
 {
 	cout << "TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
 
-	CreatePlayer();
+	CreatePlayerBase();
 
 	int testCount = 0;
 	while (IsPlaying)
@@ -40,15 +41,53 @@ void GameManager::Run()
 	}
 }
 
-void GameManager::CreatePlayer()
+void GameManager::CreatePlayerBase()
 {
 	// 플레이어 생성
-	cout << "플레이어 생성 완료" << endl;
+	string playername;
+	cout << "플레이어 이름을 입력해주세요: ";
+	getline(cin, playername);
+
+	while (playername.empty())
+	{
+		cout << "이름이 비어 있습니다. 다시 입력해주세요: ";
+		getline(cin, playername);
+	}
+
 	PlayerManager* playerManager = PlayerManager::GetInstance();
-	Player player = playerManager->CreatePlayer();
-	cout << "생성된 플레이어 체력: " << player.GetHp() << " 레벨: " << playerManager->GetLevel() << endl;
+	playerManager->CreatePlayer(playername);
+
+	Player& player = playerManager->GetPlayer();
+	cout << "플레이어 생성 완료" << endl;
+	cout << "이름: " << player.GetName() << "\n체력: " << player.GetHp() << "\n레벨: " << player.GetLevel()
+		<< "\n공격력: " << player.GetAttack() << "\n경험치: " << player.GetExp() << endl;
 
 }
+
+void GameManager::SpawnMonster()
+{
+	// 몬스터 생성
+	int monsterType = rand() % 3 + 1;
+	Monsters* monster = nullptr;
+
+// TODO: Playerinfo
+	switch (monsterType)
+	{
+	case MT_GOBLIN:
+		//monster = new Goblin(playerManager->GetLevel()); 
+		break;
+	case MT_ORC:
+		//monster = new Orc(playerManager->GetLevel());
+		break;
+	case MT_TROLL:
+		//monster = new Troll(playerManager->GetLevel());
+		break;
+	}
+	
+	delete monster; // Temp Delete
+
+}
+
 
 void GameManager::Battle()
 {

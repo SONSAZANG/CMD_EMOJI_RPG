@@ -14,9 +14,10 @@ private:
 	~PlayerManager() {};
 
 public:
-	Player CreatePlayer();
-	int GetLevel();
+	void CreatePlayer(const string& name);
+	Player& GetPlayer();
 
 private:
-	int level;
+	Player player;
+
 };

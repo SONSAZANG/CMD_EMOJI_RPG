@@ -2,15 +2,15 @@
 #include "../03_ingame/player/player.h"
 #include <iostream>
 #include <string>
+
 using namespace std;
-Player PlayerManager::CreatePlayer()
+
+void PlayerManager::CreatePlayer(const string& name)
 {
-	Player player;
-	player.SetInfo(200);
-	return player;
+	player.SetName(name);
 }
 
-int PlayerManager::GetLevel()
+Player& PlayerManager::GetPlayer()
 {
-	return level;
+	return player;
 }

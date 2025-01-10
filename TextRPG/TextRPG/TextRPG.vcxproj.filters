@@ -31,6 +31,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="02_manager\Battle_Manager.cpp">
+    <ClCompile Include="02_manager\Monsters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="02_manager\MonsterSpawnManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +49,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="02_manager\Battle_Manager.h">
+    <ClInclude Include="02_manager\Monsters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="02_manager\MonsterSpawnManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
