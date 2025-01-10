@@ -1,6 +1,7 @@
 ﻿#include "game_manager.h"
 #include "player_manager.h"
 #include "../03_ingame/player/player.h"
+#include "Monsters.h"
 #include "windows.h"
 
 void GameManager::Loading()
@@ -48,9 +49,34 @@ void GameManager::CreatePlayer()
 
 }
 
+void GameManager::SpawnMonster()
+{
+	// 몬스터 생성
+	int monsterType = rand() % 3 + 1;
+	Monsters* monster = nullptr;
+
+// TODO: Playerinfo
+	switch (monsterType)
+	{
+	case MT_GOBLIN:
+		//monster = new Goblin(playerManager->GetLevel()); 
+		break;
+	case MT_ORC:
+		//monster = new Orc(playerManager->GetLevel());
+		break;
+	case MT_TROLL:
+		//monster = new Troll(playerManager->GetLevel());
+		break;
+	}
+	
+	delete monster; // Temp Delete
+
+}
+
+
 void GameManager::Battle()
 {
-	// 몬스터 생성 후 전투
+	// 전투
 	cout << "몬스터 생성 완료" << endl;
 	cout << "전투 시작" << endl;
 	cout << "전투 종료" << endl;
