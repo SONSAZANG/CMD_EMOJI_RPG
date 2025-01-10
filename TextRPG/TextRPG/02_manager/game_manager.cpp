@@ -1,7 +1,9 @@
 ﻿#include "game_manager.h"
 #include "player_manager.h"
+#include "Battle_Manager.h"
 #include "../03_ingame/player/player.h"
 #include "windows.h"
+
 
 void GameManager::Loading()
 {
@@ -50,10 +52,8 @@ void GameManager::CreatePlayer()
 
 void GameManager::Battle()
 {
-	// 몬스터 생성 후 전투
-	cout << "몬스터 생성 완료" << endl;
-	cout << "전투 시작" << endl;
-	cout << "전투 종료" << endl;
+	BattleManager* battlemManager = BattleManager::GetInstance();
+	battlemManager->Excute();
 }
 
 void GameManager::VisitShop()
