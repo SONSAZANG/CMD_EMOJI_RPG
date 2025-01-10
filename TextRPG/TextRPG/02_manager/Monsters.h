@@ -23,7 +23,7 @@ class Monsters : public MonsterSpawnManager
 {
 public:
 	Monsters(int type);
-	void SetStats(int playerlevel); // TODO : Create Monster Status
+	void SetStats(); // TODO : Create Monster Status
 
 protected:
 	int _monsterType;
@@ -32,19 +32,16 @@ protected:
 class Goblin : public Monsters
 {
 public:
-	Goblin(int playerlevel) : Monsters(MT_GOBLIN) { SetStats(playerlevel); }
 };
 
 class Orc : public Monsters
 {
 public:
-	Orc(int playerlevel) : Monsters(MT_ORC) { SetStats(playerlevel); }
 };
 
 class Troll : public Monsters
 {
 public:
-	Troll(int playerlevel) : Monsters(MT_TROLL) { SetStats(playerlevel); }
 };
 
 class BoosMonster : public Monsters

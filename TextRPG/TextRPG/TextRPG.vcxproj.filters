@@ -30,10 +30,10 @@
     <ClCompile Include="03_ingame\player\player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MonsterSpawnManager.cpp">
+    <ClCompile Include="02_manager\Monsters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Monsters.cpp">
+    <ClCompile Include="02_manager\MonsterSpawnManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,10 +47,10 @@
     <ClInclude Include="03_ingame\player\player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MonsterSpawnManager.h">
+    <ClInclude Include="02_manager\Monsters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Monsters.h">
+    <ClInclude Include="02_manager\MonsterSpawnManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
