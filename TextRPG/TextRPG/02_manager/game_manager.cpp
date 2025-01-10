@@ -3,6 +3,8 @@
 #include "../03_ingame/player/player.h"
 #include "windows.h"
 
+//Branch Test
+
 void GameManager::Loading()
 {
 	cout << "게임을 실행합니다." << endl;
