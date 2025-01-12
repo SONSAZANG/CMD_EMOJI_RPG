@@ -1,4 +1,4 @@
-﻿#include "game_manager.h"
+#include "game_manager.h"
 #include "player_manager.h"
 #include "Battle_Manager.h"
 #include "../03_ingame/player/player.h"
@@ -25,6 +25,7 @@ void GameManager::Run()
 	cout << "TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
 
 	CreatePlayerBase();
+	IsPlaying = true;
 
 	int testCount = 0;
 	while (IsPlaying)
@@ -54,7 +55,8 @@ void GameManager::CreatePlayerBase()
 		getline(cin, playername);
 	}
 
-	PlayerManager* playerManager = PlayerManager::GetInstance();
+	playerManager = PlayerManager::GetInstance(); 
+	// 한가윤) 다른 함수에서 사용하기 위해 PlayerManeger* 지웠습니다. 
 	playerManager->CreatePlayer(playername);
 
 	Player& player = playerManager->GetPlayer();
@@ -93,12 +95,55 @@ void GameManager::Battle()
 {
 	BattleManager* battlemManager = BattleManager::GetInstance();
 	battlemManager->Excute();
+	// 전투
+	cout << "몬스터 생성 완료" << endl;
+	cout << "전투 시작" << endl;
+	
+	//한가윤) 아이템 사용 테스트 시작(참고하고 지워주세요!)
+	Player& player = playerManager->GetPlayer();
+	cout << "데미지를 입었습니다." << endl;
+	player.SetHp(100);
+	cout << "현재 Hp: " << player.GetHp() << endl;
+
+	cout << endl;
+	player.GetInventory()->DisplayInventory();
+	cout << endl;
+
+	if (!player.GetInventory()->IsInventoryEmpty()) {
+		int useIndex;
+		cout << "사용할 아이템의 번호를 입력해주세요.";
+		cin >> useIndex;
+		if (player.GetInventory()->GetInventoryItem(useIndex - 1)->GetItemType() == ITEM_HealthPotion)
+		{
+			cout << "Hp " << player.GetInventory()->GetInventoryItem(useIndex - 1)->GetAmount() << "를 회복했습니다. ";
+			player.UseItem(useIndex-1);
+			cout << "현재 Hp: " << player.GetHp() << endl;
+		}
+		else 
+		{
+			cout << "Attack " << player.GetInventory()->GetInventoryItem(useIndex - 1)->GetAmount() << "가 증가했습니다. ";
+			player.UseItem(useIndex - 1);
+			cout << "현재 Attack: " << player.GetAttack() << endl;
+		}
+	}
+	//한가윤) 아이템 사용 테스트 끝(참고하고 지워주세요!)
+
+	cout << "전투 종료" << endl;
 }
 
 void GameManager::VisitShop()
 {
-	// 전투 후 상점 방문
-	// 상황에 따라서 인벤토리 출력 필요
+	if (shopManager == nullptr)
+	{
+		shopManager = ShopManager::GetInstance();
+
+	}
+	Player& player = playerManager->GetPlayer();
+
+	player.GetInventory()->SetGold(40); //전투 후 골드 획득 구현되면 삭제
+
+	shopManager->WelcomShop(player.GetInventory());
+
 	cout << "상점 방문 완료" << endl;
 }
 

@@ -50,4 +50,16 @@ int Player::GetExp()
 	return exp;
 }
 
+Inventory* Player::GetInventory()
+{
+	return inventory;
+}
+
+void Player::UseItem(int index)
+{
+	inventory->GetInventoryItem(index)->Use(this); 
+	inventory->DeleteFromInventory(index);
+}
+
+
 
