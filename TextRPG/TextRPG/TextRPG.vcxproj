@@ -132,15 +132,24 @@
     <ClCompile Include="02_manager\Monsters.cpp" />
     <ClCompile Include="02_manager\MonsterSpawnManager.cpp" />
     <ClCompile Include="02_manager\player_manager.cpp" />
+    <ClCompile Include="02_manager\shop_manager.cpp" />
+    <ClCompile Include="03_ingame\Inventory.cpp" />
     <ClCompile Include="03_ingame\player\player.cpp" />
+    <ClCompile Include="03_ingame\shop.cpp" />
     <ClCompile Include="TextRPG.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="01_core\item_base.h" />
     <ClInclude Include="02_manager\game_manager.h" />
     <ClInclude Include="02_manager\Monsters.h" />
     <ClInclude Include="02_manager\MonsterSpawnManager.h" />
     <ClInclude Include="02_manager\player_manager.h" />
+    <ClInclude Include="02_manager\shop_manager.h" />
+    <ClInclude Include="03_ingame\inventory.h" />
+    <ClInclude Include="03_ingame\items\attack_boost.h" />
+    <ClInclude Include="03_ingame\items\health_potion.h" />
     <ClInclude Include="03_ingame\player\player.h" />
+    <ClInclude Include="03_ingame\shop.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
