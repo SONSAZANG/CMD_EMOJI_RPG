@@ -83,23 +83,11 @@ void GameManager::SpawnRandomMonster()
 
 void GameManager::Battle()
 {
+	Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
 
-
-
-	BattleManager* battlemManager = BattleManager::GetInstance();
-	// 전투
-	SpawnRandomMonster(); // 몬스터 생성 TEST
 	cout << "전투 시작" << endl;
 
-	battlemManager->Excute(); // 몬스터 파라미터로 받을 생각
-
-
-	//아이템 사용 테스트 코드 시작
-	Player& player = playerManager->GetPlayer();
-
-	player.SetHp(100);
-	player.UseItem();
-	//아이템 사용 테스트 코드 끝
+	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
 
 	cout << "전투 종료" << endl;
 }
@@ -112,8 +100,6 @@ void GameManager::VisitShop()
 
 	}
 	Player& player = playerManager->GetPlayer();
-
-	player.GetInventory()->SetGold(40); //전투 후 골드 획득 구현되면 삭제
 
 	shopManager->WelcomShop(player.GetInventory());
 
