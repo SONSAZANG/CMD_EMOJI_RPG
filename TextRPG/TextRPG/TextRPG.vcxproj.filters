@@ -14,6 +14,13 @@
     <ClCompile Include="TextRPG.cpp" />
     <ClCompile Include="03_ingame\items\attack_boost.cpp" />
     <ClCompile Include="03_ingame\items\health_potion.cpp" />
+    <ClCompile Include="02_manager\scene_manager.cpp" />
+    <ClCompile Include="03_ingame\Scenes\dungeon_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\loading_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\start_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\town_scene.cpp" />
+    <ClCompile Include="04_Util\gui.h" />
+    <ClCompile Include="03_ingame\Scenes\select_stage_scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="02_manager\battle_manager.h" />
@@ -28,5 +35,12 @@
     <ClInclude Include="03_ingame\items\health_potion.h" />
     <ClInclude Include="03_ingame\player\player.h" />
     <ClInclude Include="03_ingame\shop.h" />
+    <ClInclude Include="01_core\scene_base.h" />
+    <ClInclude Include="02_manager\scene_manager.h" />
+    <ClInclude Include="03_ingame\Scenes\dungeon_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\loading_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\start_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\town_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\select_stage_scene.h" />
   </ItemGroup>
 </Project>
