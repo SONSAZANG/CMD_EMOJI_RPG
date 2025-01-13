@@ -56,7 +56,6 @@ void GameManager::CreatePlayerBase()
 	}
 
 	playerManager = PlayerManager::GetInstance();
-	// 한가윤) 다른 함수에서 사용하기 위해 PlayerManeger* 지웠습니다. 
 	playerManager->CreatePlayer(playername);
 
 	Player& player = playerManager->GetPlayer();
@@ -89,6 +88,12 @@ void GameManager::Battle()
 	cout << "전투 시작" << endl;
 
 	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
+
+
+	//아이템 사용 테스트 코드 시작
+	Player& player = playerManager->GetPlayer();
+	player.UseItem();
+	//아이템 사용 테스트 코드 끝
 
 	cout << "전투 종료" << endl;
 }

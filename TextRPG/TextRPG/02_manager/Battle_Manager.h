@@ -10,8 +10,7 @@ public:
 
 private:
 	void GetVictoryReWard();
-	void PlayerActionAttack(Monster& monster);
-	void MonsterActionAttack(const Monster& monster);
+	void AttackTarget(bool isPlayerAttacking, Monster& monster);
 	void SelectionItem();
 	void SelectionBehavior(Monster& monster);
 };

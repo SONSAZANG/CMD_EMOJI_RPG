@@ -12,6 +12,8 @@
     <ClCompile Include="03_ingame\player\player.cpp" />
     <ClCompile Include="03_ingame\shop.cpp" />
     <ClCompile Include="TextRPG.cpp" />
+    <ClCompile Include="03_ingame\items\attack_boost.cpp" />
+    <ClCompile Include="03_ingame\items\health_potion.cpp" />
     <ClCompile Include="02_manager\scene_manager.cpp" />
     <ClCompile Include="03_ingame\Scenes\dungeon_scene.cpp" />
     <ClCompile Include="03_ingame\Scenes\loading_scene.cpp" />
