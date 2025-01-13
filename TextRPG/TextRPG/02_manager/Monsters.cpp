@@ -34,6 +34,15 @@ const char* Monster::GetName() const
     }
 }
 
+void Monster::SetHp(int hp)
+{
+    _hp = hp;
+}
+void Monster::SetAttack(int attack)
+{
+    _attack = attack;
+}
+
 void Monster::SetStatus(monsterType type, const Player& player)
 {
     Player& SetPlayer = const_cast<Player&>(player);
@@ -45,22 +54,23 @@ void Monster::SetStatus(monsterType type, const Player& player)
 
     // 현재 보스몬스터는 포함되어 있지 않음
 
-    switch (type) {
+    switch (type)
+    {
     case MT_GOBLIN:
-        _hp = Hp;
-        _attack = Attack;
+        SetHp(Hp);
+        SetAttack(Attack);
         _exp = 50;
         break;
 
     case MT_ORC:
-        _hp = Hp;
-        _attack = Attack;
+        SetHp(Hp);
+        SetAttack(Attack);
         _exp = 50;
         break;
 
     case MT_TROLL:
-        _hp = Hp;
-        _attack = Attack;
+        SetHp(Hp);
+        SetAttack(Attack);
         _exp = 50;
         break;
 
@@ -71,8 +81,8 @@ void Monster::SetStatus(monsterType type, const Player& player)
         break;
 
     default:
-        _hp = 0;
-        _attack = 0;
+        SetHp(0);
+        SetAttack(0);
         _exp = 0;
         break;
     }

@@ -23,6 +23,9 @@ public:
     int GetType() const { return _type; }
     const char* GetName() const;
 
+    void SetAttack(int attack);
+    void SetHp(int hp);
+
 private:
     void SetStatus(monsterType type, const Player& player);
 
