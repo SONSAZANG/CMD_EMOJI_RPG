@@ -21,16 +21,20 @@ public:
     int GetAttack() const { return _attack; }
     int GetExp() const { return _exp; }
     int GetType() const { return _type; }
-    const char* GetName() const;
+
+    string GetName() const;
 
     void SetAttack(int attack);
     void SetHp(int hp);
 
 private:
     void SetStatus(monsterType type, const Player& player);
+    void SetTitle(const string& title);
+    const char* GetBaseName() const;
 
     monsterType _type;
     int _hp;
     int _attack;
     int _exp;
+    string _title;
 };
