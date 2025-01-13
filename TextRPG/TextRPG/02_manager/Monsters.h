@@ -1,66 +1,36 @@
 #pragma once
-#include "MonsterSpawnManager.h"
-#include <stdlib.h>
-#include "Monsters.h"
 
-//MonsterSpawnmanager
-//- MonsterSpawnRandom
-//-- Monster A, B, C ( name, hp, atk, exp ) ( hp = player(lvl x 20 ~ lvl x 30) ) ( atk = player(lvl x 5 ~ lvl x 10) )
-//-- Boss Monster ( name, hp, atk, exp ) (hp = (A,B,C)hp * 50, atk = (A,B,C)atk * 50)
+#include "../03_ingame/player/player.h"
 
-
-// --------- Monster Type here -------------
-
-enum MonsterType
+enum monsterType
 {
-	MT_GOBLIN = 1,
-	MT_ORC = 2,
-	MT_TROLL = 3,
-	MT_BOSSMONSTER = 4,
+    MT_GOBLIN = 1,
+    MT_ORC = 2,
+    MT_TROLL = 3,
+    MT_BOSSMONSTER = 4,
 };
 
-class Monsters : public MonsterSpawnManager
+class Monster
 {
 public:
-	Monsters(int type);
-	void SetStats(); // TODO : Create Monster Status
+    Monster(monsterType type, int hp, int attack, int exp);
 
-protected:
-	int _monsterType;
+    static Monster RandomMonsterSpawn(const Player& player);
+
+    int GetHp() const { return _hp; }
+    int GetAttack() const { return _attack; }
+    int GetExp() const { return _exp; }
+    int GetType() const { return _type; }
+    const char* GetName() const;
+
+    void SetAttack(int attack);
+    void SetHp(int hp);
+
+private:
+    void SetStatus(monsterType type, const Player& player);
+
+    monsterType _type;
+    int _hp;
+    int _attack;
+    int _exp;
 };
-
-class Goblin : public Monsters
-{
-public:
-};
-
-class Orc : public Monsters
-{
-public:
-};
-
-class Troll : public Monsters
-{
-public:
-};
-
-class BoosMonster : public Monsters
-{
-public:
-	BoosMonster(MonsterSpawnManager* goblin, MonsterSpawnManager* orc, MonsterSpawnManager* troll)
-		: Monsters(MT_BOSSMONSTER)
-	{
-		MonsterSpawnManager* randMonster = nullptr;
-		int choice = rand() % 3;
-		if (choice == 0)
-			randMonster = goblin;
-		else if (choice == 1)
-			randMonster = orc;
-		else
-			randMonster = troll;
-
-		_hp = randMonster->GetHp() * 50;
-		_attack = randMonster->GetAttack() * 50;
-	}
-};
-

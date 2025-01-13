@@ -1,11 +1,10 @@
 ﻿#include "scene_manager.h"
 #include "game_manager.h"
 #include "player_manager.h"
+#include "Monster_Spawn_Manager.h"
 #include "battle_manager.h"
 #include "../03_ingame/player/player.h"
-#include "Monsters.h"
 #include "windows.h"
-
 
 void GameManager::Loading()
 {
@@ -63,42 +62,33 @@ void GameManager::CreatePlayerBase()
 	Player& player = playerManager->GetPlayer();
 	cout << "플레이어 생성 완료" << endl;
 	cout << "이름: " << player.GetName() << "\n체력: " << player.GetHp() << "\n레벨: " << player.GetLevel()
-		<< "\n공격력: " << player.GetAttack() << "\n경험치: " << player.GetExp() << endl;
+		<< "\n공격력: " << player.GetAttack() << "\n경험치: " << player.GetExp() << "\n최대체력: " << player.GetMaxHp() << endl;
 
 }
 
-void GameManager::SpawnMonster()
+void GameManager::SpawnRandomMonster()
 {
-	// 몬스터 생성
-	int monsterType = rand() % 3 + 1;
-	Monsters* monster = nullptr;
+	MonsterSpawnManager* spawnManager = MonsterSpawnManager::GetInstance();
+	Monster randomMonster = spawnManager->SpawnRandomMonster();
 
-	// TODO: Playerinfo
-	switch (monsterType)
-	{
-	case MT_GOBLIN:
-		//monster = new Goblin(playerManager->GetLevel()); 
-		break;
-	case MT_ORC:
-		//monster = new Orc(playerManager->GetLevel());
-		break;
-	case MT_TROLL:
-		//monster = new Troll(playerManager->GetLevel());
-		break;
-	}
+	Player& player = playerManager->GetPlayer();
 
-	delete monster; // Temp Delete
+	// TEST 몬스터 스텟 및 플레이어 레벨 출력
+	cout << "Player Level: " << player.GetLevel() << endl;
+	cout << "Monster Type: " << randomMonster.GetName() << endl;
+	cout << "Monster Hp: " << randomMonster.GetHp() << endl;
+	cout << "Monster Attack: " << randomMonster.GetAttack() << endl;
+	cout << "Monster Exp: " << randomMonster.GetExp() << endl;
 
 }
 
 void GameManager::Battle()
 {
-	BattleManager* battlemManager = BattleManager::GetInstance();
-	// 전투
-	cout << "몬스터 생성 완료" << endl;
+	Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
+
 	cout << "전투 시작" << endl;
 
-	battlemManager->Excute(); // 몬스터 파라미터로 받을 생각
+	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
 
 	cout << "전투 종료" << endl;
 }
@@ -111,8 +101,6 @@ void GameManager::VisitShop()
 
 	}
 	Player& player = playerManager->GetPlayer();
-
-	player.GetInventory()->SetGold(40); //전투 후 골드 획득 구현되면 삭제
 
 	shopManager->WelcomShop(player.GetInventory());
 
