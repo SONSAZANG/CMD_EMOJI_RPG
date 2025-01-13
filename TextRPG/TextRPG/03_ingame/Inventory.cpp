@@ -8,15 +8,13 @@ void Inventory::UseInventoryItem(Player* player)
 	{
 		return;
 	}
-
+	cout << "사용할 아이템의 번호를 입력해주세요.";
 	while (true)
 	{
 		int useIndex = 0;
-		cout << "사용할 아이템의 번호를 입력해주세요.";
 		cin >> useIndex;
-		if (std::cin.fail() || !(useIndex > 0) || useIndex > inventory.size())
+		if (cin.fail() || !(useIndex > 0) || useIndex > inventory.size())
 		{
-			cout << endl;
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
 			cout << "다시 입력하세요." << endl;

@@ -68,7 +68,6 @@ Inventory* Player::GetInventory()
 void Player::UseItem() 
 {	
 	inventory->UseInventoryItem(this);
-	
 }
 
 void Player::LevelUp()

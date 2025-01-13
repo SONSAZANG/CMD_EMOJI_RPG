@@ -8,13 +8,12 @@ void ShopManager::WelcomShop(Inventory* inventory)
 		cout << "1. 구매 2. 판매 3. 기타 4. 나가기 \n어떤 걸 할지 번호를 선택하세요. : ";
 		cin >> shopAction;
 
-		if (cin.fail() || shopAction < 0 || shopAction > 4) 
+		while (cin.fail() || shopAction < 0 || shopAction > 4) 
 		{
-			cout << std::endl;
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "\n다시 입력하세요.\n" << endl;
-			continue;
+			cout << "다시 입력하세요. ";
+			cin >> shopAction;
 		};
 
 		switch (shopAction) {
@@ -25,12 +24,12 @@ void ShopManager::WelcomShop(Inventory* inventory)
 				SellItem(inventory);
 				break;
 			case 3: 
-				cout << "\n아직 준비되지 않았습니다.\n" << endl;
+				cout << "아직 준비되지 않았습니다." << endl;
 				break;
 			case 4:
 				break;
 			default:
-				cout << "\n잘못된 번호를 입력했습니다.\n" << endl;
+				break;
 		}
 	}
 
@@ -43,28 +42,22 @@ void ShopManager::BuyItem(Inventory* inventory)
 	char keepBuying = 'Y';
 
 	while (keepBuying == 'Y' || keepBuying == 'y') {
-		cout << endl;
 		inventory->DisplayGoldInfo();
 		shop->DisplayItems();
-		cout << endl;
 
 		cout << "구매할 아이템의 번호를 선택해주세요 : "; 
 		cin >> buyChoice;
 		while (cin.fail() || buyChoice < 1 || buyChoice > shop->GetItems().size())
 		{
-			cout << endl;
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "\n다시 입력하세요.\n" << endl;
+			cout << "다시 입력하세요. ";
 			cin >> buyChoice;
 		};
 		if (shop->CanBuy(buyChoice-1, inventory))
 		{
 			shop->BuyItem(buyChoice - 1, inventory);
-
-			cout << endl;
 			inventory->DisplayInventory();
-			cout << endl;
 		}
 		else
 		{
@@ -77,13 +70,13 @@ void ShopManager::BuyItem(Inventory* inventory)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "\n다시 입력하세요.\n" << endl;
+			cout << "다시 입력하세요. ";
 			cin >> keepBuying;
 		};
 		
 	}
 
-	cout << "구매를 종료합니다\n" << endl;
+	cout << "구매를 종료합니다." << endl;
 }
 
 void ShopManager::SellItem(Inventory* inventory)
@@ -92,10 +85,8 @@ void ShopManager::SellItem(Inventory* inventory)
 	char keepSelling = 'Y';
 
 	while (keepSelling == 'Y' || keepSelling == 'y') {
-		cout << endl;
 		inventory->DisplayGoldInfo();
 		inventory->DisplayInventory();
-		cout << endl;
 
 		if (!inventory->IsInventoryEmpty()) 
 		{
@@ -105,27 +96,24 @@ void ShopManager::SellItem(Inventory* inventory)
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
-				cout << "\n다시 입력하세요.\n" << endl;
+				cout << "다시 입력하세요. ";
 				cin >> sellChoice;
 			};
 			shop->SellItem(sellChoice - 1, inventory);
 
-			cout << endl;
 			inventory->DisplayInventory();
-			cout << endl;
 		}
 
 		cout << "추가로 판매하시겠습니까? (Y/N) : ";
 		cin >> keepSelling;
 		while (cin.fail() || !(keepSelling == 'N' || keepSelling == 'n' || keepSelling == 'Y' || keepSelling == 'y'))
 		{
-			cout << endl;
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "\n다시 입력하세요.\n" << endl;
+			cout << "다시 입력하세요. ";
 			cin >> keepSelling;
 		};
 	}
 
-	cout << "판매를 종료합니다\n" << endl;
+	cout << "판매를 종료합니다" << endl;
 }

@@ -49,5 +49,5 @@ void BattleManager::SelectionBehavior()
 
 void BattleManager::AttackTarget() // 플레이어 몬스터 구현 필요
 {	
-	std::cout << "공격 !!";
+	std::cout << "공격 !!" << std::endl;
 }
