@@ -33,7 +33,7 @@ public:
 	int GetExp();
 
 	Inventory* GetInventory(); 
-	void UseItem(int index);
+	void UseItem();
 
 private:
 	int hp;

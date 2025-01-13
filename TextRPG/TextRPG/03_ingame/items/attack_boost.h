@@ -32,10 +32,7 @@ public:
 		return price; 
 	}
 
-	void Use(Player* player)
-	{
-		player->SetAttack(player->GetAttack() + attackIncrease);
-	}
+	void Use(Player* player);
 
 	~AttackBoost() {}
 

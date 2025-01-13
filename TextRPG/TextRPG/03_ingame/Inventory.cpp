@@ -1,6 +1,37 @@
 ﻿#include "inventory.h"
 
-Item* Inventory::GetInventoryItem(int index) 
+void Inventory::UseInventoryItem(Player* player)
+{
+	DisplayInventory();
+
+	if (IsInventoryEmpty()) 
+	{
+		return;
+	}
+
+	while (true)
+	{
+		int useIndex = 0;
+		cout << "사용할 아이템의 번호를 입력해주세요.";
+		cin >> useIndex;
+		if (std::cin.fail() || !(useIndex > 0) || useIndex > inventory.size())
+		{
+			cout << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "다시 입력하세요." << endl;
+			continue;
+		};
+
+		inventory[useIndex - 1]->Use(player);
+		DeleteFromInventory(useIndex - 1);
+
+		break;
+	}
+}
+
+
+Item* Inventory::GetInventoryItem(int index)
 {
 	return inventory[index];
 }

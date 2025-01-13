@@ -30,10 +30,7 @@ public:
 		return price; 
 	}
 
-	void Use(Player* player) 
-	{ 
-		player->SetHp(player->GetHp() + healthRestore); 
-	}
+	void Use(Player* player);
 
 	~HealthPotion() {}
 

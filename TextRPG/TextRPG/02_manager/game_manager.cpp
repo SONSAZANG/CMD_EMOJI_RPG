@@ -92,12 +92,23 @@ void GameManager::SpawnMonster()
 
 void GameManager::Battle()
 {
+
+
+
 	BattleManager* battlemManager = BattleManager::GetInstance();
 	// 전투
 	cout << "몬스터 생성 완료" << endl;
 	cout << "전투 시작" << endl;
 
 	battlemManager->Excute(); // 몬스터 파라미터로 받을 생각
+
+
+	//아이템 사용 테스트 코드 시작
+	Player& player = playerManager->GetPlayer();
+
+	player.SetHp(100);
+	player.UseItem();
+	//아이템 사용 테스트 코드 끝
 
 	cout << "전투 종료" << endl;
 }

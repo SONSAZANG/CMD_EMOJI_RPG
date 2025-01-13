@@ -135,6 +135,8 @@
     <ClCompile Include="02_manager\player_manager.cpp" />
     <ClCompile Include="02_manager\shop_manager.cpp" />
     <ClCompile Include="03_ingame\Inventory.cpp" />
+    <ClCompile Include="03_ingame\items\attack_boost.cpp" />
+    <ClCompile Include="03_ingame\items\health_potion.cpp" />
     <ClCompile Include="03_ingame\player\player.cpp" />
     <ClCompile Include="03_ingame\shop.cpp" />
     <ClCompile Include="TextRPG.cpp" />
