@@ -3,14 +3,12 @@
 #include <ctime>
 
 Monster::Monster(monsterType type, int hp, int attack, int exp)
-    : _type(type), _hp(hp), _attack(attack), _exp(exp) {
+    : _type(type), _hp(hp), _attack(attack), _exp(exp)
+{
 }
 
 Monster Monster::RandomMonsterSpawn(const Player& player)
  {
-
-    srand(static_cast<unsigned int>(time(nullptr)));
-
     monsterType randomType = static_cast<monsterType>(1 + rand() % 3);
 
     Monster monster(randomType, 0, 0, 0);
@@ -18,9 +16,20 @@ Monster Monster::RandomMonsterSpawn(const Player& player)
     return monster;
 }
 
-const char* Monster::GetName() const
+
+string Monster::GetName() const
 {
-    switch (_type) {
+    if (!_title.empty())
+    {
+        return _title + " " + GetBaseName();
+    }
+    return GetBaseName();
+}
+
+const char* Monster::GetBaseName() const
+{
+    switch (_type)
+    {
     case MT_GOBLIN:
         return "Goblin";
     case MT_ORC:
@@ -42,6 +51,11 @@ void Monster::SetAttack(int attack)
 {
     _attack = attack;
 }
+void Monster::SetTitle(const string& title)
+{
+    _title = title;
+}
+
 
 void Monster::SetStatus(monsterType type, const Player& player)
 {
@@ -86,4 +100,11 @@ void Monster::SetStatus(monsterType type, const Player& player)
         _exp = 0;
         break;
     }
+
+    const int maxAttack = playerLevel * 10;
+    if (Attack == maxAttack)
+    {
+        SetTitle(" ºÒÅ¸´Â ");
+    }
+
 }
