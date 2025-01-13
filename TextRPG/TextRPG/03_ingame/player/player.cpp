@@ -10,6 +10,16 @@ int Player::GetHp()
 	return hp;
 }
 
+void Player::SetMaxHp(int maxHp)
+{
+	this->maxHp = maxHp;
+}
+
+int Player::GetMaxHp()
+{
+	return maxHp;
+}
+
 void Player::SetName(string name)
 {
 	this->name = name;
@@ -59,6 +69,50 @@ void Player::UseItem()
 {	
 	inventory->UseInventoryItem(this);
 	
+}
+
+void Player::LevelUp()
+{
+	int initialLevel = level;
+
+	while (CanLevelUp())
+	{		
+		level++;
+		exp -= 100;
+
+		maxHp += level * 20;
+		attack += level * 5;
+
+		if (level >= 10)
+		{
+			exp = 0;
+			level = 10;
+			break;
+		}
+	}
+
+	if (initialLevel != level)
+	{
+		hp = maxHp;
+
+		cout << "레벨 업! 현재 레벨: " << level
+			<< "\n체력: " << hp
+			<< "\\n최대 체력: " << maxHp
+			<< "\n공격력: " << attack
+			<< "\n경험치: " << exp << endl;
+	}
+}
+
+bool Player::CanLevelUp() const
+{
+	return exp >= 100 && level < 10;
+}
+
+void Player::GainExp(int expAmount)
+{
+	exp += expAmount;
+	cout << "경험치 " << expAmount << " 획득! 현재 경험치: " << exp << endl;
+	LevelUp();
 }
 
 
