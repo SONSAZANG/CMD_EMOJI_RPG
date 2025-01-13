@@ -62,9 +62,7 @@ void GameManager::CreatePlayerBase()
 	cout << "플레이어 생성 완료" << endl;
 	cout << "이름: " << player.GetName() << "\n체력: " << player.GetHp() << "\n레벨: " << player.GetLevel()
 		<< "\n공격력: " << player.GetAttack() << "\n경험치: " << player.GetExp() << "\n최대체력: " << player.GetMaxHp() << endl;
-	player.GainExp(100);
-	player.GainExp(100);
-	player.GainExp(100);
+	player.GainExp(500);
 
 }
 

@@ -45,6 +45,7 @@ public:
 	void GainExp(int expAmount);
 
 	void UpdateTitle();
+	void ChooseJob();
 
 private:
 	int hp;
@@ -55,6 +56,8 @@ private:
 	int exp;
 	string title;
 	vector<string> titles = {"초심자", "모험가", "견습생", "도전자"};
+	string job;
+	bool isJobChosen = false;
 	Inventory* inventory; 
 
 };
