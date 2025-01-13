@@ -8,11 +8,14 @@ void Inventory::UseInventoryItem(Player* player)
 	{
 		return;
 	}
-	cout << "사용할 아이템의 번호를 입력해주세요.";
+	cout << "아이템을 사용할 경우 아이템의 번호, 사용하지 않을 경우 0을 입력해주세요.";
 	while (true)
 	{
 		int useIndex = 0;
 		cin >> useIndex;
+		if (useIndex == 0)
+			break;
+
 		if (cin.fail() || !(useIndex > 0) || useIndex > inventory.size())
 		{
 			cin.clear();
