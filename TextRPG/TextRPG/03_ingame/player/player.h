@@ -8,7 +8,7 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0) 
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200)
 	{
 		inventory = new Inventory();
 	}
@@ -19,6 +19,9 @@ public:
 
 	void SetHp(int hp);
 	int GetHp();
+
+	void SetMaxHp(int maxHp);
+	int GetMaxHp();
 
 	void SetName(string name);
 	string GetName();
@@ -35,8 +38,14 @@ public:
 	Inventory* GetInventory(); 
 	void UseItem(int index);
 
+	void LevelUp();
+	bool CanLevelUp() const;
+
+	void GainExp(int expAmount);
+
 private:
 	int hp;
+	int maxHp;
 	string name;
 	int level;
 	int attack;
