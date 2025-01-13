@@ -1,6 +1,7 @@
 ﻿#include "loading_scene.h"
 #include "../../04_Util/gui.h"
 #include "../../02_manager/scene_manager.h"
+#include "../../02_manager/game_manager.h"
 #include <iostream>
 #include <windows.h>
 using namespace std;
@@ -8,10 +9,6 @@ using namespace std;
 void LoadingScene::Init()
 {
 	DrawMainLayout();
-}
-
-void LoadingScene::Clear()
-{
 }
 
 void LoadingScene::DrawMainLayout()
@@ -33,5 +30,6 @@ void LoadingScene::DrawMainLayout()
 		cout << loadingText[i % 4];
 	}
 
-	SceneManager::GetInstance()->LoadScene(EST_TOWN);
+	// SceneManager::GetInstance()->LoadScene(EST_TOWN);
+	GameManager::GetInstance()->Run();
 }

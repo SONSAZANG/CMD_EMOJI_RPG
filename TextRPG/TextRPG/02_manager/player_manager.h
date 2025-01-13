@@ -14,7 +14,7 @@ private:
 	~PlayerManager() {};
 
 public:
-	void CreatePlayer(const string& name);
+	void CreatePlayer();
 	Player& GetPlayer();
 
 private:

@@ -22,6 +22,7 @@ void GameManager::Loading()
 
 void GameManager::Run()
 {
+	system("cls");
 	cout << "TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
 
 	CreatePlayerBase();
@@ -44,19 +45,10 @@ void GameManager::Run()
 
 void GameManager::CreatePlayerBase()
 {
-	// 플레이어 생성
-	string playername;
-	cout << "플레이어 이름을 입력해주세요: ";
-	getline(cin, playername);
-
-	while (playername.empty())
-	{
-		cout << "이름이 비어 있습니다. 다시 입력해주세요: ";
-		getline(cin, playername);
-	}
+	
 
 	playerManager = PlayerManager::GetInstance();
-	playerManager->CreatePlayer(playername);
+	playerManager->CreatePlayer();
 
 	Player& player = playerManager->GetPlayer();
 	cout << "플레이어 생성 완료" << endl;

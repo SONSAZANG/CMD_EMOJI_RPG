@@ -11,9 +11,8 @@ void StartScene::Init()
 	DrawMainLayout();
 	// 입력 받기
 	HandleStartInput();
-}
+}		
 
-void StartScene::Clear() {}
 
 
 void StartScene::DrawMainLayout()

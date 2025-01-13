@@ -8,7 +8,6 @@ public:
 	virtual ~StartScene() {};
 
 	virtual void Init() override;
-	virtual void Clear() override;
 
 private:
 	void DrawMainLayout();

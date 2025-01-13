@@ -11,7 +11,6 @@ private:
 
 public:
 	void Init();
-	void Clear();
 
 public:
 	void LoadScene(ESceneType sceneType);

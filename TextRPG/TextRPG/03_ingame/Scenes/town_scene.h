@@ -4,9 +4,11 @@
 class TownScene : public SceneBase
 {
 public:
-	TownScene();
-	virtual ~TownScene();
+	TownScene() {};
+	virtual ~TownScene() {};
 
 	virtual void Init() override;
-	virtual void Clear() override;
+
+private:
+	void DrawMainLayout();
 };

@@ -4,9 +4,8 @@
 class SelectStageScene : public SceneBase
 {
 public:
-	SelectStageScene();
-	virtual ~SelectStageScene();
+	SelectStageScene() {};
+	virtual ~SelectStageScene() {};
 
 	virtual void Init() override;
-	virtual void Clear() override;
 };

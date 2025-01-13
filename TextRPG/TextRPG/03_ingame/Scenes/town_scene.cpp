@@ -1,19 +1,14 @@
 #include "town_scene.h"
+#include "../../04_Util/gui.h"
+#include "../../02_manager/player_manager.h"
 #include <iostream>
 using namespace std;
-TownScene::TownScene()
-{
-}
-
-TownScene::~TownScene()
-{
-}
 
 void TownScene::Init()
 {
-	cout << "TownScene Init() !!" << endl;
+	DrawMainLayout();
 }
 
-void TownScene::Clear()
+void TownScene::DrawMainLayout()
 {
 }

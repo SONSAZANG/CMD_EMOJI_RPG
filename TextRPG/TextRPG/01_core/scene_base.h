@@ -17,5 +17,4 @@ class SceneBase
 		virtual ~SceneBase() {};
 
 		virtual void Init() abstract;
-		virtual void Clear() abstract;
 };

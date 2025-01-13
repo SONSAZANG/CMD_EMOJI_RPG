@@ -1,4 +1,4 @@
-#include "scene_manager.h"
+ï»¿#include "scene_manager.h"
 #include "../03_ingame/Scenes/start_scene.h"
 #include "../03_ingame/Scenes/loading_scene.h"
 #include "../03_ingame/Scenes/town_scene.h"
@@ -11,14 +11,9 @@ void SceneManager::Init()
 	if(scene) scene->Init();
 }
 
-void SceneManager::Clear()
-{
-	if(scene) scene->Clear();
-}
-
 void SceneManager::LoadScene(ESceneType sceneType)
 {
-	// ÇöÀç ¾À°ú µ¿ÀÏÇÑÁö È®ÀÎ
+	// í˜„ìž¬ ì”¬ê³¼ ë™ì¼í•œì§€ í™•ì¸
 	if(this->sceneType == sceneType) return;
 
 	SceneBase* newScene = nullptr;

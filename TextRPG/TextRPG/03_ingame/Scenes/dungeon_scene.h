@@ -4,9 +4,8 @@
 class DungeonScene : public SceneBase
 {
 public:
-	DungeonScene();
-	virtual ~DungeonScene();
+	DungeonScene() {};
+	virtual ~DungeonScene() {};
 
 	virtual void Init() override;
-	virtual void Clear() override;
 };
