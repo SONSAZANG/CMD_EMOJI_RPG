@@ -137,6 +137,7 @@
     <ClCompile Include="03_ingame\Inventory.cpp" />
     <ClCompile Include="03_ingame\player\player.cpp" />
     <ClCompile Include="03_ingame\shop.cpp" />
+    <ClCompile Include="03_ingame\Job.cpp" />
     <ClCompile Include="TextRPG.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="03_ingame\items\health_potion.h" />
     <ClInclude Include="03_ingame\player\player.h" />
     <ClInclude Include="03_ingame\shop.h" />
+    <ClInclude Include="03_ingame\Job.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

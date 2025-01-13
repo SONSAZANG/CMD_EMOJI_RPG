@@ -36,6 +36,9 @@ public:
 	void SetExp(int exp);
 	int GetExp() const { return exp; }
 
+	void SetJob(const string& job);
+	string GetJob() const { return job; }
+
 	Inventory* GetInventory(); 
 	void UseItem(int index);
 
@@ -45,7 +48,6 @@ public:
 	void GainExp(int expAmount);
 
 	void UpdateTitle();
-	void ChooseJob();
 
 private:
 	int hp;
@@ -60,4 +62,5 @@ private:
 	bool isJobChosen = false;
 	Inventory* inventory; 
 
+	Job jobs;
 };
