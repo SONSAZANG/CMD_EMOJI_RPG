@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <vector>
 #include "../../03_ingame/inventory.h" 
 
 using namespace std;
@@ -8,7 +9,7 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200)
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title("초심자")
 	{
 		inventory = new Inventory();
 	}
@@ -18,22 +19,22 @@ public:
 	}
 
 	void SetHp(int hp);
-	int GetHp();
+	int GetHp() const { return hp; }
 
 	void SetMaxHp(int maxHp);
-	int GetMaxHp();
+	int GetMaxHp() const { return maxHp; }
 
 	void SetName(string name);
-	string GetName();
+	string GetName() const { return "[" + title + "] " + name; }
 
 	void SetLevel(int level);
-	int GetLevel();
+	int GetLevel() const { return level; }
 
 	void SetAttack(int attack);
-	int GetAttack();
+	int GetAttack() const { return attack; }
 
 	void SetExp(int exp);
-	int GetExp();
+	int GetExp() const { return exp; }
 
 	Inventory* GetInventory(); 
 	void UseItem(int index);
@@ -43,6 +44,8 @@ public:
 
 	void GainExp(int expAmount);
 
+	void UpdateTitle();
+
 private:
 	int hp;
 	int maxHp;
@@ -50,6 +53,8 @@ private:
 	int level;
 	int attack;
 	int exp;
+	string title;
+	vector<string> titles = {"초심자", "모험가", "견습생", "도전자"};
 	Inventory* inventory; 
 
 };
