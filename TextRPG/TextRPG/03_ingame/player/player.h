@@ -36,7 +36,7 @@ public:
 	int GetExp();
 
 	Inventory* GetInventory(); 
-	void UseItem(int index);
+	void UseItem();
 
 	void LevelUp();
 	bool CanLevelUp() const;

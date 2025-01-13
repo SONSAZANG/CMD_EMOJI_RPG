@@ -65,10 +65,9 @@ Inventory* Player::GetInventory()
 	return inventory;
 }
 
-void Player::UseItem(int index)
-{
-	inventory->GetInventoryItem(index)->Use(this); 
-	inventory->DeleteFromInventory(index);
+void Player::UseItem() 
+{	
+	inventory->UseInventoryItem(this);
 }
 
 void Player::LevelUp()
