@@ -1,13 +1,11 @@
 #include "player.h"
 
+constexpr int MAX_LEVEL = 10;
+constexpr int EXP_FOR_LEVEL_UP = 100;
+
 void Player::SetHp(int hp)
 {
 	this->hp = hp;
-}
-
-int Player::GetHp()
-{
-	return hp;
 }
 
 void Player::SetMaxHp(int maxHp)
@@ -15,19 +13,9 @@ void Player::SetMaxHp(int maxHp)
 	this->maxHp = maxHp;
 }
 
-int Player::GetMaxHp()
-{
-	return maxHp;
-}
-
 void Player::SetName(string name)
 {
 	this->name = name;
-}
-
-string Player::GetName()
-{
-	return name;
 }
 
 void Player::SetLevel(int level)
@@ -35,29 +23,14 @@ void Player::SetLevel(int level)
 	this->level = level;
 }
 
-int Player::GetLevel()
-{
-	return level;
-}
-
 void Player::SetAttack(int attack)
 {
 	this->attack = attack;
 }
 
-int Player::GetAttack()
-{
-	return attack;
-}
-
 void Player::SetExp(int exp)
 {
 	this->exp = exp;
-}
-
-int Player::GetExp()
-{
-	return exp;
 }
 
 Inventory* Player::GetInventory()
@@ -77,15 +50,15 @@ void Player::LevelUp()
 	while (CanLevelUp())
 	{		
 		level++;
-		exp -= 100;
+		exp -= EXP_FOR_LEVEL_UP;
 
 		maxHp += level * 20;
 		attack += level * 5;
 
-		if (level >= 10)
+		if (level >= MAX_LEVEL)
 		{
 			exp = 0;
-			level = 10;
+			level = MAX_LEVEL;
 			break;
 		}
 	}
@@ -93,10 +66,11 @@ void Player::LevelUp()
 	if (initialLevel != level)
 	{
 		hp = maxHp;
-
+		UpdateTitle();
 		cout << u8"레벨 업! 현재 레벨: " << level
+			<< u8"\n" << GetName()
 			<< u8"\n체력: " << hp
-			<< u8"\\n최대 체력: " << maxHp
+			<< u8"\n최대 체력: " << maxHp
 			<< u8"\n공격력: " << attack
 			<< u8"\n경험치: " << exp << endl;
 	}
@@ -112,6 +86,14 @@ void Player::GainExp(int expAmount)
 	exp += expAmount;
 	cout << u8"경험치 " << expAmount << u8" 획득! 현재 경험치: " << exp << endl;
 	LevelUp();
+}
+
+void Player::UpdateTitle()
+{
+	if (level >= 1)
+	{
+		title = titles[level - 1];
+	}
 }
 
 
