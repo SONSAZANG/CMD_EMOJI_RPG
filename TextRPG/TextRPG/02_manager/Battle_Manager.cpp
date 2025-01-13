@@ -9,7 +9,7 @@ void BattleManager::Excute(Monster& monster)
 	Player& player = PlayerManager::GetInstance()->GetPlayer();
 
 	while (true)
-	{	
+	{
 		SelectionBehavior(monster);
 
 		if (monster.GetHp() <= 0) // 몬스터 사망 판단
@@ -18,7 +18,7 @@ void BattleManager::Excute(Monster& monster)
 			break;
 		}
 
-		MonsterActionAttack(monster);
+		AttackTarget(false, monster);
 
 		if (player.GetHp() <= 0) // 플레이어 사망 판단
 		{
@@ -48,7 +48,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 		if (selectNumber == 1)
 		{
-			PlayerActionAttack(monster);
+			AttackTarget(true, monster);
 		}
 		else
 		{
@@ -59,32 +59,36 @@ void BattleManager::SelectionBehavior(Monster& monster)
 	}
 }
 
-void BattleManager::PlayerActionAttack(Monster& monster) //플레이어가 몬스터를 공격
-{	
-	Player& player = PlayerManager::GetInstance()->GetPlayer();
-	
-	cout << player.GetName() << "이 공격합니다." << endl;
-	cout << player.GetAttack() << "의 데미지!!" << endl;
-
-	int calculate = monster.GetHp() - player.GetAttack() <= 0 ? 0 : monster.GetHp() - player.GetAttack();
-
-	monster.SetHp(calculate);
-
-	cout << monster.GetName() << " 남은 체력: " << monster.GetHp() << endl;
-}
-
-void BattleManager::MonsterActionAttack(const Monster& monster)
+void BattleManager::AttackTarget(bool playerFlag, Monster& monster)
 {
 	Player& player = PlayerManager::GetInstance()->GetPlayer();
 
-	int calculate = player.GetHp() - monster.GetAttack() <= 0 ? 0 : player.GetHp() - monster.GetAttack();
+	auto attackAction = [](const string& attacker, auto& target, auto getAttack, auto getHp, auto setHp) // 람다 함수 정의
+	{
+		int damage = getAttack();
+		int newHp = getHp() - damage;
+		newHp = (newHp < 0) ? 0 : newHp;
+		setHp(newHp);
 
-	cout << monster.GetName() << "이 공격합니다." << endl;
-	cout << monster.GetAttack() << "의 데미지!!" << endl;
+		std::cout << attacker << "이 공격합니다." << std::endl;
+		std::cout << damage << "의 데미지!!" << std::endl;
+		std::cout << target.GetName() << " 남은 체력: " << newHp << std::endl;
+	};
 
-	player.SetHp(calculate);
-
-	cout << player.GetName() << " 남은 체력: " << player.GetHp() << endl;
+	if (playerFlag) // 공격하는 객체와 타겟을 결정하는 flag
+	{
+		attackAction(player.GetName(), monster,
+			[&]() { return player.GetAttack(); },
+			[&]() { return monster.GetHp(); },
+			[&](int hp) { monster.SetHp(hp); });
+	}
+	else
+	{
+		attackAction(monster.GetName(), player,
+			[&]() { return monster.GetAttack(); },
+			[&]() { return player.GetHp(); },
+			[&](int hp) { player.SetHp(hp); });
+	}
 }
 
 void BattleManager::GetVictoryReWard()
@@ -93,7 +97,7 @@ void BattleManager::GetVictoryReWard()
 	random_device rd;
 	mt19937 gen(rd());
 	uniform_int_distribution<> dice(10, 20);
-	
+
 	int gold = dice(gen);
 
 	player.GainExp(50);
