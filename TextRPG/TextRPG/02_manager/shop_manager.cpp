@@ -90,7 +90,7 @@ void ShopManager::SellItem(Inventory* inventory)
 
 		if (!inventory->IsInventoryEmpty()) 
 		{
-			cout << "판매할 아이템의 번호를 선택해주세요 : "; //TODO: 예외처리(숫자 외 다른 타입, 범위 외 입력 시)
+			cout << "판매할 아이템의 번호를 선택해주세요 : ";
 			cin >> sellChoice;
 			while (cin.fail() || sellChoice < 1 || sellChoice > inventory->GetInventorySize())
 			{
