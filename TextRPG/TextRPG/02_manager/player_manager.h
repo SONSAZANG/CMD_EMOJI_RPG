@@ -15,6 +15,7 @@ private:
 
 public:
 	void CreatePlayer();
+	void GetPlayerInfo();
 	Player& GetPlayer();
 
 private:

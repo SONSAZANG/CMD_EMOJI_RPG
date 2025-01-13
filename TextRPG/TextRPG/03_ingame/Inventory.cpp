@@ -8,7 +8,7 @@ void Inventory::UseInventoryItem(Player* player)
 	{
 		return;
 	}
-	cout << "아이템을 사용할 경우 아이템의 번호, 사용하지 않을 경우 0을 입력해주세요.";
+	cout << u8"아이템을 사용할 경우 아이템의 번호, 사용하지 않을 경우 0을 입력해주세요.";
 	while (true)
 	{
 		int useIndex = 0;
@@ -20,7 +20,7 @@ void Inventory::UseInventoryItem(Player* player)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "다시 입력하세요." << endl;
+			cout << u8"다시 입력하세요." << endl;
 			continue;
 		};
 
@@ -39,7 +39,7 @@ Item* Inventory::GetInventoryItem(int index)
 
 void Inventory::DisplayInventory() 
 {
-	cout << "소지한 아이템: " << endl;
+	cout << u8"소지한 아이템: " << endl;
 	if(!IsInventoryEmpty())
 	{
 		for (int i = 0; i < inventory.size(); ++i)
@@ -50,13 +50,13 @@ void Inventory::DisplayInventory()
 	}
 	else
 	{
-		cout << "현재 인벤토리가 비어있습니다!" << endl;
+		cout << u8"현재 인벤토리가 비어있습니다!" << endl;
 	}
 }
 
 void Inventory::DisplayGoldInfo()
 {
-	cout << "현재 소지 골드: " << gold << "골드" << endl;
+	cout << u8"현재 소지 골드: " << gold << u8"골드" << endl;
 }
 
 void Inventory::AddToInventory(Item* item)

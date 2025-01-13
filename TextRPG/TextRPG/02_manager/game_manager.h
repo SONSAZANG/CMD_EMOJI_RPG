@@ -10,7 +10,6 @@ using namespace std;
 class GameManager : public SingletonBase<GameManager>
 {
 public:
-	void Loading();
 	void Run();
 	void CreatePlayerBase();
 	void SpawnRandomMonster();

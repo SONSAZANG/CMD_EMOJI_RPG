@@ -23,7 +23,7 @@ void LoadingScene::DrawMainLayout()
 	GUI::DrawBox(20, 20, 80, 3);
 
 	GUI::GoToXY(22, 21);
-	string loadingText[] = {"\xF0\x9F\x92\x99", "\xF0\x9F\x92\x9A", "\xF0\x9F\x92\x9B" , "\xF0\x9F\x92\x9C"};
+	string loadingText[] = {u8"❤️", "\xF0\x9F\x92\x9A", "\xF0\x9F\x92\x9B" , "\xF0\x9F\x92\x9C"};
 	for (int i = 0; i < 38; i++) 
 	{
 		Sleep(80);

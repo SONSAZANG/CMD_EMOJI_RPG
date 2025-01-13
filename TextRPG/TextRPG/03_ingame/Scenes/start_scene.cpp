@@ -27,9 +27,9 @@ void StartScene::DrawMainLayout()
 	// 메뉴 박스
 	GUI::DrawBox(30, 16, 60, 9);
 	GUI::GoToXY(35, 18);
-	cout << "1. Start Game" << "\xF0\x9F\x98\x8E";
+	cout << u8"1. 게임 시작" << u8"😎";
 	GUI::GoToXY(35, 20);
-	cout << "2. Exit Game" << "\xF0\x9F\x98\xB4";
+	cout << u8"2. 게임 종료" << u8"😢";
 }
 
 void StartScene::HandleStartInput() {
@@ -38,7 +38,7 @@ void StartScene::HandleStartInput() {
 		if (SceneManager::GetInstance()->GetSceneType() != EST_START) break;
 
 		GUI::GoToXY(35, 22);
-		cout << "Choose an option: ";
+		cout << u8"선택한 번호 입력: ";
 		cin >> choice;
 
 		switch (choice) {

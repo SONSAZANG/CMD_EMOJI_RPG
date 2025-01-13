@@ -14,7 +14,7 @@ void BattleManager::Excute(Monster& monster)
 
 		if (monster.GetHp() <= 0) // 몬스터 사망 판단
 		{
-			cout << monster.GetName() << " 사망!" << endl;
+			cout << monster.GetName() << u8" 사망!" << endl;
 			break;
 		}
 
@@ -22,7 +22,7 @@ void BattleManager::Excute(Monster& monster)
 
 		if (player.GetHp() <= 0) // 플레이어 사망 판단
 		{
-			cout << player.GetName() << " 사망!" << endl;
+			cout << player.GetName() << u8" 사망!" << endl;
 			break;
 		}
 	}
@@ -35,7 +35,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 	while (true) // 인풋 체크를 위한 반복문
 	{
-		cout << "1. 공격	" << "2. 아이템 사용 ";
+		cout << u8"1. 공격	" << u8"2. 아이템 사용 ";
 		int selectNumber = 0;
 		cin >> selectNumber;
 		if (cin.fail() || !(selectNumber > 0) || selectNumber > 2) // 예외 처리
@@ -43,7 +43,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 			cout << endl;
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << "다시 입력하세요." << endl;
+			cout << u8"다시 입력하세요." << endl;
 			continue;
 		}
 
@@ -71,9 +71,9 @@ void BattleManager::AttackTarget(bool playerFlag, Monster& monster)
 		newHp = (newHp < 0) ? 0 : newHp;
 		setHp(newHp);
 
-		std::cout << attacker << "이 공격합니다." << std::endl;
-		std::cout << damage << "의 데미지!!" << std::endl;
-		std::cout << target.GetName() << " 남은 체력: " << newHp << std::endl;
+		std::cout << attacker << u8"이 공격합니다." << std::endl;
+		std::cout << damage << u8"의 데미지!!" << std::endl;
+		std::cout << target.GetName() << u8" 남은 체력: " << newHp << std::endl;
 	};
 
 	if (playerFlag) // 공격하는 객체와 타겟을 결정하는 flag

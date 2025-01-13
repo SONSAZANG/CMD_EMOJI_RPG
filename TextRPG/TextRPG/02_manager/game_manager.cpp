@@ -6,24 +6,20 @@
 #include "../03_ingame/player/player.h"
 #include "windows.h"
 
-void GameManager::Loading()
+void GameManager::Init()
 {
-	cout << "게임을 실행합니다." << endl;
-
-	for (int i = 0; i < 10; i++)
+	if (sceneManager == nullptr)
 	{
-		Sleep(500); // 0.5초 Delay
-		cout << "-";
+		sceneManager = SceneManager::GetInstance();
 	}
-	cout << endl;
 
-	Run();
+	sceneManager->LoadScene(EST_START);
 }
 
 void GameManager::Run()
 {
 	system("cls");
-	cout << "TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
+	cout << u8"TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
 
 	CreatePlayerBase();
 	IsPlaying = true;
@@ -31,6 +27,7 @@ void GameManager::Run()
 	int testCount = 0;
 	while (IsPlaying)
 	{
+		system("cls");
 		if (testCount > 3) IsPlaying = false;
 		Battle();
 		VisitShop();
@@ -45,16 +42,11 @@ void GameManager::Run()
 
 void GameManager::CreatePlayerBase()
 {
-	
-
 	playerManager = PlayerManager::GetInstance();
 	playerManager->CreatePlayer();
 
 	Player& player = playerManager->GetPlayer();
-	cout << "플레이어 생성 완료" << endl;
-	cout << "이름: " << player.GetName() << "\n체력: " << player.GetHp() << "\n레벨: " << player.GetLevel()
-		<< "\n공격력: " << player.GetAttack() << "\n경험치: " << player.GetExp() << "\n최대체력: " << player.GetMaxHp() << endl;
-
+	
 }
 
 void GameManager::SpawnRandomMonster()
@@ -77,7 +69,7 @@ void GameManager::Battle()
 {
 	Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
 
-	cout << "전투 시작" << endl;
+	cout << u8"전투 시작" << endl;
 
 	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
 
@@ -87,7 +79,7 @@ void GameManager::Battle()
 	player.UseItem();
 	//아이템 사용 테스트 코드 끝
 
-	cout << "전투 종료" << endl;
+	cout << u8"전투 종료" << endl;
 }
 
 void GameManager::VisitShop()
@@ -101,21 +93,13 @@ void GameManager::VisitShop()
 
 	shopManager->WelcomShop(player.GetInventory());
 
-	cout << "상점 방문 완료" << endl;
+	cout << u8"상점 방문 완료" << endl;
 }
 
 void GameManager::Exit()
 {
 	// 보스몬스터 제거 후 종료
-	cout << "게임이 종료되었습니다." << endl;
+	cout << u8"게임이 종료되었습니다." << endl;
 }
 
-void GameManager::Init()
-{
-	if (sceneManager == nullptr)
-	{
-		sceneManager = SceneManager::GetInstance();
-	}
 
-	sceneManager->LoadScene(EST_START);
-}
