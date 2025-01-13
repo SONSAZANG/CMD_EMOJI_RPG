@@ -1,4 +1,5 @@
-﻿#include "game_manager.h"
+﻿#include "scene_manager.h"
+#include "game_manager.h"
 #include "player_manager.h"
 #include "battle_manager.h"
 #include "../03_ingame/player/player.h"
@@ -122,4 +123,14 @@ void GameManager::Exit()
 {
 	// 보스몬스터 제거 후 종료
 	cout << "게임이 종료되었습니다." << endl;
+}
+
+void GameManager::Init()
+{
+	if (sceneManager == nullptr)
+	{
+		sceneManager = SceneManager::GetInstance();
+	}
+
+	sceneManager->LoadScene(EST_START);
 }
