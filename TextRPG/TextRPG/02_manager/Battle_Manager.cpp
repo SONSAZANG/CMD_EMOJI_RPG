@@ -53,6 +53,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 		}
 		else
 		{
+			SelectionItem();
 			continue;
 		}
 		break;
@@ -104,4 +105,9 @@ void BattleManager::GetVictoryReWard()
 	player.GetInventory()->SetGold(player.GetInventory()->GetGold() + gold);
 
 	player.GetInventory()->DisplayGoldInfo();
+}
+
+void BattleManager::SelectionItem()
+{
+	PlayerManager::GetInstance()->GetPlayer().GetInventory()->UseInventoryItem(&PlayerManager::GetInstance()->GetPlayer());
 }
