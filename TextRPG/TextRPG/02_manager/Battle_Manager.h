@@ -12,5 +12,7 @@ private:
 	void GetVictoryReWard();
 	void AttackTarget(bool isPlayerAttacking, Monster& monster);
 	void SelectionItem();
+	void PlayerActionAttack(Monster& monster);
+	void MonsterActionAttack(const Monster& monster);
 	void SelectionBehavior(Monster& monster);
 };

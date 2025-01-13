@@ -32,6 +32,7 @@ void BattleManager::Excute(Monster& monster)
 
 void BattleManager::SelectionBehavior(Monster& monster)
 {
+
 	while (true) // 인풋 체크를 위한 반복문
 	{
 		cout << "1. 공격	" << "2. 아이템 사용 ";
@@ -52,7 +53,6 @@ void BattleManager::SelectionBehavior(Monster& monster)
 		}
 		else
 		{
-			SelectionItem();
 			continue;
 		}
 		break;
@@ -104,45 +104,4 @@ void BattleManager::GetVictoryReWard()
 	player.GetInventory()->SetGold(player.GetInventory()->GetGold() + gold);
 
 	player.GetInventory()->DisplayGoldInfo();
-}
-
-void BattleManager::SelectionItem() // 전투 시스템에 아이템 사용 로직?
-{
-	Player& player = PlayerManager::GetInstance()->GetPlayer();
-	player.GetInventory()->DisplayInventory();
-
-	if (player.GetInventory()->IsInventoryEmpty()) // 인벤토리 비었을 때 빠져나오기
-	{
-		return;
-	}
-
-	while (true)
-	{
-		int useIndex = 0;
-		cout << "사용할 아이템의 번호를 입력해주세요.";
-		cin >> useIndex;
-		if (cin.fail() || !(useIndex > 0) || useIndex > 2)
-		{
-			cout << endl;
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << "다시 입력하세요." << endl;
-			continue;
-		}
-
-		if (player.GetInventory()->GetInventoryItem(useIndex - 1)->GetItemType() == ITEM_HealthPotion)
-		{
-			cout << "Hp " << player.GetInventory()->GetInventoryItem(useIndex - 1)->GetAmount() << "를 회복했습니다. ";
-			player.UseItem(useIndex - 1);
-			cout << "현재 Hp: " << player.GetHp() << endl;
-		}
-		else
-		{
-			cout << "Attack " << player.GetInventory()->GetInventoryItem(useIndex - 1)->GetAmount() << "가 증가했습니다. ";
-			player.UseItem(useIndex - 1);
-			cout << "현재 Attack: " << player.GetAttack() << endl;
-		}
-
-		break;
-	}
 }
