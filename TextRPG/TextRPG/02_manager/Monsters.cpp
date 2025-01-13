@@ -1,4 +1,4 @@
-#include "Monsters.h"
+ï»¿#include "Monsters.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -63,10 +63,10 @@ void Monster::SetStatus(monsterType type, const Player& player)
 
     int playerLevel = SetPlayer.GetLevel();
 
-    int Hp = playerLevel * (20 + rand() % 11); // ·¹º§ * (20~30)
-    int Attack = playerLevel * (5 + rand() % 6); // ·¹º§ * (5~10)
+    int Hp = playerLevel * (20 + rand() % 11); // ë ˆë²¨ * (20~30)
+    int Attack = playerLevel * (5 + rand() % 6); // ë ˆë²¨ * (5~10)
 
-    // ÇöÀç º¸½º¸ó½ºÅÍ´Â Æ÷ÇÔµÇ¾î ÀÖÁö ¾ÊÀ½
+    // í˜„ì¬ ë³´ìŠ¤ëª¬ìŠ¤í„°ëŠ” í¬í•¨ë˜ì–´ ìˆì§€ ì•ŠìŒ
 
     switch (type)
     {
@@ -104,7 +104,7 @@ void Monster::SetStatus(monsterType type, const Player& player)
     const int maxAttack = playerLevel * 10;
     if (Attack == maxAttack)
     {
-        SetTitle(" ºÒÅ¸´Â ");
+        SetTitle(u8" ë¶ˆíƒ€ëŠ” ");
     }
 
 }
