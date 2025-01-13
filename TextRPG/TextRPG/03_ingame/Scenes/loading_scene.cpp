@@ -1,14 +1,7 @@
 #include "loading_scene.h"
+#include "../../04_Util/gui.h"
 #include <iostream>
 using namespace std;
-
-LoadingScene::LoadingScene()
-{
-}
-
-LoadingScene::~LoadingScene()
-{
-}
 
 void LoadingScene::Init()
 {
@@ -17,4 +10,12 @@ void LoadingScene::Init()
 
 void LoadingScene::Clear()
 {
+}
+
+void LoadingScene::DrawMainLayout()
+{
+	// 배경 박스
+	GUI::DrawBox();
+
+
 }

@@ -1,4 +1,4 @@
-#include <windows.h>
+﻿#include <windows.h>
 #include <stdio.h>
 #include <iostream>
 using namespace std;
@@ -9,6 +9,13 @@ public:
 	{
 		COORD coord = { x, y };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	}
+	
+	/// <summary>
+	/// 아무것도 입력 안하면 기본 배경 박스(0, 0, 120, 30)
+	/// </summary>
+	static void DrawBox() {
+		DrawBox(0, 0, 120, 30);
 	}
 
 	static void DrawBox(int x, int y, int width, int height)

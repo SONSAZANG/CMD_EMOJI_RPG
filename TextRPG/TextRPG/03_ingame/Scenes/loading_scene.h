@@ -4,9 +4,12 @@
 class LoadingScene : public SceneBase
 {
 public:
-	LoadingScene();
-	virtual ~LoadingScene();
+	LoadingScene() {};
+	virtual ~LoadingScene() {};
 
 	virtual void Init() override;
 	virtual void Clear() override;
+
+private:
+	void DrawMainLayout();
 };

@@ -4,6 +4,7 @@
 #include "../03_ingame/Scenes/town_scene.h"
 #include "../03_ingame/Scenes/select_stage_scene.h"
 #include "../03_ingame/Scenes/dungeon_scene.h"
+#include <windows.h>
 
 void SceneManager::Init()
 {
@@ -49,7 +50,9 @@ void SceneManager::LoadScene(ESceneType sceneType)
 	}
 
 	scene = newScene;
-	sceneType = sceneType;
+	this->sceneType = sceneType;
+
+	system("cls");
 
 	newScene->Init();
 }

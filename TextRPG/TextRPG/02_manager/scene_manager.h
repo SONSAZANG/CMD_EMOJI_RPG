@@ -15,6 +15,7 @@ public:
 
 public:
 	void LoadScene(ESceneType sceneType);
+	ESceneType GetSceneType() { return sceneType; }
 
 private:
 	class SceneBase* scene;

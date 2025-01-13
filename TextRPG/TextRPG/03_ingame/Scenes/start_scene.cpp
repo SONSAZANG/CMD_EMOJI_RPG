@@ -2,6 +2,7 @@
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
+#include "../../02_manager/scene_manager.h"
 #include "../../04_Util/gui.h"
 using namespace std;
 
@@ -17,8 +18,10 @@ void StartScene::Clear() {}
 
 void StartScene::DrawMainLayout()
 {
+	// 배경 박스
+	GUI::DrawBox();
+
 	// 타이틀 박스
-	GUI::DrawBox(0, 0, 120, 30);
 	SetConsoleOutputCP(CP_UTF8);
 	GUI::PrintTitleText();
 
@@ -33,12 +36,15 @@ void StartScene::DrawMainLayout()
 void StartScene::HandleStartInput() {
 	char choice;
 	while (true) {
+		if (SceneManager::GetInstance()->GetSceneType() != EST_START) break;
+
 		GUI::GoToXY(35, 22);
 		cout << "Choose an option: ";
 		cin >> choice;
 
 		switch (choice) {
 		case '1':
+			SceneManager::GetInstance()->LoadScene(EST_LOADING);
 			break;
 		case '2':
 			// cmd 클리어 명령어
