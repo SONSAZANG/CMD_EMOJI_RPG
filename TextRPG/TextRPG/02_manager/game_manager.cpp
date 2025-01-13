@@ -1,6 +1,6 @@
-#include "game_manager.h"
+﻿#include "game_manager.h"
 #include "player_manager.h"
-#include "Battle_Manager.h"
+#include "battle_manager.h"
 #include "../03_ingame/player/player.h"
 #include "Monsters.h"
 #include "windows.h"
@@ -55,7 +55,7 @@ void GameManager::CreatePlayerBase()
 		getline(cin, playername);
 	}
 
-	playerManager = PlayerManager::GetInstance(); 
+	playerManager = PlayerManager::GetInstance();
 	// 한가윤) 다른 함수에서 사용하기 위해 PlayerManeger* 지웠습니다. 
 	playerManager->CreatePlayer(playername);
 
@@ -72,7 +72,7 @@ void GameManager::SpawnMonster()
 	int monsterType = rand() % 3 + 1;
 	Monsters* monster = nullptr;
 
-// TODO: Playerinfo
+	// TODO: Playerinfo
 	switch (monsterType)
 	{
 	case MT_GOBLIN:
@@ -85,48 +85,19 @@ void GameManager::SpawnMonster()
 		//monster = new Troll(playerManager->GetLevel());
 		break;
 	}
-	
+
 	delete monster; // Temp Delete
 
 }
 
-
 void GameManager::Battle()
 {
 	BattleManager* battlemManager = BattleManager::GetInstance();
-	battlemManager->Excute();
 	// 전투
 	cout << "몬스터 생성 완료" << endl;
 	cout << "전투 시작" << endl;
-	
-	//한가윤) 아이템 사용 테스트 시작(참고하고 지워주세요!)
-	Player& player = playerManager->GetPlayer();
-	cout << "데미지를 입었습니다." << endl;
-	player.SetHp(100);
-	cout << "현재 Hp: " << player.GetHp() << endl;
 
-	cout << endl;
-	player.GetInventory()->DisplayInventory();
-	cout << endl;
-
-	if (!player.GetInventory()->IsInventoryEmpty()) {
-		int useIndex;
-		cout << "사용할 아이템의 번호를 입력해주세요.";
-		cin >> useIndex;
-		if (player.GetInventory()->GetInventoryItem(useIndex - 1)->GetItemType() == ITEM_HealthPotion)
-		{
-			cout << "Hp " << player.GetInventory()->GetInventoryItem(useIndex - 1)->GetAmount() << "를 회복했습니다. ";
-			player.UseItem(useIndex-1);
-			cout << "현재 Hp: " << player.GetHp() << endl;
-		}
-		else 
-		{
-			cout << "Attack " << player.GetInventory()->GetInventoryItem(useIndex - 1)->GetAmount() << "가 증가했습니다. ";
-			player.UseItem(useIndex - 1);
-			cout << "현재 Attack: " << player.GetAttack() << endl;
-		}
-	}
-	//한가윤) 아이템 사용 테스트 끝(참고하고 지워주세요!)
+	battlemManager->Excute(); // 몬스터 파라미터로 받을 생각
 
 	cout << "전투 종료" << endl;
 }
