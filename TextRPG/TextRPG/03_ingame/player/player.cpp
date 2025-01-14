@@ -127,3 +127,16 @@ void Player::UpdateTitle()
 		title = titles[level - 1];
 	}
 }
+
+bool Player::IsDead()
+{
+	if (hp <= 0)
+	{
+		isDead = true;
+	}
+	else
+	{
+		isDead = false;
+	}
+	return isDead;
+}
