@@ -1,63 +1,58 @@
-#include "player.h"
+ï»¿#include "player.h"
+#include "../Job.h"
 
-void Player::SetHp(int hp)
+constexpr int MAX_LEVEL = 10;
+constexpr int EXP_FOR_LEVEL_UP = 100;
+
+void Player::SetHp(const int& hp)
 {
-	this->hp = hp;
+	if (hp >= 0 && hp <= maxHp)
+	{
+		this->hp = hp;
+	}
 }
 
-int Player::GetHp()
+void Player::SetMaxHp(const int& maxHp)
 {
-	return hp;
+	if (maxHp > 0)
+	{
+		this->maxHp = maxHp;
+	}
 }
 
-void Player::SetMaxHp(int maxHp)
-{
-	this->maxHp = maxHp;
-}
-
-int Player::GetMaxHp()
-{
-	return maxHp;
-}
-
-void Player::SetName(string name)
+void Player::SetName(const string& name)
 {
 	this->name = name;
 }
 
-string Player::GetName()
+void Player::SetLevel(const int& level)
 {
-	return name;
+	if (level > 0 && level <= MAX_LEVEL)
+	{
+		this->level = level;
+	}
 }
 
-void Player::SetLevel(int level)
+void Player::SetAttack(const int& attack)
 {
-	this->level = level;
+	if (attack > 0)
+	{
+		this->attack = attack;
+	}
 }
 
-int Player::GetLevel()
+void Player::SetExp(const int& exp)
 {
-	return level;
+	if (exp >= 0)
+	{
+		this->exp = exp;
+	}
 }
 
-void Player::SetAttack(int attack)
+void Player::SetJob(const string& job)
 {
-	this->attack = attack;
-}
-
-int Player::GetAttack()
-{
-	return attack;
-}
-
-void Player::SetExp(int exp)
-{
-	this->exp = exp;
-}
-
-int Player::GetExp()
-{
-	return exp;
+	this->job = job;
+	isJobChosen = true;
 }
 
 Inventory* Player::GetInventory()
@@ -75,44 +70,60 @@ void Player::LevelUp()
 	int initialLevel = level;
 
 	while (CanLevelUp())
-	{		
+	{
+		if (level == 5 && !isJobChosen)
+		{
+			Job jobs;
+			jobs.ChooseJob(this);
+		}
+
+		if (level >= MAX_LEVEL)
+		{
+			exp = 0;
+			level = MAX_LEVEL;
+			break;
+		}
+
 		level++;
-		exp -= 100;
+		exp -= EXP_FOR_LEVEL_UP;
 
 		maxHp += level * 20;
 		attack += level * 5;
-
-		if (level >= 10)
-		{
-			exp = 0;
-			level = 10;
-			break;
-		}
 	}
 
 	if (initialLevel != level)
 	{
 		hp = maxHp;
-
-		cout << u8"·¹º§ ¾÷! ÇöÀç ·¹º§: " << level
-			<< u8"\nÃ¼·Â: " << hp
-			<< u8"\\nÃÖ´ë Ã¼·Â: " << maxHp
-			<< u8"\n°ø°Ý·Â: " << attack
-			<< u8"\n°æÇèÄ¡: " << exp << endl;
+		UpdateTitle();
+		cout << u8"ë ˆë²¨ ì—…! í˜„ìž¬ ë ˆë²¨: " << level
+			<< u8"\n" << GetName()
+			<< u8"\nì²´ë ¥: " << hp
+			<< u8"\nìµœëŒ€ ì²´ë ¥: " << maxHp
+			<< u8"\nê³µê²©ë ¥: " << attack
+			<< u8"\nê²½í—˜ì¹˜: " << exp << endl;
 	}
 }
 
 bool Player::CanLevelUp() const
 {
-	return exp >= 100 && level < 10;
+	return exp >= EXP_FOR_LEVEL_UP && level < MAX_LEVEL;
 }
 
 void Player::GainExp(int expAmount)
 {
 	exp += expAmount;
-	cout << u8"°æÇèÄ¡ " << expAmount << u8" È¹µæ! ÇöÀç °æÇèÄ¡: " << exp << endl;
+	cout << u8"ê²½í—˜ì¹˜ " << expAmount << u8" íšë“! í˜„ìž¬ ê²½í—˜ì¹˜: " << exp << endl;
 	LevelUp();
 }
 
-
-
+void Player::UpdateTitle()
+{
+	if (isJobChosen)
+	{
+		title = job;
+	}
+	else if (level >= 1 && level <= titles.size())
+	{
+		title = titles[level - 1];
+	}
+}

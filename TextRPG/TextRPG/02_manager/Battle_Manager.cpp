@@ -2,6 +2,9 @@
 #include "battle_Manager.h"
 #include "game_manager.h"
 #include "player_manager.h"
+#include "../04_Util/input_verify.h"
+#include <thread>
+#include <chrono>
 #include <random>
 
 void BattleManager::Excute(Monster& monster)
@@ -37,15 +40,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 	{
 		cout << u8"1. 공격	" << u8"2. 아이템 사용 ";
 		int selectNumber = 0;
-		cin >> selectNumber;
-		if (cin.fail() || !(selectNumber > 0) || selectNumber > 2) // 예외 처리
-		{
-			cout << endl;
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << u8"다시 입력하세요." << endl;
-			continue;
-		}
+		selectNumber = InputVerify::IntegerVerify(selectNumber, 1, 2);
 
 		if (selectNumber == 1)
 		{
@@ -60,20 +55,24 @@ void BattleManager::SelectionBehavior(Monster& monster)
 	}
 }
 
-void BattleManager::AttackTarget(bool playerFlag, Monster& monster)
+void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 {
 	Player& player = PlayerManager::GetInstance()->GetPlayer();
 
-	auto attackAction = [](const string& attacker, auto& target, auto getAttack, auto getHp, auto setHp) // 람다 함수 정의
+	auto attackAction = [](const string& attacker, auto& target, const auto getAttack, const auto getHp, const auto setHp) // 람다 함수 정의
 	{
 		int damage = getAttack();
 		int newHp = getHp() - damage;
 		newHp = (newHp < 0) ? 0 : newHp;
 		setHp(newHp);
 
-		std::cout << attacker << u8"이 공격합니다." << std::endl;
-		std::cout << damage << u8"의 데미지!!" << std::endl;
-		std::cout << target.GetName() << u8" 남은 체력: " << newHp << std::endl;
+		cout << attacker << u8"이 공격합니다." << std::endl;
+		this_thread::sleep_for(chrono::seconds(1));
+
+		cout << damage << u8"의 데미지!!" << std::endl;
+		this_thread::sleep_for(chrono::seconds(1));
+
+		cout << target.GetName() << u8" 남은 체력: " << newHp << std::endl;
 	};
 
 	if (playerFlag) // 공격하는 객체와 타겟을 결정하는 flag
@@ -109,5 +108,5 @@ void BattleManager::GetVictoryReWard()
 
 void BattleManager::SelectionItem()
 {
-	PlayerManager::GetInstance()->GetPlayer().GetInventory()->UseInventoryItem(&PlayerManager::GetInstance()->GetPlayer());
+	PlayerManager::GetInstance()->GetPlayer().UseItem();
 }

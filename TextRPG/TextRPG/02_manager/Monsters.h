@@ -27,8 +27,10 @@ public:
     void SetAttack(int attack);
     void SetHp(int hp);
 
-private:
+    void DisplayMonster() const;
     void SetStatus(monsterType type, const Player& player);
+
+private:
     void SetTitle(const string& title);
     const char* GetBaseName() const;
 
