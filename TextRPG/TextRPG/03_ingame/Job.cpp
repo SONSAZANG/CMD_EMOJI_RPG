@@ -47,3 +47,20 @@ void Job::ChooseJob(Player* player)
 	}
 	cout << u8"축하합니다! '" << player->GetJob() << u8"'로 전직했습니다!" << endl;
 }
+
+string Job::GetJobTitle(string job, int level) const
+{
+	if (level < 5 || level > 10)
+	{
+		return "";
+	}
+
+	for (int i = 0; i < jobs.size(); i++)
+	{
+		if (job == jobs[i])
+		{
+			return jobTitles[i][level - 5];
+		}
+	}
+	return "";
+}
