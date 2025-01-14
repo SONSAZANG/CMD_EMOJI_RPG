@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <windows.h>
 #include <algorithm>
 #include <stdio.h>
 using namespace std;
@@ -11,20 +12,17 @@ public:
 	#define uprint UTIL::UPrint
 	static void UPrint(string str) 
 	{
-		string a = u8"" + str;
-		cout << a;
+		cout << u8"" + str;
 	}
 	#define uprintendl UTIL::UPrintEndl
 	static void UPrintEndl(string str)
 	{
-		string a = u8"" + str;
-		cout << a << endl;
+		cout << u8"" + str << endl;
 	}
 	#define ustring UTIL::UString
 	static string UString(string str)
 	{
-		string a = u8"" + str;
-		return a;
+		return u8"" + str;
 	}
 
 	static int IntegerVerify(int& input, const int& begin, const int& end)
@@ -56,12 +54,11 @@ public:
 		{
 			cin.ignore();
 			getline(cin, input);
-			string a = UString(input);
 			// 공백만 입력되었는지 확인
 			if (!input.empty() && !all_of(input.begin(), input.end(),
 				[](const unsigned char& ch) { return isspace(static_cast<unsigned char>(ch)); }))
 			{
-				return a;
+				return UString(input);
 			}
 			else
 			{
@@ -99,7 +96,7 @@ public:
 			{
 				std::cin.clear();
 				std::cin.ignore(INT_MAX, '\n');
-				cout << u8"다시 입력하세요. ";
+				uprint("다시 입력하세요. ");
 			}
 		}
 	}

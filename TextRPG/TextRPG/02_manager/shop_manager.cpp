@@ -77,7 +77,7 @@ void ShopManager::SellItem(Inventory* inventory)
 
 		if (!inventory->IsInventoryEmpty())
 		{
-			cout << u8"판매할 아이템의 번호를 선택해주세요 : ";
+			uprint("판매할 아이템의 번호를 선택해주세요 : ");
 			sellChoice = UTIL::IntegerVerify(sellChoice, 1, inventory->GetInventorySize());
 
 			shop->SellItem(sellChoice - 1, inventory);
@@ -85,7 +85,7 @@ void ShopManager::SellItem(Inventory* inventory)
 			inventory->DisplayInventory();
 		}
 
-		cout << u8"추가로 판매하시겠습니까? (Y/N) : ";
+		uprint("추가로 판매하시겠습니까? (Y/N) : ");
 		char input = UTIL::CharVerify(answer, answer_size);
 
 		if (input == 'n' || input == 'N')

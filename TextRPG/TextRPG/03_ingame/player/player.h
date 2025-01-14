@@ -37,8 +37,8 @@ public:
 	void SetExp(const int& exp);
 	int GetExp() const { return exp; }
 
-	void SetJob(const string& job);
-	string GetJob() const { return job; }
+	void SetPlayerJob(const string& job);
+	string GetPlayerJob() const { return job; }
 
 	Inventory* GetInventory(); 
 	void UseItem(Monster& monster);

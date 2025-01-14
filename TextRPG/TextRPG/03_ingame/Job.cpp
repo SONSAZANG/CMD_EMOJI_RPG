@@ -30,7 +30,7 @@ void Job::ChooseJob(Player* player)
 
 			if (choice >= 1 && choice <= static_cast<int>(jobs.size()))
 			{
-				player->SetJob(jobs[choice - 1]);
+				player->SetPlayerJob(jobs[choice - 1]);
 				break;
 			}
 			else
@@ -47,7 +47,7 @@ void Job::ChooseJob(Player* player)
 			cout << ustring("입력한 숫자가 너무 큽니다. 1-") << jobs.size() << ustring("사이의 숫자를 입력해주세요.") << endl;
 		}
 	}
-	cout << ustring("축하합니다! '") << player->GetJob() << ustring("'로 전직했습니다!") << endl;
+	cout << ustring("축하합니다! '") << player->GetPlayerJob() << ustring("'로 전직했습니다!") << endl;
 }
 
 string Job::GetJobTitle(string job, int level) const

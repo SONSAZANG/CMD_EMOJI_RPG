@@ -50,7 +50,7 @@ void Player::SetExp(const int& exp)
 	}
 }
 
-void Player::SetJob(const string& job)
+void Player::SetPlayerJob(const string& job)
 {
 	this->job = job;
 	isJobChosen = true;
