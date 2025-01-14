@@ -38,11 +38,27 @@ const char* Monster::GetBaseName() const
     case MT_TROLL:
         return "Troll";
     case MT_BOSSMONSTER:
-        return "Boss Monster";
+        return "The Boss";
     default:
         return "Unknown";
     }
 }
+
+BossMonster::BossMonster(const Player& player)
+    : Monster(MT_BOSSMONSTER, player.GetLevel() * 50, player.GetLevel() * 50, 1000) // 체력, 공격력, 경험치 설정
+{
+    SetType(MT_BOSSMONSTER);
+}
+
+void BossMonster::DisplayBoss() const
+{
+    uprintendl("-------------------------");
+    cout << ustring("보스 체력: ") << GetHp() << endl;
+    cout << ustring("보스 공격력: ") << GetAttack() << endl;
+    cout << ustring("경험치: ") << GetExp() << endl;
+    uprintendl("-------------------------");
+}
+
 
 void Monster::DisplayMonster() const
 {
@@ -105,12 +121,6 @@ void Monster::SetStatus(monsterType type, const Player& player)
         SetHp(Hp);
         SetAttack(Attack);
         _exp = 50;
-        break;
-
-    case MT_BOSSMONSTER:
-        _hp = playerLevel * 50;
-        _attack = playerLevel * 50;
-        _exp = 1000;
         break;
 
     default:

@@ -26,6 +26,7 @@ public:
 
     void SetAttack(int attack);
     void SetHp(int hp);
+    void SetType(monsterType type) { _type = type; }
 
     void DisplayMonster() const;
     void SetStatus(monsterType type, const Player& player);
@@ -41,4 +42,12 @@ private:
     int _attack;
     int _exp;
     string _title;
+};
+
+class BossMonster : public Monster
+{
+public :
+    BossMonster(const Player& player);
+
+    void DisplayBoss() const;
 };

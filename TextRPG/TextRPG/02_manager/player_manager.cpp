@@ -19,11 +19,11 @@ void PlayerManager::CreatePlayer()
 void PlayerManager::GetPlayerInfo()
 {
 	cout << UTIL::UString("이름: ") << player.GetName() << endl;
-	cout << UTIL::UString("체력: ") << player.GetHp() << endl;
+	cout << UTIL::UString("레벨: ") << player.GetLevel() << endl;
+	cout << UTIL::UString("체력: ") << player.GetHp() << "/" << player.GetMaxHp() << endl;
 	cout << UTIL::UString("레벨: ") << player.GetLevel() << endl;
 	cout << UTIL::UString("공격력: ") << player.GetAttack() << endl;
 	cout << UTIL::UString("경험치: ") << player.GetExp() << endl;
-	cout << UTIL::UString("최대체력: ") << player.GetMaxHp() << endl;
 }
 
 Player& PlayerManager::GetPlayer()

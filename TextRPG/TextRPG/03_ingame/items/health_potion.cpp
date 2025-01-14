@@ -17,6 +17,5 @@ void HealthPotion::Use(Player* player, Monster& monster)
 		player->SetHp(player->GetMaxHp());
 
 	}
-	cout << ustring("현재 체력: ") << player->GetHp() << endl;
-
+	cout << ustring("현재 체력: ") << player->GetHp() << "/" << player->GetMaxHp() << endl;
 }

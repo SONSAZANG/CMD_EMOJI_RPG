@@ -5,10 +5,13 @@
 
 class BattleManager : public SingletonBase<BattleManager>
 {
-public:
+public:	
 	void Excute(Monster& monster);
-
+	bool GetIsWin() const;
+	
 private:
+	bool isWin;
+
 	void GetVictoryReWard();
 	void AttackTarget(const bool& playerFlag, Monster& monster);
 	void SelectionItem(Monster& monster);

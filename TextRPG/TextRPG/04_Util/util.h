@@ -70,4 +70,37 @@ public:
 			}
 		}
 	}
+
+	static char CharVerify(char* index, const int& length)
+	{
+		char input = 0;
+		bool findFlag = false;
+
+		while (true)
+		{
+			std::cin >> input;
+
+			for (int i = 0; i < length; ++i)
+			{
+				if (input == index[i])
+				{
+					findFlag = true;
+					break;
+				}
+			}
+
+			if (findFlag)
+			{
+				std::cin.clear();
+				std::cin.ignore(INT_MAX, '\n');
+				return input;
+			}
+			else if (std::cin.fail() || !findFlag)
+			{
+				std::cin.clear();
+				std::cin.ignore(INT_MAX, '\n');
+				cout << u8"다시 입력하세요. ";
+			}
+		}
+	}
 };

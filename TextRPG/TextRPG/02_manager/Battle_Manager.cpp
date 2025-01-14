@@ -15,7 +15,7 @@ void BattleManager::Excute(Monster& monster)
 	{
 		SelectionBehavior(monster);
 
-		if (monster.GetHp() <= 0) // 몬스터 사망 판단
+		if (monster.IsDead())
 		{
 			cout << monster.GetName() << UTIL::UString("사망!\n") << endl;
 			break;
@@ -23,14 +23,31 @@ void BattleManager::Excute(Monster& monster)
 
 		AttackTarget(false, monster);
 
-		if (player.GetHp() <= 0) // 플레이어 사망 판단
+		if (player.IsDead())
 		{
 			cout << player.GetName() << UTIL::UString("사망!\n") << endl;
 			break;
 		}
 	}
 
-	GetVictoryReWard();
+	uprintendl("전투 종료");
+
+	if (!player.IsDead())
+	{
+		uprintendl("승리!!");
+		GetVictoryReWard();
+		isWin = true;
+	}
+	else
+	{
+		uprintendl("패배");
+		isWin = false;
+	}	
+}
+
+bool BattleManager::GetIsWin() const
+{
+	return isWin;
 }
 
 void BattleManager::SelectionBehavior(Monster& monster)
@@ -49,6 +66,9 @@ void BattleManager::SelectionBehavior(Monster& monster)
 		else
 		{
 			SelectionItem(monster);
+
+			if (!monster.IsDead()) // 몬스터가 죽지 않았으면 아이템 사용 후 재행동
+				continue;		
 		}
 		break;
 	}
