@@ -100,8 +100,26 @@ void GameManager::Battle()
 	//	IsPlaying = false;
 	//	return;
 	//}
-}
+	Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
+	
+	Player& player = playerManager->GetPlayer(); // 보스 스텟에 플레이어 정보 필요함
 
+	cout << u8"전투 시작" << endl;
+
+	randomMonster.DisplayMonster(); // 몬스터 정보 출력 << battle 쪽으로 필요하면 당겨쓰시면 될 듯
+	
+	BossMonster bossMonster(player); // 보스 생성
+	bossMonster.DisplayBoss(); // 보스 정보
+
+
+	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
+
+		IsPlaying = false;
+		return;
+
+		cout << u8"전투 종료" << endl;
+
+}
 void GameManager::VisitShop()
 {
 	cout << "---------------------------------------------------------------" << endl;
