@@ -1,6 +1,7 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <string>
+#include <vector>
 #include "../../03_ingame/inventory.h" 
 
 using namespace std;
@@ -8,32 +9,35 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200)
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title(u8"초심자")
 	{
 		inventory = new Inventory();
 	}
-	~Player() 
+	~Player()
 	{
 		delete inventory;
 	}
 
-	void SetHp(int hp);
-	int GetHp();
+	void SetHp(const int& hp);
+	int GetHp() const { return hp; }
 
-	void SetMaxHp(int maxHp);
-	int GetMaxHp();
+	void SetMaxHp(const int& maxHp);
+	int GetMaxHp() const { return maxHp; }
 
-	void SetName(string name);
-	string GetName();
+	void SetName(const string& name);
+	string GetName() const { return "[" + title + "] " + name; }
 
-	void SetLevel(int level);
-	int GetLevel();
+	void SetLevel(const int& level);
+	int GetLevel() const { return level; }
 
-	void SetAttack(int attack);
-	int GetAttack();
+	void SetAttack(const int& attack);
+	int GetAttack() const { return attack; }
 
-	void SetExp(int exp);
-	int GetExp();
+	void SetExp(const int& exp);
+	int GetExp() const { return exp; }
+
+	void SetJob(const string& job);
+	string GetJob() const { return job; }
 
 	Inventory* GetInventory(); 
 	void UseItem();
@@ -43,6 +47,8 @@ public:
 
 	void GainExp(int expAmount);
 
+	void UpdateTitle();
+
 private:
 	int hp;
 	int maxHp;
@@ -50,6 +56,9 @@ private:
 	int level;
 	int attack;
 	int exp;
-	Inventory* inventory; 
-
+	string title;
+	vector<string> titles = { u8"초심자", u8"모험가", u8"견습생", u8"도전자" };
+	string job;
+	bool isJobChosen = false;
+	Inventory* inventory;
 };
