@@ -53,6 +53,14 @@ void Monster::DisplayMonster() const
     cout << u8"-------------------------" << endl;
 }
 
+bool Monster::IsDead() const
+{
+    if (_hp <= 0)
+        return true; // 체력이 0 이하일 경우 true -> 사망
+    else
+        return false; // 체력이 0보다 클 경우 false -> 생존
+}
+
 
 void Monster::SetHp(int hp)
 {
