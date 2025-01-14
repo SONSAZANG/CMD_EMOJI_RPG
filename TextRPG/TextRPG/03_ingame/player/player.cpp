@@ -4,7 +4,7 @@
 constexpr int MAX_LEVEL = 10;
 constexpr int EXP_FOR_LEVEL_UP = 100;
 
-void Player::SetHp(int hp)
+void Player::SetHp(const int& hp)
 {
 	if (hp >= 0 && hp <= maxHp)
 	{
@@ -12,7 +12,7 @@ void Player::SetHp(int hp)
 	}
 }
 
-void Player::SetMaxHp(int maxHp)
+void Player::SetMaxHp(const int& maxHp)
 {
 	if (maxHp > 0)
 	{
@@ -20,12 +20,12 @@ void Player::SetMaxHp(int maxHp)
 	}
 }
 
-void Player::SetName(string name)
+void Player::SetName(const string& name)
 {
 	this->name = name;
 }
 
-void Player::SetLevel(int level)
+void Player::SetLevel(const int& level)
 {
 	if (level > 0 && level <= MAX_LEVEL)
 	{
@@ -33,7 +33,7 @@ void Player::SetLevel(int level)
 	}
 }
 
-void Player::SetAttack(int attack)
+void Player::SetAttack(const int& attack)
 {
 	if (attack > 0)
 	{
@@ -41,7 +41,7 @@ void Player::SetAttack(int attack)
 	}
 }
 
-void Player::SetExp(int exp)
+void Player::SetExp(const int& exp)
 {
 	if (exp >= 0)
 	{
@@ -62,7 +62,7 @@ Inventory* Player::GetInventory()
 
 void Player::UseItem(int index)
 {
-	inventory->GetInventoryItem(index)->Use(this); 
+	inventory->GetInventoryItem(index)->Use(this);
 	inventory->DeleteFromInventory(index);
 }
 
@@ -71,9 +71,10 @@ void Player::LevelUp()
 	int initialLevel = level;
 
 	while (CanLevelUp())
-	{		
+	{
 		if (level == 5 && !isJobChosen)
 		{
+			Job jobs;
 			jobs.ChooseJob(this);
 		}
 

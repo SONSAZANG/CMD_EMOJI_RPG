@@ -24,21 +24,21 @@ void GameManager::Run()
 	cout << "TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
 
 	CreatePlayerBase();
-	//IsPlaying = true;
+	IsPlaying = true;
 
-	//int testCount = 0;
-	//while (IsPlaying)
-	//{
-	//	if (testCount > 3) IsPlaying = false;
-	//	Battle();
-	//	VisitShop();
-	//	testCount++;
-	//}
+	int testCount = 0;
+	while (IsPlaying)
+	{
+		if (testCount > 3) IsPlaying = false;
+		Battle();
+		VisitShop();
+		testCount++;
+	}
 
-	//if (!IsPlaying)
-	//{
-	//	Exit();
-	//}
+	if (!IsPlaying)
+	{
+		Exit();
+	}
 }
 
 void GameManager::CreatePlayerBase()
@@ -62,8 +62,6 @@ void GameManager::CreatePlayerBase()
 	cout << "플레이어 생성 완료" << endl;
 	cout << "이름: " << player.GetName() << "\n체력: " << player.GetHp() << "\n레벨: " << player.GetLevel()
 		<< "\n공격력: " << player.GetAttack() << "\n경험치: " << player.GetExp() << "\n최대체력: " << player.GetMaxHp() << endl;
-	player.GainExp(500);
-
 }
 
 void GameManager::SpawnRandomMonster()

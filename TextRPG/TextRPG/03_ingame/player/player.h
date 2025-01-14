@@ -13,33 +13,33 @@ public:
 	{
 		inventory = new Inventory();
 	}
-	~Player() 
+	~Player()
 	{
 		delete inventory;
 	}
 
-	void SetHp(int hp);
+	void SetHp(const int& hp);
 	int GetHp() const { return hp; }
 
-	void SetMaxHp(int maxHp);
+	void SetMaxHp(const int& maxHp);
 	int GetMaxHp() const { return maxHp; }
 
-	void SetName(string name);
+	void SetName(const string& name);
 	string GetName() const { return "[" + title + "] " + name; }
 
-	void SetLevel(int level);
+	void SetLevel(const int& level);
 	int GetLevel() const { return level; }
 
-	void SetAttack(int attack);
+	void SetAttack(const int& attack);
 	int GetAttack() const { return attack; }
 
-	void SetExp(int exp);
+	void SetExp(const int& exp);
 	int GetExp() const { return exp; }
 
 	void SetJob(const string& job);
 	string GetJob() const { return job; }
 
-	Inventory* GetInventory(); 
+	Inventory* GetInventory();
 	void UseItem(int index);
 
 	void LevelUp();
@@ -57,10 +57,8 @@ private:
 	int attack;
 	int exp;
 	string title;
-	vector<string> titles = {"초심자", "모험가", "견습생", "도전자"};
+	vector<string> titles = { "초심자", "모험가", "견습생", "도전자" };
 	string job;
 	bool isJobChosen = false;
-	Inventory* inventory; 
-
-	Job jobs;
+	Inventory* inventory;
 };
