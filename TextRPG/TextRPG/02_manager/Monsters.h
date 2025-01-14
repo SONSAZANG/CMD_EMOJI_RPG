@@ -30,6 +30,8 @@ public:
     void DisplayMonster() const;
     void SetStatus(monsterType type, const Player& player);
 
+    bool IsDead() const;
+
 private:
     void SetTitle(const string& title);
     const char* GetBaseName() const;
