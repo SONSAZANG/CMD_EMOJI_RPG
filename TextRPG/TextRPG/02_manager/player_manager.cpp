@@ -9,10 +9,9 @@ using namespace std;
 void PlayerManager::CreatePlayer()
 {
 	// 플레이어 생성
-	string playername;
 	cout << u8"플레이어 이름을 입력해주세요: ";
 
-	InputVerify::StringVerify(playername);
+	string playername = InputVerify::StringVerify();
 	//cin.ignore(); // 개행 문자로 넘어가는 현상 방지
 	//getline(cin, playername);
 
@@ -24,7 +23,7 @@ void PlayerManager::CreatePlayer()
 	//cout << endl;
 	player.SetName(playername);
 
-	cout << u8"플레이어 생성 완료" << endl;	
+	cout << u8"플레이어 생성 완료" << endl;
 	GetPlayerInfo();
 }
 

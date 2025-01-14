@@ -3,7 +3,7 @@
 #include <string>
 #include <algorithm>
 
-static class InputVerify
+class InputVerify
 {
 public:
 	 static int IntegerVerify(int& input, const int& begin, const int& end)
@@ -14,7 +14,7 @@ public:
 
 			if (std::cin.fail() || input < begin || input > end)
 			{
-				std::cout << u8"Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ";
+				std::cout << u8"ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ";
 				std::cin.clear();
 				std::cin.ignore(INT_MAX, '\n');
 			}
@@ -27,22 +27,24 @@ public:
 		}
 	}
 
-	static void StringVerify(std::string& input)
+	static std::string StringVerify()
 	{
+		std::string input;
+
 		while (true)
 		{
-			std::cin.ignore(INT_MAX, '\n');
+			std::cin.ignore();
 			std::getline(std::cin, input);
-
-			// °ø¹é¸¸ ÀÔ·ÂµÇ¾ú´ÂÁö È®ÀÎ
-			if (!input.empty() && !std::all_of(input.begin(), input.end(), [](char ch) { return std::isspace(ch); }))
-			{
-				break;
+			// ê³µë°±ë§Œ ì…ë ¥ë˜ì—ˆëŠ”ì§€ í™•ì¸
+            if (!input.empty() && !std::all_of(input.begin(), input.end(),
+				[](const unsigned char& ch) { return std::isspace(static_cast<unsigned char>(ch)); }))
+			{	
+				return input;
 			}
 			else
 			{
 				std::cin.clear();
-				std::cout << u8"Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+				std::cout << u8"ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”: ";
 			}
 		}
 	}
