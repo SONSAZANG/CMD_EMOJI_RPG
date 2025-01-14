@@ -43,6 +43,17 @@ const char* Monster::GetBaseName() const
     }
 }
 
+void Monster::DisplayMonster() const
+{
+    cout << u8"-------------------------" << endl;
+    cout << u8"몬스터 타입: " << GetName() << endl;
+    cout << u8"몬스터 체력: " << GetHp() << endl;
+    cout << u8"몬스터 공격력: " << GetAttack() << endl;
+    cout << u8"경험치: " << GetExp() << endl;
+    cout << u8"-------------------------" << endl;
+}
+
+
 void Monster::SetHp(int hp)
 {
     _hp = hp;
@@ -65,8 +76,6 @@ void Monster::SetStatus(monsterType type, const Player& player)
 
     int Hp = playerLevel * (20 + rand() % 11); // 레벨 * (20~30)
     int Attack = playerLevel * (5 + rand() % 6); // 레벨 * (5~10)
-
-    // 현재 보스몬스터는 포함되어 있지 않음
 
     switch (type)
     {
@@ -91,7 +100,7 @@ void Monster::SetStatus(monsterType type, const Player& player)
     case MT_BOSSMONSTER:
         _hp = playerLevel * 50;
         _attack = playerLevel * 50;
-        _exp = 50;
+        _exp = 1000;
         break;
 
     default:
