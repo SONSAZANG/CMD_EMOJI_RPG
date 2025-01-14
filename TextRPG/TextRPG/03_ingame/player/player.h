@@ -9,31 +9,31 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title("ÃÊ½ÉÀÚ")
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title("ï¿½Ê½ï¿½ï¿½ï¿½")
 	{
 		inventory = new Inventory();
 	}
-	~Player() 
+	~Player()
 	{
 		delete inventory;
 	}
 
-	void SetHp(int hp);
+	void SetHp(const int& hp);
 	int GetHp() const { return hp; }
 
-	void SetMaxHp(int maxHp);
+	void SetMaxHp(const int& maxHp);
 	int GetMaxHp() const { return maxHp; }
 
-	void SetName(string name);
+	void SetName(const string& name);
 	string GetName() const { return "[" + title + "] " + name; }
 
-	void SetLevel(int level);
+	void SetLevel(const int& level);
 	int GetLevel() const { return level; }
 
-	void SetAttack(int attack);
+	void SetAttack(const int& attack);
 	int GetAttack() const { return attack; }
 
-	void SetExp(int exp);
+	void SetExp(const int& exp);
 	int GetExp() const { return exp; }
 
 	void SetJob(const string& job);
@@ -57,10 +57,8 @@ private:
 	int attack;
 	int exp;
 	string title;
-	vector<string> titles = {"ÃÊ½ÉÀÚ", "¸ðÇè°¡", "°ß½À»ý", "µµÀüÀÚ"};
+	vector<string> titles = { "ï¿½Ê½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½è°¡", "ï¿½ß½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" };
 	string job;
 	bool isJobChosen = false;
-	Inventory* inventory; 
-
-	Job jobs;
+	Inventory* inventory;
 };

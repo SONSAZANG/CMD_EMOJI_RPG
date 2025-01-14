@@ -4,7 +4,7 @@
 constexpr int MAX_LEVEL = 10;
 constexpr int EXP_FOR_LEVEL_UP = 100;
 
-void Player::SetHp(int hp)
+void Player::SetHp(const int& hp)
 {
 	if (hp >= 0 && hp <= maxHp)
 	{
@@ -12,7 +12,7 @@ void Player::SetHp(int hp)
 	}
 }
 
-void Player::SetMaxHp(int maxHp)
+void Player::SetMaxHp(const int& maxHp)
 {
 	if (maxHp > 0)
 	{
@@ -20,12 +20,12 @@ void Player::SetMaxHp(int maxHp)
 	}
 }
 
-void Player::SetName(string name)
+void Player::SetName(const string& name)
 {
 	this->name = name;
 }
 
-void Player::SetLevel(int level)
+void Player::SetLevel(const int& level)
 {
 	if (level > 0 && level <= MAX_LEVEL)
 	{
@@ -33,7 +33,7 @@ void Player::SetLevel(int level)
 	}
 }
 
-void Player::SetAttack(int attack)
+void Player::SetAttack(const int& attack)
 {
 	if (attack > 0)
 	{
@@ -41,7 +41,7 @@ void Player::SetAttack(int attack)
 	}
 }
 
-void Player::SetExp(int exp)
+void Player::SetExp(const int& exp)
 {
 	if (exp >= 0)
 	{
@@ -70,9 +70,10 @@ void Player::LevelUp()
 	int initialLevel = level;
 
 	while (CanLevelUp())
-	{		
+	{
 		if (level == 5 && !isJobChosen)
 		{
+			Job jobs;
 			jobs.ChooseJob(this);
 		}
 
@@ -94,12 +95,12 @@ void Player::LevelUp()
 	{
 		hp = maxHp;
 		UpdateTitle();
-		cout << u8"·¹º§ ¾÷! ÇöÀç ·¹º§: " << level
+		cout << u8"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " << level
 			<< u8"\n" << GetName()
-			<< u8"\nÃ¼·Â: " << hp
-			<< u8"\nÃÖ´ë Ã¼·Â: " << maxHp
-			<< u8"\n°ø°Ý·Â: " << attack
-			<< u8"\n°æÇèÄ¡: " << exp << endl;
+			<< u8"\nÃ¼ï¿½ï¿½: " << hp
+			<< u8"\nï¿½Ö´ï¿½ Ã¼ï¿½ï¿½: " << maxHp
+			<< u8"\nï¿½ï¿½ï¿½Ý·ï¿½: " << attack
+			<< u8"\nï¿½ï¿½ï¿½ï¿½Ä¡: " << exp << endl;
 	}
 }
 
@@ -111,7 +112,7 @@ bool Player::CanLevelUp() const
 void Player::GainExp(int expAmount)
 {
 	exp += expAmount;
-	cout << u8"°æÇèÄ¡ " << expAmount << u8" È¹µæ! ÇöÀç °æÇèÄ¡: " << exp << endl;
+	cout << u8"ï¿½ï¿½ï¿½ï¿½Ä¡ " << expAmount << u8" È¹ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡: " << exp << endl;
 	LevelUp();
 }
 
