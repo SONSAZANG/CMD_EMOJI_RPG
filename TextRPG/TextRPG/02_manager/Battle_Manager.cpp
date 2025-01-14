@@ -15,7 +15,7 @@ void BattleManager::Excute(Monster& monster)
 	{
 		SelectionBehavior(monster);
 
-		if (monster.GetHp() <= 0) // 몬스터 사망 판단
+		if (monster.IsDead())
 		{
 			cout << monster.GetName() << u8" 사망!" << endl;
 			break;
@@ -23,14 +23,36 @@ void BattleManager::Excute(Monster& monster)
 
 		AttackTarget(false, monster);
 
-		if (player.GetHp() <= 0) // 플레이어 사망 판단
+		if (player.IsDead())
 		{
 			cout << player.GetName() << u8" 사망!" << endl;
 			break;
 		}
 	}
 
-	GetVictoryReWard();
+	cout << u8"전투 종료" << endl;
+
+	if (!player.IsDead())
+	{
+		cout << u8"승리!!" << endl;
+		GetVictoryReWard();
+		SetWin(true);
+	}
+	else
+	{
+		cout << u8"패배" << endl;
+		SetWin(false);
+	}	
+}
+
+void BattleManager::SetWin(const bool& flag)
+{
+	isWin = flag;
+}
+
+bool BattleManager::GetIsWin() const
+{
+	return isWin;
 }
 
 void BattleManager::SelectionBehavior(Monster& monster)
@@ -49,6 +71,9 @@ void BattleManager::SelectionBehavior(Monster& monster)
 		else
 		{
 			SelectionItem(monster);
+
+			if (!monster.IsDead()) // 몬스터가 죽지 않았으면 아이템 사용 후 재행동
+				continue;		
 		}
 		break;
 	}
@@ -66,7 +91,7 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 		setHp(newHp);
 
 		cout << attacker << u8"이 공격합니다." << std::endl;
-		this_thread::sleep_for(chrono::seconds(1));
+		this_thread::sleep_for(chrono::seconds(1)); // 공격 출력 딜레이
 
 		cout << damage << u8"의 데미지!!" << std::endl;
 		this_thread::sleep_for(chrono::seconds(1));
