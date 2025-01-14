@@ -1,5 +1,5 @@
 ﻿#include "player.h"
-#include "../Job.h"
+#include "../../03_ingame/Job.h"
 
 constexpr int MAX_LEVEL = 10;
 constexpr int EXP_FOR_LEVEL_UP = 100;
@@ -71,16 +71,10 @@ void Player::LevelUp()
 
 	while (CanLevelUp())
 	{
-		if (level == 5 && !isJobChosen)
-		{
-			Job jobs;
-			jobs.ChooseJob(this);
-		}
-
 		if (level >= MAX_LEVEL)
 		{
-			exp = 0;
 			level = MAX_LEVEL;
+			exp = 0;
 			break;
 		}
 
@@ -89,6 +83,12 @@ void Player::LevelUp()
 
 		maxHp += level * 20;
 		attack += level * 5;
+
+		if (level == 5 && !isJobChosen)
+		{
+			Job jobs;
+			jobs.ChooseJob(this);
+		}
 	}
 
 	if (initialLevel != level)
@@ -112,14 +112,19 @@ void Player::GainExp(int expAmount)
 {
 	exp += expAmount;
 	cout << u8"경험치 " << expAmount << u8" 획득! 현재 경험치: " << exp << endl;
-	LevelUp();
+
+	if (CanLevelUp())
+	{
+		LevelUp();
+	}
 }
 
 void Player::UpdateTitle()
 {
-	if (isJobChosen)
+	if (isJobChosen && level >= 5)
 	{
-		title = job;
+		Job jobs;
+		title = jobs.GetJobTitle(job, level);
 	}
 	else if (level >= 1 && level <= titles.size())
 	{
