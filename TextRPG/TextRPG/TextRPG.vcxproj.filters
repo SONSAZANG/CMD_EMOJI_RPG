@@ -42,5 +42,6 @@
     <ClInclude Include="03_ingame\Scenes\start_scene.h" />
     <ClInclude Include="03_ingame\Scenes\town_scene.h" />
     <ClInclude Include="03_ingame\Scenes\select_stage_scene.h" />
+    <ClInclude Include="03_ingame\Job.h" />
   </ItemGroup>
 </Project>

@@ -35,18 +35,18 @@ void GameManager::Run()
 		cin >> num;
 		switch (num)
 		{
-			case 1:
-				Battle();
-				break;
-			case 2:
-				VisitShop();
-				break;
-			case 3:
-				cout << u8"준비중인 기능입니다." << endl;
-				break;
-			default:
-				cout << u8"잘못된 입력입니다." << endl;
-				break;
+		case 1:
+			Battle();
+			break;
+		case 2:
+			VisitShop();
+			break;
+		case 3:
+			cout << u8"준비중인 기능입니다." << endl;
+			break;
+		default:
+			cout << u8"잘못된 입력입니다." << endl;
+			break;
 		}
 		testCount++;
 	}
@@ -63,7 +63,6 @@ void GameManager::CreatePlayerBase()
 	playerManager->CreatePlayer();
 
 	Player& player = playerManager->GetPlayer();
-	
 }
 
 void GameManager::SpawnRandomMonster()
