@@ -1,8 +1,8 @@
-#include "Job.h"
+ï»¿#include "Job.h"
 
 void Job::ShowJobOptions() const
 {
-	cout << "ÀüÁ÷ °¡´ÉÇÑ Á÷¾÷ ¸ñ·Ï:\n";
+	cout << u8"ì „ì§ ê°€ëŠ¥í•œ ì§ì—… ëª©ë¡:\n";
 
 	for (int i = 0; i < jobs.size(); i++)
 	{
@@ -19,7 +19,7 @@ void Job::ChooseJob(Player* player)
 
 	while (true)
 	{
-		cout << "ÀüÁ÷ÇÒ Á÷¾÷À» ¼±ÅÃÇÏ¼¼¿ä(1-" << jobs.size() << "): ";
+		cout << u8"ì „ì§í•  ì§ì—…ì„ ì„ íƒí•˜ì„¸ìš”(1-" << jobs.size() << "): ";
 		getline(cin, input);
 
 		try
@@ -33,17 +33,17 @@ void Job::ChooseJob(Player* player)
 			}
 			else
 			{
-				cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. 1-" << jobs.size() << " »çÀÌÀÇ ¼ýÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
+				cout << u8"ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤. 1-" << jobs.size() << u8" ì‚¬ì´ì˜ ìˆ«ìžë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.\n";
 			}
 		}
 		catch (invalid_argument& e)
 		{
-			cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ¼ýÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
+			cout << u8"ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤. ìˆ«ìžë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.\n";
 		}
 		catch (out_of_range& e)
 		{
-			cout << "ÀÔ·ÂÇÑ ¼ýÀÚ°¡ ³Ê¹« Å®´Ï´Ù. 1-" << jobs.size() << "»çÀÌÀÇ ¼ýÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
+			cout << u8"ìž…ë ¥í•œ ìˆ«ìžê°€ ë„ˆë¬´ í½ë‹ˆë‹¤. 1-" << jobs.size() << u8"ì‚¬ì´ì˜ ìˆ«ìžë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.\n";
 		}
 	}
-	cout << "ÃàÇÏÇÕ´Ï´Ù! '" << player->GetJob() << "'·Î ÀüÁ÷Çß½À´Ï´Ù!" << endl;
+	cout << u8"ì¶•í•˜í•©ë‹ˆë‹¤! '" << player->GetJob() << u8"'ë¡œ ì „ì§í–ˆìŠµë‹ˆë‹¤!" << endl;
 }

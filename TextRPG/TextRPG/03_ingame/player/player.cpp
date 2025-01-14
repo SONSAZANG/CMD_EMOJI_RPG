@@ -95,12 +95,12 @@ void Player::LevelUp()
 	{
 		hp = maxHp;
 		UpdateTitle();
-		cout << u8"���� ��! ���� ����: " << level
+		cout << u8"레벨 업! 현재 레벨: " << level
 			<< u8"\n" << GetName()
-			<< u8"\nü��: " << hp
-			<< u8"\n�ִ� ü��: " << maxHp
-			<< u8"\n���ݷ�: " << attack
-			<< u8"\n����ġ: " << exp << endl;
+			<< u8"\n체력: " << hp
+			<< u8"\n최대 체력: " << maxHp
+			<< u8"\n공격력: " << attack
+			<< u8"\n경험치: " << exp << endl;
 	}
 }
 
@@ -112,7 +112,7 @@ bool Player::CanLevelUp() const
 void Player::GainExp(int expAmount)
 {
 	exp += expAmount;
-	cout << u8"����ġ " << expAmount << u8" ȹ��! ���� ����ġ: " << exp << endl;
+	cout << u8"경험치 " << expAmount << u8" 획득! 현재 경험치: " << exp << endl;
 	LevelUp();
 }
 

@@ -9,7 +9,7 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title("�ʽ���")
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title("초심자")
 	{
 		inventory = new Inventory();
 	}
@@ -57,7 +57,7 @@ private:
 	int attack;
 	int exp;
 	string title;
-	vector<string> titles = { "�ʽ���", "���谡", "�߽���", "������" };
+	vector<string> titles = { "초심자", "모험가", "견습생", "도전자" };
 	string job;
 	bool isJobChosen = false;
 	Inventory* inventory;
