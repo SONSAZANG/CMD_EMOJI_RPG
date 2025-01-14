@@ -7,7 +7,6 @@ class BattleManager : public SingletonBase<BattleManager>
 {
 public:	
 	void Excute(Monster& monster);
-	void SetWin(const bool& flag);
 	bool GetIsWin() const;
 	
 private:

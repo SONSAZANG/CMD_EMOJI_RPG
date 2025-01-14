@@ -76,15 +76,17 @@ void GameManager::Battle()
 {
 	system("cls");
 
+	playerManager->GetPlayer().SetLevel(10); // test
+
 	Monster monster = playerManager->GetPlayer().GetLevel() < 10 ?
-		MonsterSpawnManager::GetInstance()->SpawnRandomMonster() : Monster(MT_BOSSMONSTER, 0, 0, 0); // 플레이어 레벨 판단 후 보스 결졍
+		MonsterSpawnManager::GetInstance()->SpawnRandomMonster() : BossMonster(playerManager->GetPlayer()); // 플레이어 레벨에 따른 몬스터 호출
 
 	cout << u8"전투 시작" << endl;
 	monster.DisplayMonster();
 
 	BattleManager::GetInstance()->Excute(monster);
 
-	if (BattleManager::GetInstance()->GetIsWin() == false)
+	if (!BattleManager::GetInstance()->GetIsWin())
 		IsPlaying = false;
 
 	//if (player.GetLevel() >= 10)
@@ -100,26 +102,8 @@ void GameManager::Battle()
 	//	IsPlaying = false;
 	//	return;
 	//}
-	Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
-	
-	Player& player = playerManager->GetPlayer(); // 보스 스텟에 플레이어 정보 필요함
-
-	cout << u8"전투 시작" << endl;
-
-	randomMonster.DisplayMonster(); // 몬스터 정보 출력 << battle 쪽으로 필요하면 당겨쓰시면 될 듯
-	
-	BossMonster bossMonster(player); // 보스 생성
-	bossMonster.DisplayBoss(); // 보스 정보
-
-
-	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
-
-		IsPlaying = false;
-		return;
-
-		cout << u8"전투 종료" << endl;
-
 }
+
 void GameManager::VisitShop()
 {
 	cout << "---------------------------------------------------------------" << endl;

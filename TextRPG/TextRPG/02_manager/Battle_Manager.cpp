@@ -36,18 +36,13 @@ void BattleManager::Excute(Monster& monster)
 	{
 		cout << u8"승리!!" << endl;
 		GetVictoryReWard();
-		SetWin(true);
+		isWin = true;
 	}
 	else
 	{
 		cout << u8"패배" << endl;
-		SetWin(false);
+		isWin = false;
 	}	
-}
-
-void BattleManager::SetWin(const bool& flag)
-{
-	isWin = flag;
 }
 
 bool BattleManager::GetIsWin() const
