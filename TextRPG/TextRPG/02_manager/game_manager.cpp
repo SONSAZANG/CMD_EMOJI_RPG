@@ -105,7 +105,6 @@ void GameManager::Battle()
 		return;
 	}
 
-
 	cout << u8"전투 종료" << endl;
 }
 
