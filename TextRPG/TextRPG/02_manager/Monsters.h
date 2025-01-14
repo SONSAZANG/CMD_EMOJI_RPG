@@ -26,6 +26,7 @@ public:
 
     void SetAttack(int attack);
     void SetHp(int hp);
+    void SetType(monsterType type) { _type = type; }
 
     void DisplayMonster() const;
     void SetStatus(monsterType type, const Player& player);

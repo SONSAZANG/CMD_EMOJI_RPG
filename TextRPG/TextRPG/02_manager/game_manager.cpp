@@ -83,6 +83,7 @@ void GameManager::Battle()
 
 	cout << u8"전투 시작" << endl;
 	monster.DisplayMonster();
+	
 
 	BattleManager::GetInstance()->Excute(monster);
 
