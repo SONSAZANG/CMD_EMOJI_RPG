@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../03_ingame/player/player.h"
-#include "player_manager.h"
 
 enum monsterType
 {
