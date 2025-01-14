@@ -42,3 +42,11 @@ private:
     int _exp;
     string _title;
 };
+
+class BossMonster : public Monster
+{
+public :
+    BossMonster(const Player& player);
+
+    void DisplayBoss() const;
+};
