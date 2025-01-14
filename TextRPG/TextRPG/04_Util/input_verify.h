@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -27,17 +27,19 @@ public:
 		}
 	}
 
-	static void StringVerify(std::string& input)
+	static std::string StringVerify()
 	{
+		std::string input;
+
 		while (true)
 		{
 			std::cin.ignore();
 			std::getline(std::cin, input);
-
 			// 공백만 입력되었는지 확인
-			if (!input.empty() && !std::all_of(input.begin(), input.end(), [](char ch) { return std::isspace(ch); }))
-			{
-				break;
+            if (!input.empty() && !std::all_of(input.begin(), input.end(),
+				[](const unsigned char& ch) { return std::isspace(static_cast<unsigned char>(ch)); }))
+			{	
+				return input;
 			}
 			else
 			{
