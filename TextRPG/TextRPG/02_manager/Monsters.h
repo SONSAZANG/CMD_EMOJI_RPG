@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../03_ingame/player/player.h"
+#include "player_manager.h"
 
 enum monsterType
 {
@@ -41,4 +42,12 @@ private:
     int _attack;
     int _exp;
     string _title;
+};
+
+class BossMonster : public Monster
+{
+public :
+    BossMonster(const Player& player);
+
+    void DisplayBoss() const;
 };
