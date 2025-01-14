@@ -9,6 +9,7 @@ class Player;
 enum ItemType{
 	ITEM_HealthPotion,
 	ITEM_AttackBoost,
+	ITEM_Bomb,
 };
 
 class Item 
