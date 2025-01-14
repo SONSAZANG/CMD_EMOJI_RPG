@@ -1,4 +1,5 @@
 ﻿#include "inventory.h"
+#include "../04_Util/util.h"
 
 void Inventory::UseInventoryItem(Player* player, Monster& monster)
 {
@@ -8,7 +9,8 @@ void Inventory::UseInventoryItem(Player* player, Monster& monster)
 	{
 		return;
 	}
-	cout << u8"아이템을 사용할 경우 아이템의 번호, 사용하지 않을 경우 0을 입력해주세요.";
+	
+	UTIL::UPrint("아이템을 사용할 경우 아이템의 번호, 사용하지 않을 경우 0을 입력해주세요.");
 	while (true)
 	{
 		int useIndex = 0;
@@ -20,7 +22,7 @@ void Inventory::UseInventoryItem(Player* player, Monster& monster)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << u8"다시 입력하세요." << endl;
+			UTIL::UPrintEndl("다시 입력하세요.");
 			continue;
 		};
 
@@ -40,7 +42,7 @@ Item* Inventory::GetInventoryItem(int index)
 
 void Inventory::DisplayInventory() 
 {
-	cout << u8"소지한 아이템: " << endl;
+	UTIL::UPrintEndl("소지한 아이템: ");
 	if(!IsInventoryEmpty())
 	{
 		for (int i = 0; i < inventory.size(); ++i)
@@ -51,13 +53,13 @@ void Inventory::DisplayInventory()
 	}
 	else
 	{
-		cout << u8"현재 인벤토리가 비어있습니다!" << endl;
+		UTIL::UPrintEndl("현재 인벤토리가 비어있습니다!");
 	}
 }
 
 void Inventory::DisplayGoldInfo()
 {
-	cout << u8"현재 소지 골드: " << gold << u8"골드" << endl;
+	cout << UTIL::UString("현재 소지 골드: ") << gold << UTIL::UString("골드") << endl;
 }
 
 void Inventory::AddToInventory(Item* item)

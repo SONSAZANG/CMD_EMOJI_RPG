@@ -1,5 +1,6 @@
 ﻿#include "player.h"
-#include "../../03_ingame/Job.h"
+#include "../Job.h"
+#include "../../04_Util/util.h"
 
 constexpr int MAX_LEVEL = 10;
 constexpr int EXP_FOR_LEVEL_UP = 100;
@@ -95,11 +96,12 @@ void Player::LevelUp()
 	{
 		hp = maxHp;
 		UpdateTitle();
-		cout << u8"레벨 업! 현재 레벨: " << level
-			<< u8"\n" << GetName()
-			<< u8"\n체력: " << hp << "/" << maxHp
-			<< u8"\n공격력: " << attack
-			<< u8"\n경험치: " << exp << endl;
+		cout << ustring("레벨 업! 현재 레벨: ") << level << endl;
+		cout << ustring(GetName()) << endl;
+		cout << ustring("체력: ") << hp << endl; 
+		cout << ustring("최대 체력: ") << maxHp << endl;
+		cout << ustring("공격력: ") << attack << endl;
+		cout << ustring("경험치: ") << exp << endl;
 	}
 }
 
@@ -111,7 +113,7 @@ bool Player::CanLevelUp() const
 void Player::GainExp(int expAmount)
 {
 	exp += expAmount;
-	cout << u8"경험치 " << expAmount << u8" 획득! 현재 경험치: " << exp << endl;
+	cout << ustring("경험치 ") << expAmount << ustring(" 획득! 현재 경험치: ") << exp << endl;
 
 	if (CanLevelUp())
 	{

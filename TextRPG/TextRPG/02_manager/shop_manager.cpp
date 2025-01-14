@@ -1,14 +1,14 @@
 ﻿#include "shop_manager.h"
-#include "../04_Util/input_verify.h"
+#include "../04_Util/util.h"
 
 void ShopManager::WelcomShop(Inventory* inventory)
 {
 	int shopAction = 0;
 	bool exitFlag = false;
-	cout << u8"상점에 오신 걸 환영합니다!" << endl;
+	uprintendl("상점에 오신 걸 환영합니다!");
 	while (!exitFlag) {
-		cout << u8"1. 구매 2. 판매 3. 기타 4. 나가기 \n어떤 걸 할지 번호를 선택하세요. : ";
-		shopAction = InputVerify::IntegerVerify(shopAction, 1, 4);
+		uprint("1. 구매 2. 판매 3. 기타 4. 나가기 \n어떤 걸 할지 번호를 선택하세요. : ");
+		shopAction = UTIL::IntegerVerify(shopAction, 1, 4);
 
 		switch (shopAction) {
 		case 1:
@@ -18,7 +18,7 @@ void ShopManager::WelcomShop(Inventory* inventory)
 			SellItem(inventory);
 			break;
 		case 3:
-			cout << u8"아직 준비되지 않았습니다." << endl;
+			uprintendl("아직 준비되지 않았습니다.");
 			break;
 		case 4:
 			exitFlag = true;
@@ -28,7 +28,7 @@ void ShopManager::WelcomShop(Inventory* inventory)
 		}
 	}
 
-	cout << u8"감사합니다. 또 오세요!" << endl;
+	UTIL::UPrintEndl("감사합니다. 또 오세요!");
 }
 
 void ShopManager::BuyItem(Inventory* inventory)
@@ -42,8 +42,8 @@ void ShopManager::BuyItem(Inventory* inventory)
 		inventory->DisplayGoldInfo();
 		shop->DisplayItems();
 
-		cout << u8"구매할 아이템의 번호를 선택해주세요 : ";
-		buyChoice = InputVerify::IntegerVerify(buyChoice, 1, 3); // 임시로 끝 파라미터 3 입력, 아이템 종류 개수 넣으면 될 같음
+		uprint("구매할 아이템의 번호를 선택해주세요 : ");
+		buyChoice = UTIL::IntegerVerify(buyChoice, 1, 3); // 임시로 끝 파라미터 3 입력, 아이템 종류 개수 넣으면 될 같음
 
 		if (shop->CanBuy(buyChoice - 1, inventory))
 		{
@@ -52,18 +52,17 @@ void ShopManager::BuyItem(Inventory* inventory)
 		}
 		else
 		{
-			cout << u8"골드가 부족합니다." << endl;
+			UTIL::UPrintEndl("골드가 부족합니다.");
 		}
 
-		cout << u8"추가로 구매하시겠습니까? (Y/N) : ";
+		uprintendl("추가로 구매하시겠습니까? (Y/N) : ");
 
-		char input = InputVerify::CharVerify(answer, answer_size);
+		char input = UTIL::CharVerify(answer, answer_size);
 
 		if (input == 'n' || input == 'N')	
 			break;
 	}
-
-	cout << u8"구매를 종료합니다." << endl;
+	UTIL::UPrintEndl("구매를 종료합니다.");
 }
 
 void ShopManager::SellItem(Inventory* inventory)
@@ -79,7 +78,7 @@ void ShopManager::SellItem(Inventory* inventory)
 		if (!inventory->IsInventoryEmpty())
 		{
 			cout << u8"판매할 아이템의 번호를 선택해주세요 : ";
-			sellChoice = InputVerify::IntegerVerify(sellChoice, 1, inventory->GetInventorySize());
+			sellChoice = UTIL::IntegerVerify(sellChoice, 1, inventory->GetInventorySize());
 
 			shop->SellItem(sellChoice - 1, inventory);
 
@@ -87,11 +86,11 @@ void ShopManager::SellItem(Inventory* inventory)
 		}
 
 		cout << u8"추가로 판매하시겠습니까? (Y/N) : ";
-		char input = InputVerify::CharVerify(answer, answer_size);
+		char input = UTIL::CharVerify(answer, answer_size);
 
 		if (input == 'n' || input == 'N')
 			break;
 	}
 
-	cout << u8"판매를 종료합니다" << endl;
+	uprintendl("판매를 종료합니다");
 }
