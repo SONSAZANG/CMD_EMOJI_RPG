@@ -5,6 +5,7 @@
 #include "battle_manager.h"
 #include "../03_ingame/player/player.h"
 #include "windows.h"
+#include "../04_Util/util.h"
 
 void GameManager::Init()
 {
@@ -19,7 +20,7 @@ void GameManager::Init()
 void GameManager::Run()
 {
 	system("cls");
-	cout << u8"TEAM17 TEXTRPG 게임이 실행되었습니다." << endl;
+	UTIL::UPrintEndl("TEAM17 TEXTRPG 게임이 실행되었습니다.");
 
 	CreatePlayerBase();
 	IsPlaying = true;
@@ -28,9 +29,9 @@ void GameManager::Run()
 	while (IsPlaying)
 	{
 		if (testCount > 6) IsPlaying = false;
-		cout << "-----------------------------------" << endl;
-		cout << u8"마을입니다. 원하는 행동을 입력하세요." << endl;
-		cout << u8"1. 던전\n2. 상점 \n3. 전직소" << endl;
+		UTIL::UPrintEndl("-----------------------------------");
+		UTIL::UPrintEndl("마을입니다.원하는 행동을 입력하세요.");
+		UTIL::UPrintEndl("1. 던전\n2.상점 \n3.전직소");
 		int num;
 		cin >> num;
 		switch (num)
@@ -42,10 +43,10 @@ void GameManager::Run()
 			VisitShop();
 			break;
 		case 3:
-			cout << u8"준비중인 기능입니다." << endl;
+			UTIL::UPrintEndl("준비중인 기능입니다.");
 			break;
 		default:
-			cout << u8"잘못된 입력입니다." << endl;
+			UTIL::UPrintEndl("잘못된 입력입니다.");
 			break;
 		}
 
@@ -76,8 +77,7 @@ void GameManager::Battle()
 {
 	system("cls");
 	Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
-
-	cout << u8"전투 시작" << endl;
+	UTIL::UPrintEndl("전투 시작");
 	randomMonster.DisplayMonster(); // 몬스터 정보 출력 << battle 쪽으로 필요하면 당겨쓰시면 될 듯
 
 	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
@@ -91,7 +91,7 @@ void GameManager::Battle()
 
 	if (player.GetLevel() >= 10)
 	{
-		cout << u8"당신은 충분히 강해졌습니다. 보스 몬스터에게 도전합니다!" << endl;
+		UTIL::UPrintEndl("당신은 충분히 강해졌습니다. 보스 몬스터에게 도전합니다!");
 
 		Monster bossMonster = Monster(MT_BOSSMONSTER, 0, 0, 0);
 		bossMonster.SetStatus(MT_BOSSMONSTER, player);          // 플레이어 레벨에 따라 보스 몬스터 스탯 설정
@@ -99,14 +99,13 @@ void GameManager::Battle()
 
 		BattleManager::GetInstance()->Excute(bossMonster);
 
-		cout << u8"이걸 이기네..." << endl;
+		UTIL::UPrintEndl("이걸 이기네...");
 
 		IsPlaying = false;
 		return;
 	}
 
-
-	cout << u8"전투 종료" << endl;
+	UTIL::UPrintEndl("전투 종료");
 }
 
 void GameManager::VisitShop()
@@ -120,13 +119,12 @@ void GameManager::VisitShop()
 	Player& player = playerManager->GetPlayer();
 
 	shopManager->WelcomShop(player.GetInventory());
-
-	cout << u8"상점 방문 완료" << endl;
+	UTIL::UPrintEndl("상점 방문 완료");
 }
 
 void GameManager::Exit()
 {
-	cout << u8"게임이 종료되었습니다." << endl;
+	UTIL::UPrintEndl("게임이 종료되었습니다.");
 }
 
 

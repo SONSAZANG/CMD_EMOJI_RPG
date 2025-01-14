@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "../../02_manager/scene_manager.h"
 #include "../../04_Util/gui.h"
+#include "../../04_Util/util.h"
 using namespace std;
 
 void StartScene::Init()
@@ -27,9 +28,9 @@ void StartScene::DrawMainLayout()
 	// 메뉴 박스
 	GUI::DrawBox(30, 16, 60, 9);
 	GUI::GoToXY(35, 18);
-	cout << u8"1. 게임 시작" << u8"😎";
+	UTIL::UPrint("📌 1. 게임 시작");
 	GUI::GoToXY(35, 20);
-	cout << u8"2. 게임 종료" << u8"😢";
+	UTIL::UPrint("📌 2. 게임 종료");
 }
 
 void StartScene::HandleStartInput() {
@@ -38,7 +39,7 @@ void StartScene::HandleStartInput() {
 		if (SceneManager::GetInstance()->GetSceneType() != EST_START) break;
 
 		GUI::GoToXY(35, 22);
-		cout << u8"선택한 번호 입력: ";
+		UTIL::UPrint("선택한 번호 입력: ");
 		cin >> choice;
 
 		switch (choice) {

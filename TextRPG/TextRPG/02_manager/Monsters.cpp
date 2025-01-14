@@ -1,4 +1,5 @@
 ﻿#include "Monsters.h"
+#include "../04_Util/util.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -45,12 +46,13 @@ const char* Monster::GetBaseName() const
 
 void Monster::DisplayMonster() const
 {
-    cout << u8"-------------------------" << endl;
-    cout << u8"몬스터 타입: " << GetName() << endl;
-    cout << u8"몬스터 체력: " << GetHp() << endl;
-    cout << u8"몬스터 공격력: " << GetAttack() << endl;
-    cout << u8"경험치: " << GetExp() << endl;
-    cout << u8"-------------------------" << endl;
+    uprintendl("-------------------------");
+    cout << ustring("몬스터 타입: ") << ustring(GetName()) << endl;
+    cout << ustring("몬스터 체력: ") << GetHp() << endl;
+    cout << ustring("몬스터 공격력: ") << GetAttack() << endl;
+    cout << ustring("경험치: ") << GetExp() << endl;
+    uprintendl("-------------------------");
+
 }
 
 bool Monster::IsDead() const

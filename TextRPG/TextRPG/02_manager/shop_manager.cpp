@@ -1,18 +1,19 @@
 ﻿#include "shop_manager.h"
+#include "../04_Util/util.h"
 
 void ShopManager::WelcomShop(Inventory* inventory)
 {
 	int shopAction = 0;
-	cout << u8"상점에 오신 걸 환영합니다!" << endl;
+	UTIL::UPrintEndl("상점에 오신 걸 환영합니다!");
 	while (shopAction != 4) {
-		cout << u8"1. 구매 2. 판매 3. 기타 4. 나가기 \n어떤 걸 할지 번호를 선택하세요. : ";
+		UTIL::UPrint("1. 구매 2. 판매 3. 기타 4. 나가기 \n어떤 걸 할지 번호를 선택하세요. : ");
 		cin >> shopAction;
 
 		while (cin.fail() || shopAction < 0 || shopAction > 4) 
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << u8"다시 입력하세요. ";
+			UTIL::UPrint("다시 입력하세요. ");
 			cin >> shopAction;
 		};
 
@@ -24,7 +25,7 @@ void ShopManager::WelcomShop(Inventory* inventory)
 				SellItem(inventory);
 				break;
 			case 3: 
-				cout << u8"아직 준비되지 않았습니다." << endl;
+				UTIL::UPrintEndl("아직 준비되지 않았습니다.");
 				break;
 			case 4:
 				break;
@@ -33,7 +34,7 @@ void ShopManager::WelcomShop(Inventory* inventory)
 		}
 	}
 
-	cout << u8"감사합니다. 또 오세요!" << endl;
+	UTIL::UPrintEndl("감사합니다. 또 오세요!");
 }
 
 void ShopManager::BuyItem(Inventory* inventory)
@@ -44,14 +45,13 @@ void ShopManager::BuyItem(Inventory* inventory)
 	while (keepBuying == 'Y' || keepBuying == 'y') {
 		inventory->DisplayGoldInfo();
 		shop->DisplayItems();
-
-		cout << u8"구매할 아이템의 번호를 선택해주세요 : ";
+		UTIL::UPrint("구매할 아이템의 번호를 선택해주세요 : ");
 		cin >> buyChoice;
 		while (cin.fail() || buyChoice < 1 || buyChoice > shop->GetItems().size())
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << u8"다시 입력하세요. ";
+			UTIL::UPrint("다시 입력하세요. ");
 			cin >> buyChoice;
 		};
 		if (shop->CanBuy(buyChoice-1, inventory))
@@ -61,22 +61,21 @@ void ShopManager::BuyItem(Inventory* inventory)
 		}
 		else
 		{
-			cout << u8"골드가 부족합니다." << endl;
+			UTIL::UPrintEndl("골드가 부족합니다.");
 		}
 
-		cout << u8"추가로 구매하시겠습니까? (Y/N) : ";
+		UTIL::UPrint("추가로 구매하시겠습니까? (Y/N) : ");
 		cin >> keepBuying;
 		while (cin.fail() || !(keepBuying == 'N' || keepBuying == 'n' || keepBuying == 'Y' || keepBuying == 'y'))
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << u8"다시 입력하세요. ";
+			UTIL::UPrint("다시 입력하세요. ");
 			cin >> keepBuying;
 		};
 		
 	}
-
-	cout << u8"구매를 종료합니다." << endl;
+	UTIL::UPrintEndl("구매를 종료합니다.");
 }
 
 void ShopManager::SellItem(Inventory* inventory)
@@ -90,30 +89,29 @@ void ShopManager::SellItem(Inventory* inventory)
 
 		if (!inventory->IsInventoryEmpty()) 
 		{
-			cout << u8"판매할 아이템의 번호를 선택해주세요 : ";
+			UTIL::UPrint("판매할 아이템의 번호를 선택해주세요 : ");
 			cin >> sellChoice;
 			while (cin.fail() || sellChoice < 1 || sellChoice > inventory->GetInventorySize())
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
-				cout << u8"다시 입력하세요. ";
+				UTIL::UPrint("다시 입력하세요. ");
 				cin >> sellChoice;
 			};
 			shop->SellItem(sellChoice - 1, inventory);
 
 			inventory->DisplayInventory();
 		}
-
-		cout << u8"추가로 판매하시겠습니까? (Y/N) : ";
+		UTIL::UPrint("추가로 판매하시겠습니까? (Y/N) : ");
 		cin >> keepSelling;
 		while (cin.fail() || !(keepSelling == 'N' || keepSelling == 'n' || keepSelling == 'Y' || keepSelling == 'y'))
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
-			cout << u8"다시 입력하세요. ";
+			UTIL::UPrint("다시 입력하세요. ");
 			cin >> keepSelling;
 		};
 	}
 
-	cout << u8"판매를 종료합니다" << endl;
+	uprintendl("판매를 종료합니다");
 }

@@ -1,8 +1,9 @@
 ﻿#include <windows.h>
 #include <stdio.h>
 #include <iostream>
+#include "../04_Util/util.h"
 using namespace std;
-static class GUI
+class GUI
 {
 public:
 	static void GoToXY(const int x, const int y)
@@ -43,7 +44,11 @@ public:
 			"|_____|_|  |_|\\___/ \\___/|___|         |_| \\_\\_|    \\____|",
 		};
 		GoToXY(31, 4);
-		for (int i = 0; i < 29; i++) cout << "\xF0\x9F\x98\x81";
+		for (int i = 0; i < 8; i++) 
+		{
+			UTIL::UPrint("✨ ♦ ♦ ");
+		}
+		UTIL::UPrint("✨");
 		GoToXY(31, 5);
 		cout << text[0] << endl;
 		GoToXY(31, 6);
@@ -55,7 +60,11 @@ public:
 		GoToXY(31, 9);
 		cout << text[4] << endl;
 		GoToXY(31, 10);
-		for (int i = 0; i < 29; i++) cout << "\xF0\x9F\x98\x81";
+		for (int i = 0; i < 8; i++)
+		{
+			UTIL::UPrint("✨ ♦ ♦ ");
+		}
+		UTIL::UPrint("✨");
 	}
 	
 	static void PrintLoadingText()

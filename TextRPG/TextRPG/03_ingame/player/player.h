@@ -55,13 +55,13 @@ public:
 private:
 	int hp;
 	int maxHp;
-	string name;
 	int level;
 	int attack;
 	int exp;
+	string name;
 	string title;
-	vector<string> titles = { u8"초심자", u8"모험가", u8"견습생", u8"도전자" };
 	string job;
+	vector<string> titles = { u8"초심자", u8"모험가", u8"견습생", u8"도전자" };
 	bool isJobChosen = false;
 	bool isDead = false;
 	Inventory* inventory;

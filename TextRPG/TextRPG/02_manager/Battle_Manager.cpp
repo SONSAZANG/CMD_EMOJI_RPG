@@ -2,7 +2,7 @@
 #include "battle_Manager.h"
 #include "game_manager.h"
 #include "player_manager.h"
-#include "../04_Util/input_verify.h"
+#include "../04_Util/util.h"
 #include <thread>
 #include <chrono>
 #include <random>
@@ -17,7 +17,7 @@ void BattleManager::Excute(Monster& monster)
 
 		if (monster.GetHp() <= 0) // 몬스터 사망 판단
 		{
-			cout << monster.GetName() << u8" 사망!" << endl;
+			cout << monster.GetName() << UTIL::UString("사망!\n") << endl;
 			break;
 		}
 
@@ -25,7 +25,7 @@ void BattleManager::Excute(Monster& monster)
 
 		if (player.GetHp() <= 0) // 플레이어 사망 판단
 		{
-			cout << player.GetName() << u8" 사망!" << endl;
+			cout << player.GetName() << UTIL::UString("사망!\n") << endl;
 			break;
 		}
 	}
@@ -38,9 +38,9 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 	while (true) // 인풋 체크를 위한 반복문
 	{
-		cout << u8"1. 공격	" << u8"2. 아이템 사용 ";
+		UTIL::UPrint("1. 공격	2. 아이템 사용 ");
 		int selectNumber = 0;
-		selectNumber = InputVerify::IntegerVerify(selectNumber, 1, 2);
+		selectNumber = UTIL::IntegerVerify(selectNumber, 1, 2);
 
 		if (selectNumber == 1)
 		{
@@ -65,13 +65,13 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 		newHp = (newHp < 0) ? 0 : newHp;
 		setHp(newHp);
 
-		cout << attacker << u8"이 공격합니다." << std::endl;
+		cout << attacker << UTIL::UString("이 공격합니다.") << std::endl;
 		this_thread::sleep_for(chrono::seconds(1));
 
-		cout << damage << u8"의 데미지!!" << std::endl;
+		cout << damage << UTIL::UString("의 데미지!!") << std::endl;
 		this_thread::sleep_for(chrono::seconds(1));
 
-		cout << target.GetName() << u8" 남은 체력: " << newHp << std::endl;
+		cout << target.GetName() << UTIL::UString(" 남은 체력: ") << newHp << std::endl;
 	};
 
 	if (playerFlag) // 공격하는 객체와 타겟을 결정하는 flag
