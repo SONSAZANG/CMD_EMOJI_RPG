@@ -49,6 +49,8 @@ public:
 
 	void UpdateTitle();
 
+	bool IsDead();
+
 private:
 	int hp;
 	int maxHp;
@@ -60,5 +62,6 @@ private:
 	vector<string> titles = { u8"초심자", u8"모험가", u8"견습생", u8"도전자" };
 	string job;
 	bool isJobChosen = false;
+	bool isDead = false;
 	Inventory* inventory;
 };
