@@ -60,9 +60,9 @@ Inventory* Player::GetInventory()
 	return inventory;
 }
 
-void Player::UseItem() 
+void Player::UseItem(Monster& monster)
 {	
-	inventory->UseInventoryItem(this);
+	inventory->UseInventoryItem(this, monster);
 }
 
 void Player::LevelUp()

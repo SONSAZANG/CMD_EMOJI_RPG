@@ -2,6 +2,7 @@
 #include <vector>
 #include "../01_core/item_base.h"
 
+class Mosnter;
 
 class Inventory
 {
@@ -28,7 +29,7 @@ public:
 		return (int)inventory.size(); 
 	}
 
-	void UseInventoryItem(Player* player);
+	void UseInventoryItem(Player* player, Monster& monster);
 
 	Item* GetInventoryItem (int index);
 	void DisplayInventory ();

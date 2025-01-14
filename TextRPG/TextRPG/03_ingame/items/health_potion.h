@@ -10,7 +10,7 @@ public:
 		name = "HealthPotion" + to_string(amount);
 		healthRestore = amount;
 		price = (int)(amount * multiple);
-		itemType = ITEM_HealthPotion;
+		itemType = ITEM_Potion;
 	}
 
 	string GetName() const 
@@ -30,7 +30,7 @@ public:
 		return price; 
 	}
 
-	void Use(Player* player);
+	void Use(Player* player, Monster& monster);
 
 	~HealthPotion() {}
 

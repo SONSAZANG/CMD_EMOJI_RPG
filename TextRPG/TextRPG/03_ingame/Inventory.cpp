@@ -1,6 +1,6 @@
 ﻿#include "inventory.h"
 
-void Inventory::UseInventoryItem(Player* player)
+void Inventory::UseInventoryItem(Player* player, Monster& monster)
 {
 	DisplayInventory();
 
@@ -24,7 +24,8 @@ void Inventory::UseInventoryItem(Player* player)
 			continue;
 		};
 
-		inventory[useIndex - 1]->Use(player);
+
+		inventory[useIndex - 1]->Use(player, monster);
 		DeleteFromInventory(useIndex - 1);
 
 		break;

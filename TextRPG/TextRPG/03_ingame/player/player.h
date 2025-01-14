@@ -4,6 +4,7 @@
 #include <vector>
 #include "../../03_ingame/inventory.h" 
 
+
 using namespace std;
 
 class Player
@@ -40,7 +41,7 @@ public:
 	string GetJob() const { return job; }
 
 	Inventory* GetInventory(); 
-	void UseItem();
+	void UseItem(Monster& monster);
 
 	void LevelUp();
 	bool CanLevelUp() const;

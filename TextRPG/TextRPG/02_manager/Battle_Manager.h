@@ -11,6 +11,6 @@ public:
 private:
 	void GetVictoryReWard();
 	void AttackTarget(const bool& playerFlag, Monster& monster);
-	void SelectionItem();
+	void SelectionItem(Monster& monster);
 	void SelectionBehavior(Monster& monster);
 };

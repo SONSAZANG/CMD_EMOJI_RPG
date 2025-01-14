@@ -1,4 +1,4 @@
-#include "scene_manager.h"
+﻿#include "scene_manager.h"
 #include "game_manager.h"
 #include "player_manager.h"
 #include "Monster_Spawn_Manager.h"
@@ -104,9 +104,6 @@ void GameManager::Battle()
 		return;
 	}
 
-	//아이템 사용 테스트 코드 시작
-	player.UseItem();
-	//아이템 사용 테스트 코드 끝
 
 	cout << u8"전투 종료" << endl;
 }

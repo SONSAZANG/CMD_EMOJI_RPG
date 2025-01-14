@@ -7,11 +7,11 @@ class Bomb : public Item{
 public:
 	Bomb(int amount = 10, float multiply = 0.5)
 	{
-		name = "Bomb" + to_string(amount);
+		name = "Bomb";
 		attack = amount;
 		price = (int)(amount * multiply);
 
-		itemType = ITEM_Bomb;
+		itemType = ITEM_Attack;
 	}
 
 	string GetName() const
@@ -31,7 +31,7 @@ public:
 		return price;
 	}
 
-	void Use(Player* player, Monster monster);
+	void Use(Player* player, Monster& monster);
 
 	~Bomb() {}
 

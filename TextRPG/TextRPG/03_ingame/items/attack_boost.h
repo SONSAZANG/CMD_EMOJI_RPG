@@ -12,7 +12,7 @@ public:
 		attackIncrease = amount;
 		price = (int)(amount * multiply);
 
-		itemType = ITEM_AttackBoost;
+		itemType = ITEM_Potion;
 	}
 
 	string GetName() const 
@@ -32,7 +32,7 @@ public:
 		return price; 
 	}
 
-	void Use(Player* player);
+	void Use(Player* player, Monster& monster);
 
 	~AttackBoost() {}
 

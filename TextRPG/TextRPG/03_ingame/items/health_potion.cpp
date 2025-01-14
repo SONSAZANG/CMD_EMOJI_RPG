@@ -1,6 +1,6 @@
 ﻿#include "health_potion.h"
 
-void HealthPotion::Use(Player* player)
+void HealthPotion::Use(Player* player, Monster& monster)
 {
 	if (player->GetMaxHp() >= player->GetHp() + healthRestore)
 	{

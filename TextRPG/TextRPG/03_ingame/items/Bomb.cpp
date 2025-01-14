@@ -1,9 +1,10 @@
-#include "Bomb.h"
+ï»¿#include "Bomb.h"
 
 
-void Bomb::Use(Player* player, Monster monster)
+
+void Bomb::Use(Player* player, Monster& monster)
 {
-	player->SetAttack(player->GetAttack() + attack);
-	cout << u8"°ø°Ý·Â " << attack << u8" Áõ°¡Çß½À´Ï´Ù. ";
-	cout << u8"ÇöÀç °ø°Ý·Â: " << player->GetAttack() << endl;
+	monster.SetHp(monster.GetHp() - attack);
+	cout << u8"í­íƒ„ìœ¼ë¡œ " << monster.GetName() << u8"ì—ê²Œ " << attack << u8"ë°ë¯¸ì§€ë¥¼ ìž…í˜”ìŠµë‹ˆë‹¤." << endl;
+	cout << monster.GetName() << u8" ë‚¨ì€ ì²´ë ¥: " << monster.GetHp() << endl;
 }
