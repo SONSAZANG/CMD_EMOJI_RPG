@@ -2,12 +2,14 @@
 #include "inventory.h"
 #include "../03_ingame/items/attack_boost.h"
 #include "../03_ingame/items/health_potion.h"
+#include "../03_ingame/items/Bomb.h"
 
 class Shop {
 public:
 	Shop() {
 		availableItems.push_back(new HealthPotion(20));
 		availableItems.push_back(new AttackBoost(10));
+		availableItems.push_back(new Bomb());
 	}
 	~Shop() {
 		for (Item* availableItem : availableItems) {

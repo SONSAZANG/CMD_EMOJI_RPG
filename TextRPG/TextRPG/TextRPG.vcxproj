@@ -135,8 +135,9 @@
     <ClCompile Include="02_manager\player_manager.cpp" />
     <ClCompile Include="02_manager\scene_manager.cpp" />
     <ClCompile Include="02_manager\shop_manager.cpp" />
-    <ClCompile Include="03_ingame\Inventory.cpp" />
+    <ClCompile Include="03_ingame\inventory.cpp" />
     <ClCompile Include="03_ingame\items\attack_boost.cpp" />
+    <ClCompile Include="03_ingame\items\Bomb.cpp" />
     <ClCompile Include="03_ingame\items\health_potion.cpp" />
     <ClCompile Include="03_ingame\player\player.cpp" />
     <ClCompile Include="03_ingame\Scenes\dungeon_scene.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="02_manager\shop_manager.h" />
     <ClInclude Include="03_ingame\inventory.h" />
     <ClInclude Include="03_ingame\items\attack_boost.h" />
+    <ClInclude Include="03_ingame\items\Bomb.h" />
     <ClInclude Include="03_ingame\items\health_potion.h" />
     <ClInclude Include="03_ingame\player\player.h" />
     <ClInclude Include="03_ingame\Scenes\dungeon_scene.h" />

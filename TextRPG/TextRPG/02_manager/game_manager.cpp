@@ -27,7 +27,7 @@ void GameManager::Run()
 	int testCount = 0;
 	while (IsPlaying)
 	{
-		if (testCount > 4) IsPlaying = false;
+		if (testCount > 6) IsPlaying = false;
 		cout << "-----------------------------------" << endl;
 		cout << u8"마을입니다. 원하는 행동을 입력하세요." << endl;
 		cout << u8"1. 던전\n2. 상점 \n3. 전직소" << endl;
@@ -78,6 +78,7 @@ void GameManager::Battle()
 	Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
 
 	cout << u8"전투 시작" << endl;
+	randomMonster.DisplayMonster(); // 몬스터 정보 출력 << battle 쪽으로 필요하면 당겨쓰시면 될 듯
 
 	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
 
@@ -86,7 +87,7 @@ void GameManager::Battle()
 
 	Player& player = playerManager->GetPlayer(); // TEST 보스몬스터 스텟을 위해 플레이어 정보 필요
 
-	randomMonster.DisplayMonster(); // 몬스터 정보 출력 << battle 쪽으로 필요하면 당겨쓰시면 될 듯
+	
 
 	if (player.GetLevel() >= 10)
 	{
@@ -104,9 +105,6 @@ void GameManager::Battle()
 		return;
 	}
 
-	//아이템 사용 테스트 코드 시작
-	player.UseItem();
-	//아이템 사용 테스트 코드 끝
 
 	cout << u8"전투 종료" << endl;
 }
