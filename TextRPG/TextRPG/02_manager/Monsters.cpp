@@ -36,6 +36,8 @@ const char* Monster::GetBaseName() const
         return "Orc";
     case MT_TROLL:
         return "Troll";
+    case MT_BOSSMONSTER:
+        return "The Boss";
     default:
         return "Unknown";
     }
@@ -44,6 +46,7 @@ const char* Monster::GetBaseName() const
 BossMonster::BossMonster(const Player& player)
     : Monster(MT_BOSSMONSTER, player.GetLevel() * 50, player.GetLevel() * 50, 1000) // 체력, 공격력, 경험치 설정
 {
+    SetType(MT_BOSSMONSTER);
 }
 
 void BossMonster::DisplayBoss() const
