@@ -1,4 +1,4 @@
-#include "player.h"
+﻿#include "player.h"
 #include "../Job.h"
 
 constexpr int MAX_LEVEL = 10;

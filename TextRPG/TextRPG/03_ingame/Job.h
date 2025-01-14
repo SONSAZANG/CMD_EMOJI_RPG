@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <vector>
 #include "player/player.h"
@@ -8,7 +8,7 @@ using namespace std;
 class Job
 {
 private:
-	const vector<string> jobs = { "Àü»ç", "±Ã¼ö", "¾î½Ø½Å" };
+	const vector<string> jobs = { u8"ì „ì‚¬", u8"ê¶ìˆ˜", u8"ì–´ìŒ”ì‹ " };
 
 public:
 	void ShowJobOptions() const;

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,7 +9,7 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title("초심자")
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title(u8"초심자")
 	{
 		inventory = new Inventory();
 	}
@@ -57,7 +57,7 @@ private:
 	int attack;
 	int exp;
 	string title;
-	vector<string> titles = { "초심자", "모험가", "견습생", "도전자" };
+	vector<string> titles = { u8"초심자", u8"모험가", u8"견습생", u8"도전자" };
 	string job;
 	bool isJobChosen = false;
 	Inventory* inventory;
