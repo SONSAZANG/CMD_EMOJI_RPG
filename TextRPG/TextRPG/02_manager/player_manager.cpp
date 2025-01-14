@@ -30,11 +30,10 @@ void PlayerManager::CreatePlayer()
 void PlayerManager::GetPlayerInfo()
 {
 	cout << u8"이름: " << player.GetName() << endl;
-	cout << u8"체력: " << player.GetHp() << endl;
+	cout << u8"체력: " << player.GetHp() << "/" << player.GetMaxHp() << endl;
 	cout << u8"레벨 : " << player.GetLevel() << endl;
 	cout << u8"공격력: " << player.GetAttack() << endl;
 	cout << u8"경험치: " << player.GetExp() << endl;
-	cout << u8"최대체력: " << player.GetMaxHp() << endl;
 }
 
 Player& PlayerManager::GetPlayer()

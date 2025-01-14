@@ -97,8 +97,7 @@ void Player::LevelUp()
 		UpdateTitle();
 		cout << u8"레벨 업! 현재 레벨: " << level
 			<< u8"\n" << GetName()
-			<< u8"\n체력: " << hp
-			<< u8"\n최대 체력: " << maxHp
+			<< u8"\n체력: " << hp << "/" << maxHp
 			<< u8"\n공격력: " << attack
 			<< u8"\n경험치: " << exp << endl;
 	}
