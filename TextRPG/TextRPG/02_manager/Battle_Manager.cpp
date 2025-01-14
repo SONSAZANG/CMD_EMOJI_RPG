@@ -2,6 +2,7 @@
 #include "battle_Manager.h"
 #include "game_manager.h"
 #include "player_manager.h"
+#include "../04_Util/input_verify.h"
 #include <thread>
 #include <chrono>
 #include <random>
@@ -39,15 +40,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 	{
 		cout << u8"1. 공격	" << u8"2. 아이템 사용 ";
 		int selectNumber = 0;
-		cin >> selectNumber;
-		if (cin.fail() || !(selectNumber > 0) || selectNumber > 2) // 예외 처리
-		{
-			cout << endl;
-			cin.clear();
-			cin.ignore(INT_MAX, '\n');
-			cout << u8"다시 입력하세요." << endl;
-			continue;
-		}
+		selectNumber = InputVerify::IntegerVerify(selectNumber, 1, 2);
 
 		if (selectNumber == 1)
 		{
