@@ -91,12 +91,6 @@ void GameManager::Battle()
 
 	BattleManager::GetInstance()->Excute(randomMonster); // 몬스터 파라미터로 받을 생각
 
-
-	//아이템 사용 테스트 코드 시작
-	Player& player = playerManager->GetPlayer();
-	player.UseItem();
-	//아이템 사용 테스트 코드 끝
-
 	cout << u8"전투 종료" << endl;
 }
 
