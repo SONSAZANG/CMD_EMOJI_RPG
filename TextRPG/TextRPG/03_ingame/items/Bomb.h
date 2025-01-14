@@ -5,7 +5,7 @@
 
 class Bomb : public Item{
 public:
-	Bomb(int amount = 10, float multiply = 0.5)
+	Bomb(int amount = 100, float multiply = 0.5)
 	{
 		name = "Bomb";
 		attack = amount;

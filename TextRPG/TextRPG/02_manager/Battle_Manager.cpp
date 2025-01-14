@@ -49,7 +49,6 @@ void BattleManager::SelectionBehavior(Monster& monster)
 		else
 		{
 			SelectionItem(monster);
-			//continue;
 		}
 		break;
 	}
