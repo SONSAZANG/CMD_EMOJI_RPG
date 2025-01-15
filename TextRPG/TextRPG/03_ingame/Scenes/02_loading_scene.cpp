@@ -1,4 +1,4 @@
-﻿#include "loading_scene.h"
+﻿#include "02_loading_scene.h"
 #include "../../04_Util/gui.h"
 #include "../../04_Util/util.h"
 #include "../../02_manager/scene_manager.h"
@@ -17,7 +17,7 @@ void LoadingScene::DrawMainLayout()
 	SetConsoleOutputCP(CP_UTF8);
 	
 	// 배경 박스
-	GUI::DrawBox();
+	GUI::DrawFullBox();
 
 	// 로딩씬 타이틀
 	GUI::PrintLoadingText();
@@ -33,6 +33,16 @@ void LoadingScene::DrawMainLayout()
 		UTIL::UPrint("🟧");
 	}
 
-	// SceneManager::GetInstance()->LoadScene(EST_TOWN);
-	GameManager::GetInstance()->Run();
+	switch (SceneManager::GetInstance()->GetStageProgress())
+	{
+		case 1:
+			SceneManager::GetInstance()->LoadScene(EST_PLAYER_SETTING);
+			break;
+		case 3:
+		case 6:
+			SceneManager::GetInstance()->LoadScene(EST_TOWN);
+		default:
+			break;
+	}
+	// GameManager::GetInstance()->Run();
 }

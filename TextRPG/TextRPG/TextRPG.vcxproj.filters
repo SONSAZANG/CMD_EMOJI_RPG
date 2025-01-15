@@ -4,8 +4,8 @@
     <ClCompile Include="01_core\singleton_base.h" />
     <ClCompile Include="02_manager\battle_manager.cpp" />
     <ClCompile Include="02_manager\game_manager.cpp" />
-    <ClCompile Include="02_manager\Monsters.cpp" />
-    <ClCompile Include="02_manager\Monster_Spawn_Manager.cpp" />
+    <ClCompile Include="02_manager\monsters.cpp" />
+    <ClCompile Include="02_manager\monster_spawn_manager.cpp" />
     <ClCompile Include="02_manager\player_manager.cpp" />
     <ClCompile Include="02_manager\shop_manager.cpp" />
     <ClCompile Include="03_ingame\Inventory.cpp" />
@@ -18,19 +18,28 @@
     <ClCompile Include="03_ingame\Scenes\dungeon_scene.cpp" />
     <ClCompile Include="03_ingame\Scenes\loading_scene.cpp" />
     <ClCompile Include="03_ingame\Scenes\start_scene.cpp" />
-    <ClCompile Include="03_ingame\Scenes\town_scene.cpp" />
     <ClCompile Include="04_Util\gui.h" />
     <ClCompile Include="03_ingame\Scenes\select_stage_scene.cpp" />
     <ClCompile Include="03_ingame\items\Bomb.cpp" />
     <ClCompile Include="02_manager\job_manager.cpp" />
     <ClCompile Include="04_Util\util.h" />
+    <ClCompile Include="03_ingame\Scenes\01_start_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\02_loading_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\03_player_setting_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\04_town_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\05_shop_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\06_job_center_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\07_select_stage_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\08_dungeon_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\09_boss_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\10_end_scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="02_manager\battle_manager.h" />
     <ClInclude Include="01_core\item_base.h" />
     <ClInclude Include="02_manager\game_manager.h" />
-    <ClInclude Include="02_manager\Monsters.h" />
-    <ClInclude Include="02_manager\Monster_Spawn_Manager.h" />
+    <ClInclude Include="02_manager\monsters.h" />
+    <ClInclude Include="02_manager\monster_spawn_manager.h" />
     <ClInclude Include="02_manager\player_manager.h" />
     <ClInclude Include="02_manager\shop_manager.h" />
     <ClInclude Include="03_ingame\inventory.h" />
@@ -47,5 +56,15 @@
     <ClInclude Include="03_ingame\Scenes\select_stage_scene.h" />
     <ClInclude Include="02_manager\job_manager.h" />
     <ClInclude Include="03_ingame\items\Bomb.h" />
+    <ClInclude Include="03_ingame\Scenes\01_start_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\02_loading_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\03_player_setting_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\04_town_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\05_shop_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\06_job_center_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\07_select_stage_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\08_dungeon_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\09_boss_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\10_end_scene.h" />
   </ItemGroup>
 </Project>

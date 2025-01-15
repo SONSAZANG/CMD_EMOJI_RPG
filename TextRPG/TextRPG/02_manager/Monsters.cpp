@@ -8,13 +8,43 @@ Monster::Monster(monsterType type, int hp, int attack, int exp)
 {
 }
 
-Monster Monster::RandomMonsterSpawn(const Player& player)
+Monster Monster::SelectMonster(const Player& player)
  {
-    monsterType randomType = static_cast<monsterType>(1 + rand() % 3);
+    int choice;
+    cin >> choice;
 
-    Monster monster(randomType, 0, 0, 0);
-    monster.SetStatus(randomType, player);
-    return monster;
+    if (choice == 4)
+    {
+        if (player.GetLevel() < 10)
+        {
+            cout << "감히 접근할 수 없습니다!" << endl;
+            return SelectMonster(player);
+        }
+        else
+        {
+            return BossMonster(player);
+        }
+    }
+    else
+    {
+        Monster selectedMonster(MT_SPIDER, 0, 0, 0);
+        switch (choice)
+        {
+        case 1:
+            selectedMonster.SetStatus(MT_SPIDER, player);
+            break;
+        case 2:
+            selectedMonster.SetStatus(MT_ORC, player);
+            break;
+        case 3:
+            selectedMonster.SetStatus(MT_TROLL, player);
+            break;
+        default:
+            cout << "잘못된 선택입니다." << endl;
+            SelectMonster(player);
+        }
+        return selectedMonster;
+    }
 }
 
 
@@ -31,8 +61,8 @@ const char* Monster::GetBaseName() const
 {
     switch (_type)
     {
-    case MT_GOBLIN:
-        return "Goblin";
+    case MT_SPIDER:
+        return "Spider";
     case MT_ORC:
         return "Orc";
     case MT_TROLL:
@@ -50,20 +80,18 @@ BossMonster::BossMonster(const Player& player)
     SetType(MT_BOSSMONSTER);
 }
 
-void BossMonster::DisplayBoss() const
+void BossMonster::DisplayBossUI() const
 {
     uprintendl("-------------------------");
     cout << ustring("보스 체력: ") << GetHp() << endl;
     cout << ustring("보스 공격력: ") << GetAttack() << endl;
-    cout << ustring("경험치: ") << GetExp() << endl;
     uprintendl("-------------------------");
 }
-
 
 void Monster::DisplayMonster() const
 {
     uprintendl("-------------------------");
-    cout << ustring("몬스터 타입: ") << ustring(GetName()) << endl;
+    cout << ustring("몬스터 이름: ") << ustring(GetName()) << endl;
     cout << ustring("몬스터 체력: ") << GetHp() << endl;
     cout << ustring("몬스터 공격력: ") << GetAttack() << endl;
     cout << ustring("경험치: ") << GetExp() << endl;
@@ -74,9 +102,9 @@ void Monster::DisplayMonster() const
 bool Monster::IsDead() const
 {
     if (_hp <= 0)
-        return true; // 체력이 0 이하일 경우 true -> 사망
+        return true;
     else
-        return false; // 체력이 0보다 클 경우 false -> 생존
+        return false;
 }
 
 
@@ -100,12 +128,12 @@ void Monster::SetStatus(monsterType type, const Player& player)
 
     int playerLevel = SetPlayer.GetLevel();
 
-    int Hp = playerLevel * (20 + rand() % 11); // 레벨 * (20~30)
-    int Attack = playerLevel * (5 + rand() % 6); // 레벨 * (5~10)
+    int Hp = playerLevel * (20 + rand() % 11);
+    int Attack = playerLevel * (5 + rand() % 6);
 
     switch (type)
     {
-    case MT_GOBLIN:
+    case MT_SPIDER:
         SetHp(Hp);
         SetAttack(Attack);
         _exp = 50;

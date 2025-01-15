@@ -3,5 +3,5 @@
 Monster MonsterSpawnManager::SpawnRandomMonster()
 {
     Player& player = PlayerManager::GetInstance()->GetPlayer();
-    return Monster::RandomMonsterSpawn(player);
+    return Monster::SelectMonster(player);
 }

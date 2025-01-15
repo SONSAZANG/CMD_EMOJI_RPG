@@ -8,4 +8,8 @@ public:
 	virtual ~DungeonScene() {};
 
 	virtual void Init() override;
+
+private:
+	void DrawMainLayout();
+	void SelectCommand();
 };

@@ -1,4 +1,4 @@
-﻿#include "start_scene.h"
+﻿#include "01_start_scene.h"
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
@@ -9,9 +9,10 @@ using namespace std;
 
 void StartScene::Init()
 {
+	SceneManager::GetInstance()->SetStageProgress(1);
+	
 	DrawMainLayout();
-	// 입력 받기
-	HandleStartInput();
+	SelectCommand();
 }		
 
 
@@ -19,7 +20,7 @@ void StartScene::Init()
 void StartScene::DrawMainLayout()
 {
 	// 배경 박스
-	GUI::DrawBox();
+	GUI::DrawFullBox();
 
 	// 타이틀 박스
 	SetConsoleOutputCP(CP_UTF8);
@@ -33,7 +34,7 @@ void StartScene::DrawMainLayout()
 	UTIL::UPrint("📌 2. 게임 종료");
 }
 
-void StartScene::HandleStartInput() {
+void StartScene::SelectCommand() {
 	char choice;
 	while (true) {
 		if (SceneManager::GetInstance()->GetSceneType() != EST_START) break;

@@ -9,11 +9,11 @@ using namespace std;
 void PlayerManager::CreatePlayer()
 {
 	// 플레이어 생성
-	UTIL::UPrint("플레이어 이름을 입력해주세요: ");
+	//UTIL::UPrint("플레이어 이름을 입력해주세요: ");
 	string playername = UTIL::StringVerify();
 	player.SetName(playername);
-	UTIL::UPrintEndl("플레이어 생성 완료");
-	GetPlayerInfo();
+	// UTIL::UPrintEndl("플레이어 생성 완료");
+	// GetPlayerInfo();
 }
 
 void PlayerManager::GetPlayerInfo()

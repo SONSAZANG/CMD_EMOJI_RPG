@@ -8,6 +8,9 @@ class BattleManager : public SingletonBase<BattleManager>
 public:	
 	void Excute(Monster& monster);
 	bool GetIsWin() const;
+
+	void DisplaySkillAnimation(const string& skillName);
+	void BossBattle(Player& player, BossMonster& bossMonster);
 	
 private:
 	bool isWin;
