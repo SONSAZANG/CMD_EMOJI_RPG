@@ -76,19 +76,28 @@ void GameManager::Battle()
 {
 	system("cls");
 
-	playerManager->GetPlayer().SetLevel(10); // test
+	Player& player = playerManager->GetPlayer();
+	player.SetLevel(10);
 
-	Monster monster = playerManager->GetPlayer().GetLevel() < 10 ?
-		MonsterSpawnManager::GetInstance()->SpawnRandomMonster() : BossMonster(playerManager->GetPlayer()); // 플레이어 레벨에 따른 몬스터 호출
-
-	uprintendl("전투 시작");
-	monster.DisplayMonster();
-	
-
-	BattleManager::GetInstance()->Excute(monster);
+	if (player.GetLevel() < 10)
+	{
+		Monster randomMonster = MonsterSpawnManager::GetInstance()->SpawnRandomMonster();
+		uprintendl("전투 시작");
+		randomMonster.DisplayMonster();
+		BattleManager::GetInstance()->Excute(randomMonster);
+	}
+	else
+	{
+		BossMonster bossMonster(player);
+		uprintendl("보스 전투 시작!");
+		bossMonster.DisplayBossUI();
+		BattleManager::GetInstance()->BossBattle(player, bossMonster);
+	}
 
 	if (!BattleManager::GetInstance()->GetIsWin())
+	{
 		IsPlaying = false;
+	}
 }
 
 void GameManager::VisitShop()
