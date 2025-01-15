@@ -56,6 +56,7 @@
     <ClInclude Include="03_ingame\Scenes\select_stage_scene.h" />
     <ClInclude Include="02_manager\job_manager.h" />
     <ClInclude Include="03_ingame\items\Bomb.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="03_ingame\Scenes\01_start_scene.h" />
     <ClInclude Include="03_ingame\Scenes\02_loading_scene.h" />
     <ClInclude Include="03_ingame\Scenes\03_player_setting_scene.h" />
@@ -66,5 +67,19 @@
     <ClInclude Include="03_ingame\Scenes\08_dungeon_scene.h" />
     <ClInclude Include="03_ingame\Scenes\09_boss_scene.h" />
     <ClInclude Include="03_ingame\Scenes\10_end_scene.h" />
+    <ClInclude Include="03_ingame\weapons\weapon.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_default.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_bow.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_sword.h" />
+    <ClInclude Include="03_ingame\weapons\weapon.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_default.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_bow.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_sword.h" />
+=======
+>>>>>>> Stashed changes
+    <ClInclude Include="03_ingame\weapons\weapon.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_default.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_bow.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_sword.h" />
   </ItemGroup>
 </Project>

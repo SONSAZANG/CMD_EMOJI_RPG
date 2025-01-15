@@ -72,4 +72,17 @@ void Inventory::DeleteFromInventory(int index)
 	inventory.erase(inventory.begin() + index);
 }
 
+Weapon* Inventory::GetWeapon()
+{
+	return equip.get();
+}
 
+void Inventory::UseWeapon()
+{
+	equip->Use();
+}
+void Inventory::EquipWeapon(std::unique_ptr<Weapon> weapon, Player* player)
+{
+	equip = std::move(weapon);
+
+}

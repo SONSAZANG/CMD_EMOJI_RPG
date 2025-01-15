@@ -10,7 +10,7 @@ class UTIL
 {
 public:
 	#define uprint UTIL::UPrint
-	static void UPrint(string str) 
+	static void UPrint(string str)
 	{
 		cout << u8"" + str;
 	}

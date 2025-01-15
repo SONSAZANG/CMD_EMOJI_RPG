@@ -1,3 +1,4 @@
+﻿#pragma once
 #include "player.h"
 #include "../../02_manager/job_manager.h"
 #include "../../04_Util/util.h"
@@ -146,6 +147,19 @@ bool Player::IsDead()
 	return isDead;
 }
 
+void Player::SetEquipStaus(Weapon* current, Weapon* newWeapon)
+{
+	if (newWeapon == nullptr)
+	{
+		hp += current->GetHp();
+		attack += current->GetAttack();
+	}
+	else
+	{
+		hp = hp - current->GetHp() + newWeapon->GetHp();
+		attack = attack - current->GetAttack() + newWeapon->GetAttack();
+	}
+}
 void Player::ChangeJob(string job)
 {
 	if (level >= 5 && !isJobChosen)
