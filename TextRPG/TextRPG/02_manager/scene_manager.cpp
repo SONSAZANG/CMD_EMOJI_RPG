@@ -31,6 +31,7 @@ void SceneManager::LoadScene(ESceneType sceneType)
 			break;
 		case EST_SELECT_STAGE:
 			newScene = new SelectStageScene();
+			break;
 		case EST_DUNGEON:
 			newScene = new DungeonScene();
 			break;
