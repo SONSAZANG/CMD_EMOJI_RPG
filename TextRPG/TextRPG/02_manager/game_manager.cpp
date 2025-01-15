@@ -78,7 +78,7 @@ void GameManager::Battle()
 {
 	system("cls");
 
-	playerManager->GetPlayer().SetLevel(10); // test
+	//playerManager->GetPlayer().SetLevel(10); // test
 
 	Monster monster = playerManager->GetPlayer().GetLevel() < 10 ?
 		MonsterSpawnManager::GetInstance()->SpawnRandomMonster() : BossMonster(playerManager->GetPlayer()); // 플레이어 레벨에 따른 몬스터 호출
