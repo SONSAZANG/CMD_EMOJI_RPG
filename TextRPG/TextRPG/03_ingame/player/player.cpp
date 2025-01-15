@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "player.h"
-#include "../Job.h"
+#include "../../02_manager/job_manager.h"
 #include "../../04_Util/util.h"
 
 
