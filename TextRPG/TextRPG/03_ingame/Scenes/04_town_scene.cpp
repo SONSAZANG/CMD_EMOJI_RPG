@@ -25,7 +25,7 @@ void TownScene::DrawMainLayout()
 
 	string dungeon = ustring("1. 🏰 던전");
 	string shop = ustring("2. 🏪 상점");
-	string jobChangeCenter = ustring("3. 🏛️ 전직소");
+	string jobChangeCenter = ustring("3. 🏛 전직소");
 	vector<string> boxNames = { dungeon, shop, jobChangeCenter };
 	GUI::DrawSelectBox(boxNames);
 
