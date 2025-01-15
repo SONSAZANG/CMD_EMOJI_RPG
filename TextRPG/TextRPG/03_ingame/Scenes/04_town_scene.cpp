@@ -45,7 +45,7 @@ void TownScene::SelectCommand()
 	switch (num)
 	{
 		case 1:
-			GameManager::GetInstance()->Battle();
+			SceneManager::GetInstance()->LoadScene(EST_SELECT_STAGE);
 			break;
 		case 2:
 			SceneManager::GetInstance()->LoadScene(EST_SHOP);

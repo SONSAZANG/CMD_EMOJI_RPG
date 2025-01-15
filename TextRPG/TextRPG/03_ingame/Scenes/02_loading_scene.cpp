@@ -41,6 +41,7 @@ void LoadingScene::DrawMainLayout()
 		case 3:
 		case 5:
 		case 6:
+		case 7:
 			SceneManager::GetInstance()->LoadScene(EST_TOWN);
 		default:
 			break;
