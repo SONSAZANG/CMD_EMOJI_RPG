@@ -7,7 +7,7 @@ using namespace std;
 class GUI
 {
 public:
-	static void ClearUI()
+	static void ClearUI() //하단 텍스트 창만 초기화
 	{
 		string blank = "                                                                                ";
 		for (int i = 0; i < 7; ++i)

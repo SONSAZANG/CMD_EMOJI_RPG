@@ -30,9 +30,9 @@ void ShopScene::DrawMainLayout()
     string gold = ustring("💰 골드 " + to_string(intGold));
     uprint(gold);
 
-    string dungeon = ustring("1. 🍷HP포션(체력회복+)");
-    string shop = ustring("2. 🧪DMG포션(데미지증가+)");
-    string jobChangeCenter = ustring("3. 💣폭탄(데미지+)");
+    string dungeon = ustring("1. 🍷HP포션");
+    string shop = ustring("2. 🧪DMG포션");
+    string jobChangeCenter = ustring("3. 💣폭탄");
     vector<string> boxNames = { dungeon, shop, jobChangeCenter };
     GUI::DrawSelectBox(boxNames);
 
@@ -54,6 +54,7 @@ void ShopScene::SelectCommand()
 {
     int num;
     Inventory* inven = PlayerManager::GetInstance()->GetPlayer().GetInventory();
+
     while (true)
     {
         GUI::ClearUI();

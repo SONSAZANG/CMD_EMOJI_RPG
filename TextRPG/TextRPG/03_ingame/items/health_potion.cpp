@@ -19,3 +19,10 @@ void HealthPotion::Use(Player* player, Monster& monster)
 	}
 	cout << ustring("현재 체력: ") << player->GetHp() << "/" << player->GetMaxHp() << endl;
 }
+
+void HealthPotion::GetDescription()
+{
+	{
+		uprint(description);
+	}
+}

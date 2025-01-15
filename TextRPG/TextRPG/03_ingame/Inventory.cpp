@@ -47,7 +47,7 @@ void Inventory::DisplayInventory()
 	{
 		GUI::ClearUI();
 		GUI::GoToXY(4, 21);
-		uprint("인벤토리 아이템 목록:");
+		uprint("인벤토리 아이템 목록");
 		for (int i = 0; i < inventory.size(); ++i)
 		{
 			GUI::GoToXY(4, 22 + i);

@@ -8,9 +8,11 @@ class AttackBoost : public Item
 public:
 	AttackBoost(int amount = 10, float multiply = 0.5) 
 	{
-		name = "AttackBoost" + to_string(amount);
 		attackIncrease = amount;
 		price = (int)(amount * multiply);
+		name = "AttackBoost" + to_string(amount);
+		description = "공격력을 " + to_string(amount);
+		description += " 증가시킵니다.";
 
 		itemType = ITEM_Potion;
 	}
@@ -34,10 +36,14 @@ public:
 
 	void Use(Player* player, Monster& monster);
 
+	void GetDescription();
+
+
 	~AttackBoost() {}
 
 private:
 	string name;
+	string description;
 	ItemType itemType;
 	int attackIncrease;
 	int price;

@@ -7,13 +7,14 @@ void Shop::DisplayItems()
 	if (!availableItems.empty()) {
 		GUI::ClearUI();
 		GUI::GoToXY(4, 21);
-		uprint("상점 아이템 목록:");
+		uprint("상점 아이템 목록");
 		for (int i = 0; i < availableItems.size(); ++i)
 		{
 			GUI::GoToXY(4, 22 + i);
-			cout << i + 1 << ". " << availableItems[i]->GetName()
-				<< "(" << " +" << availableItems[i]->GetAmount() << ") : "
-				<< availableItems[i]->GetPrice() << ustring("골드") << endl;
+			cout << i + 1 << ". " << availableItems[i]->GetName() << " "
+				<< "<" << availableItems[i]->GetPrice() << ustring("골드") << "> ";
+			availableItems[i]->GetDescription();
+			
 		}
 	}
 }
