@@ -20,7 +20,7 @@ private:
 	const vector<vector<string>> jobTitles = {
 		{ ustring("Lv1.전사"), ustring("Lv2.전사"), ustring("Lv3.전사"), ustring("Lv4.전사"), ustring("Lv5.전사"), ustring("피로 물든 검귀") },
 		{ ustring("Lv1.궁수"), ustring("Lv2.궁수"), ustring("Lv3..궁수"), ustring("Lv4.궁수"), ustring("Lv5.궁수"), ustring("명사수") },
-		{ ustring("Lv1.어쌔신"), ustring("Lv2.어쌔신"), ustring("Lv3.어쌔신"), ustring("Lv4.어쌔신"), ustring("Lv5.어쌔신"), ustring("냉혹한 암살자") }
+		{ ustring("Lv1.도적"), ustring("Lv2.도적"), ustring("Lv3.도적"), ustring("Lv4.도적"), ustring("Lv5.도적"), ustring("냉혹한 암살자") }
 	};
 
 public:
