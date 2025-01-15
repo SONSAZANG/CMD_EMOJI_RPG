@@ -4,7 +4,7 @@
 
 enum monsterType
 {
-    MT_GOBLIN = 1,
+    MT_SPIDER = 1,
     MT_ORC = 2,
     MT_TROLL = 3,
     MT_BOSSMONSTER = 4,
@@ -15,7 +15,7 @@ class Monster
 public:
     Monster(monsterType type, int hp, int attack, int exp);
 
-    static Monster RandomMonsterSpawn(const Player& player);
+    static Monster SelectMonster(const Player& player);
 
     int GetHp() const { return _hp; }
     int GetAttack() const { return _attack; }
@@ -49,5 +49,5 @@ class BossMonster : public Monster
 public :
     BossMonster(const Player& player);
 
-    void DisplayBoss() const;
+    void DisplayBossUI() const;
 };
