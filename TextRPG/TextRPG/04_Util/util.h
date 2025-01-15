@@ -12,20 +12,17 @@ public:
 	#define uprint UTIL::UPrint
 	static void UPrint(string str)
 	{
-		//cout << u8"" + str;
-		cout << str;
+		cout << u8"" + str;
 	}
 	#define uprintendl UTIL::UPrintEndl
 	static void UPrintEndl(string str)
 	{
-		//cout << u8"" + str << endl;
-		cout << str << endl;
+		cout << u8"" + str << endl;
 	}
 	#define ustring UTIL::UString
 	static string UString(string str)
 	{
-		// return u8"" + str;
-		return str;
+		return u8"" + str;
 	}
 
 	static int IntegerVerify(int& input, const int& begin, const int& end)
