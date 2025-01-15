@@ -1,5 +1,5 @@
-﻿#include "player.h"
-#include "../Job.h"
+#include "player.h"
+#include "../../03_ingame/Job.h"
 #include "../../04_Util/util.h"
 
 constexpr int MAX_LEVEL = 10;
@@ -87,8 +87,7 @@ void Player::LevelUp()
 
 		if (level == 5 && !isJobChosen)
 		{
-			Job jobs;
-			jobs.ChooseJob(this);
+			cout << ustring("축하합니다! 전직이 가능합니다. 전직소를 방문하세요!") << endl;
 		}
 	}
 
@@ -98,8 +97,7 @@ void Player::LevelUp()
 		UpdateTitle();
 		cout << ustring("레벨 업! 현재 레벨: ") << level << endl;
 		cout << ustring(GetName()) << endl;
-		cout << ustring("체력: ") << hp << endl; 
-		cout << ustring("최대 체력: ") << maxHp << endl;
+		cout << ustring("체력: ") << hp << "/" << maxHp << endl;
 		cout << ustring("공격력: ") << attack << endl;
 		cout << ustring("경험치: ") << exp << endl;
 	}
@@ -125,8 +123,8 @@ void Player::UpdateTitle()
 {
 	if (isJobChosen && level >= 5)
 	{
-		Job jobs;
-		title = jobs.GetJobTitle(job, level);
+		Job* jobM = Job::GetInstance();
+		title = jobM->GetJobTitle(job, level);
 	}
 	else if (level >= 1 && level <= titles.size())
 	{
@@ -145,4 +143,21 @@ bool Player::IsDead()
 		isDead = false;
 	}
 	return isDead;
+}
+
+void Player::ChangeJob(string job)
+{
+	if (level >= 5 && !isJobChosen)
+	{
+		SetPlayerJob(job);
+		cout << ustring("축하합니다! '") << job << ustring("'로 전직했습니다!") << endl;
+	}
+	else if (level < 5)
+	{
+		cout << ustring("전직할 수 없습니다. (레벨 5 이상 필요)") << endl;
+	}
+	else if (isJobChosen)
+	{
+		cout << ustring("전직할 수 없습니다. (이미 전직 완료)") << endl;
+	}
 }
