@@ -1,4 +1,4 @@
-#include "town_scene.h"
+#include "04_town_scene.h"
 #include "../../04_Util/gui.h"
 #include "../../02_manager/player_manager.h"
 #include "../../02_manager/game_manager.h"
@@ -17,7 +17,7 @@ void TownScene::DrawMainLayout()
 {	
 	GUI::DrawInGameBox();
 
-	string sceneTitle = ustring("🏡 마을(Town)");
+	string sceneTitle = ustring("🏡 마을");
 	GUI::SettingTitle(sceneTitle);
 
 	string player = PlayerManager::GetInstance()->GetPlayer().GetName();
@@ -25,7 +25,7 @@ void TownScene::DrawMainLayout()
 
 	string dungeon = ustring("1. 🏰 던전");
 	string shop = ustring("2. 🏪 상점");
-	string jobChangeCenter = ustring("3. 🏛️ 전직소");
+	string jobChangeCenter = ustring("3. 🏛 전직소");
 	vector<string> boxNames = { dungeon, shop, jobChangeCenter };
 	GUI::DrawSelectBox(boxNames);
 
@@ -51,8 +51,19 @@ void TownScene::SelectCommand()
 			GameManager::GetInstance()->VisitShop();
 			break;
 		case 3:
-			UTIL::UPrintEndl("준비중인 기능입니다.");
+		{
+			int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
+			if (playerLevel >= 5)
+			{
+				SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
+			}
+			else
+			{
+				// 실패
+			}
+			SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
 			break;
+		}
 		default:
 			UTIL::UPrintEndl("잘못된 입력입니다.");
 			break;

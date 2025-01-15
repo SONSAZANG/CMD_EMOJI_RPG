@@ -75,7 +75,7 @@ public:
 
 		while (true)
 		{
-			std::cin >> input;
+			cin >> input;
 
 			for (int i = 0; i < length; ++i)
 			{
@@ -88,14 +88,14 @@ public:
 
 			if (findFlag)
 			{
-				std::cin.clear();
-				std::cin.ignore(INT_MAX, '\n');
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
 				return input;
 			}
-			else if (std::cin.fail() || !findFlag)
+			else if (cin.fail() || !findFlag)
 			{
-				std::cin.clear();
-				std::cin.ignore(INT_MAX, '\n');
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
 				uprint("다시 입력하세요. ");
 			}
 		}
