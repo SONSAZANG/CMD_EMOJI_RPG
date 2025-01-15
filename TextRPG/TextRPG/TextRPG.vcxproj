@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,7 +152,7 @@
     <ClCompile Include="03_ingame\Scenes\09_boss_scene.cpp" />
     <ClCompile Include="03_ingame\Scenes\10_end_scene.cpp" />
     <ClCompile Include="03_ingame\shop.cpp" />
-    <ClCompile Include="03_ingame\Job.cpp" />
+    <ClCompile Include="02_manager\job_manager.cpp" />
     <ClCompile Include="04_Util\gui.h" />
     <ClCompile Include="04_Util\util.h" />
     <ClCompile Include="TextRPG.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="03_ingame\weapons\weapon_bow.h" />
     <ClInclude Include="03_ingame\weapons\weapon_default.h" />
     <ClInclude Include="03_ingame\weapons\weapon_sword.h" />
+    <ClInclude Include="02_manager\job_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
