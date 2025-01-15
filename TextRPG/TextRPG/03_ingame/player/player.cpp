@@ -1,6 +1,7 @@
 #include "player.h"
-#include "../../03_ingame/Job.h"
+#include "../../02_manager/job_manager.h"
 #include "../../04_Util/util.h"
+
 
 constexpr int MAX_LEVEL = 10;
 constexpr int EXP_FOR_LEVEL_UP = 100;
@@ -123,8 +124,8 @@ void Player::UpdateTitle()
 {
 	if (isJobChosen && level >= 5)
 	{
-		Job* jobM = Job::GetInstance();
-		title = jobM->GetJobTitle(job, level);
+		JobManager* jobManager = JobManager::GetInstance();
+		title = jobManager->GetJobTitle(job, level);
 	}
 	else if (level >= 1 && level <= titles.size())
 	{

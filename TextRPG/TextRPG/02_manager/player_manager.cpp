@@ -1,4 +1,4 @@
-﻿#include "player_manager.h"
+#include "player_manager.h"
 #include "../03_ingame/player/player.h"
 #include "../04_Util/util.h"
 #include <iostream>

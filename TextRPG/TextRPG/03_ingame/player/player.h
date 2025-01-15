@@ -41,7 +41,7 @@ public:
 	void SetPlayerJob(const string& job);
 	string GetPlayerJob() const { return job; }
 
-	Inventory* GetInventory(); 
+	Inventory* GetInventory();
 	void UseItem(Monster& monster);
 
 	void LevelUp();

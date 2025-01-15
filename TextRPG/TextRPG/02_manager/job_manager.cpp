@@ -1,7 +1,9 @@
-﻿#include "Job.h"
+#include "job_manager.h"
+#include "../03_ingame/player/player.h"
 #include "../04_Util/util.h"
 
-void Job::ShowJobOptions() const
+
+void JobManager::ShowJobOptions() const
 {
 	uprintendl("전직 가능한 직업 목록: ");
 
@@ -11,7 +13,7 @@ void Job::ShowJobOptions() const
 	}
 }
 
-string Job::ChooseJob(Player* player)
+string JobManager::ChooseJob(Player* player)
 {
 	ShowJobOptions();
 
@@ -25,7 +27,7 @@ string Job::ChooseJob(Player* player)
 	}
 }
 
-string Job::GetJobTitle(string job, int level) const
+string JobManager::GetJobTitle(string job, int level) const
 {
 	if (level < 5 || level > 10)
 	{
@@ -41,5 +43,3 @@ string Job::GetJobTitle(string job, int level) const
 	}
 	return "";
 }
-
-

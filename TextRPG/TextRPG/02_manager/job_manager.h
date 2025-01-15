@@ -1,20 +1,20 @@
-﻿#pragma once
+#pragma once
 #include <string>
 #include <vector>
 
 #include "../01_core/singleton_base.h"
 #include "../04_Util/util.h"
-#include "player/player.h"
+#include "../03_ingame/player/player.h"
 
 using namespace std;
 
-class Job : public SingletonBase<Job>
+class JobManager : public SingletonBase<JobManager>
 {
-	friend class SingletonBase<Job>;
+	friend class SingletonBase<JobManager>;
 
 private:
-	Job() {};
-	~Job() {};
+	JobManager() {};
+	~JobManager() {};
 
 	const vector<string> jobs = { ustring("전사"), ustring("궁수"), ustring("어쌔신") };
 	const vector<vector<string>> jobTitles = {
@@ -29,4 +29,3 @@ public:
 
 	string GetJobTitle(string job, int level) const;
 };
-

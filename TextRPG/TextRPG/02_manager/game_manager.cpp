@@ -121,9 +121,9 @@ void GameManager::VisitShop()
 
 void GameManager::ChangeJobBase()
 {
-	job = Job::GetInstance();
+	jobManager = JobManager::GetInstance();
 	Player& player = playerManager->GetPlayer();
-	player.ChangeJob(job->ChooseJob(&player));
+	player.ChangeJob(jobManager->ChooseJob(&player));
 }
 
 void GameManager::Exit()

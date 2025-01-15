@@ -5,8 +5,9 @@
 #include "../02_manager/shop_manager.h"
 #include "../02_manager/Monster_Spawn_Manager.h"
 #include "../02_manager/scene_manager.h"
-#include "../03_ingame/Job.h"
+#include "../02_manager/job_manager.h"
 #include <iostream>
+
 using namespace std;
 class GameManager : public SingletonBase<GameManager>
 {
@@ -25,5 +26,5 @@ private:
 	PlayerManager* playerManager;
 	ShopManager* shopManager;
 	SceneManager* sceneManager;
-	Job* job;
+	JobManager* jobManager;
 };

@@ -22,7 +22,7 @@
     <ClCompile Include="04_Util\gui.h" />
     <ClCompile Include="03_ingame\Scenes\select_stage_scene.cpp" />
     <ClCompile Include="03_ingame\items\Bomb.cpp" />
-    <ClCompile Include="03_ingame\Job.cpp" />
+    <ClCompile Include="02_manager\job_manager.cpp" />
     <ClCompile Include="04_Util\util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -45,7 +45,7 @@
     <ClInclude Include="03_ingame\Scenes\start_scene.h" />
     <ClInclude Include="03_ingame\Scenes\town_scene.h" />
     <ClInclude Include="03_ingame\Scenes\select_stage_scene.h" />
-    <ClInclude Include="03_ingame\Job.h" />
+    <ClInclude Include="02_manager\job_manager.h" />
     <ClInclude Include="03_ingame\items\Bomb.h" />
   </ItemGroup>
 </Project>
