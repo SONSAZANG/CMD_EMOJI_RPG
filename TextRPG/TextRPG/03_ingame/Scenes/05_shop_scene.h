@@ -1,15 +1,15 @@
 #pragma once
 #include "../../01_core/scene_base.h"
 
-class StartScene : public SceneBase
+class ShopScene : public SceneBase
 {
 public:
-	StartScene() {};
-	virtual ~StartScene() {};
+	ShopScene() {};
+	virtual ~ShopScene() {};
 
 	virtual void Init() override;
 
 private:
 	void DrawMainLayout();
-	void HandleStartInput();
+	void SelectCommand();
 };

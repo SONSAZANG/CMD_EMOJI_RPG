@@ -64,8 +64,6 @@ void GameManager::CreatePlayerBase()
 {
 	playerManager = PlayerManager::GetInstance();
 	playerManager->CreatePlayer();
-
-	Player& player = playerManager->GetPlayer();
 }
 
 void GameManager::SpawnRandomMonster()

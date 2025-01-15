@@ -1,9 +1,14 @@
 ﻿#include "scene_manager.h"
-#include "../03_ingame/Scenes/start_scene.h"
-#include "../03_ingame/Scenes/loading_scene.h"
-#include "../03_ingame/Scenes/town_scene.h"
-#include "../03_ingame/Scenes/select_stage_scene.h"
-#include "../03_ingame/Scenes/dungeon_scene.h"
+#include "../03_ingame/Scenes/01_start_scene.h"
+#include "../03_ingame/Scenes/02_loading_scene.h"
+#include "../03_ingame/Scenes/03_player_setting_scene.h"
+#include "../03_ingame/Scenes/04_town_scene.h"
+#include "../03_ingame/Scenes/05_shop_scene.h"
+#include "../03_ingame/Scenes/06_job_center_scene.h"
+#include "../03_ingame/Scenes/07_select_stage_scene.h"
+#include "../03_ingame/Scenes/08_dungeon_scene.h"
+#include "../03_ingame/Scenes/09_boss_scene.h"
+#include "../03_ingame/Scenes/10_end_scene.h"
 #include <windows.h>
 
 void SceneManager::Init()
@@ -26,14 +31,29 @@ void SceneManager::LoadScene(ESceneType sceneType)
 		case EST_LOADING:
 			newScene = new LoadingScene();
 			break;
+		case EST_PLAYER_SETTING:
+			newScene = new PlayerSettingScene();
+			break;
 		case EST_TOWN:
 			newScene = new TownScene();
+			break;
+		case EST_SHOP:
+			newScene = new ShopScene();
+			break;
+		case EST_JOB_CENTER:
+			newScene = new JobCenterScene();
 			break;
 		case EST_SELECT_STAGE:
 			newScene = new SelectStageScene();
 			break;
 		case EST_DUNGEON:
 			newScene = new DungeonScene();
+			break;
+		case EST_BOSS:
+			newScene = new BossScene();
+			break;
+		case EST_END:
+			newScene = new EndScene();
 			break;
 		default:
 			break;
