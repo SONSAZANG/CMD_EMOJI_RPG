@@ -157,6 +157,18 @@ public:
 		uprint(questionTexts[2]);
 
 		GoToXY(4, 27);
-		uprint("-> ");
+		uprint("->");
+	}
+
+	static void DrawStoryBox(vector<string> storyTexts)
+	{
+		GoToXY(30, 4);
+		uprint(storyTexts[0]);
+		Sleep(1000);
+		GoToXY(30, 9);
+		uprint(storyTexts[1]);
+		Sleep(1000);
+		GoToXY(30, 14);
+		uprint(storyTexts[2]);
 	}
 };

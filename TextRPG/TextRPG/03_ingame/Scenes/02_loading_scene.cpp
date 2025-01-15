@@ -33,6 +33,6 @@ void LoadingScene::DrawMainLayout()
 		UTIL::UPrint("🟧");
 	}
 
-	// SceneManager::GetInstance()->LoadScene(EST_TOWN);
-	GameManager::GetInstance()->Run();
+	SceneManager::GetInstance()->LoadScene(EST_PLAYER_SETTING);
+	// GameManager::GetInstance()->Run();
 }

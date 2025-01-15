@@ -64,8 +64,7 @@ void GameManager::CreatePlayerBase()
 {
 	playerManager = PlayerManager::GetInstance();
 	playerManager->CreatePlayer();
-
-	Player& player = playerManager->GetPlayer();
+	sceneManager->LoadScene(EST_TOWN);
 }
 
 void GameManager::SpawnRandomMonster()
