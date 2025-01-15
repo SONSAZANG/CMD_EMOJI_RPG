@@ -7,6 +7,15 @@ using namespace std;
 class GUI
 {
 public:
+	static void ClearUI()
+	{
+		string blank = "                                                                                ";
+		for (int i = 0; i < 7; ++i)
+		{
+			GoToXY(4, 22 + i);
+			uprint(blank);
+		}
+	}
 	static void GoToXY(const int x, const int y)
 	{
 		COORD coord = { x, y };
