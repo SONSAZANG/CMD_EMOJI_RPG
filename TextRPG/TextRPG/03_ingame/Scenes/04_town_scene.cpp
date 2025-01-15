@@ -17,7 +17,7 @@ void TownScene::DrawMainLayout()
 {	
 	GUI::DrawInGameBox();
 
-	string sceneTitle = ustring("🏡 마을(Town)");
+	string sceneTitle = ustring("🏡 마을");
 	GUI::SettingTitle(sceneTitle);
 
 	string player = PlayerManager::GetInstance()->GetPlayer().GetName();
@@ -51,8 +51,19 @@ void TownScene::SelectCommand()
 			GameManager::GetInstance()->VisitShop();
 			break;
 		case 3:
-			UTIL::UPrintEndl("준비중인 기능입니다.");
+		{
+			int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
+			if (playerLevel >= 5)
+			{
+				SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
+			}
+			else
+			{
+				// 실패
+			}
+			SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
 			break;
+		}
 		default:
 			UTIL::UPrintEndl("잘못된 입력입니다.");
 			break;

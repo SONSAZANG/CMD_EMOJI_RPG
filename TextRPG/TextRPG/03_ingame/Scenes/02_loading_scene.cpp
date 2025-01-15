@@ -39,6 +39,7 @@ void LoadingScene::DrawMainLayout()
 			SceneManager::GetInstance()->LoadScene(EST_PLAYER_SETTING);
 			break;
 		case 3:
+		case 6:
 			SceneManager::GetInstance()->LoadScene(EST_TOWN);
 		default:
 			break;
