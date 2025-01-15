@@ -6,6 +6,8 @@
 #include "../03_ingame/player/player.h"
 #include "windows.h"
 #include "../04_Util/util.h"
+#include "../03_ingame/weapons/weapon_default.h"
+
 
 void GameManager::Init()
 {
@@ -64,6 +66,10 @@ void GameManager::CreatePlayerBase()
 {
 	playerManager = PlayerManager::GetInstance();
 	playerManager->CreatePlayer();
+
+	Player& player = playerManager->GetPlayer();
+	auto ptr_weapon = make_unique<DefaultWeapon>();
+	player.GetInventory()->EquipWeapon(move(ptr_weapon));
 }
 
 void GameManager::SpawnRandomMonster()

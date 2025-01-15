@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "../01_core/item_base.h"
-
+#include "weapons/weapon.h"
 class Mosnter;
 
 class Inventory
@@ -38,9 +38,12 @@ public:
 	void AddToInventory(Item* item);
 	void DeleteFromInventory(int index);
 
-
+	Weapon* GetWeapon();
+	void UseWeapon();
+	void EquipWeapon(std::unique_ptr<Weapon> weapon);
 
 private:
 	int gold;
 	vector<Item*> inventory;
+	std::unique_ptr<Weapon> equip;
 };

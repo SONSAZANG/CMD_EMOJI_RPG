@@ -1,4 +1,5 @@
-﻿#include "player.h"
+﻿#pragma once
+#include "player.h"
 #include "../Job.h"
 #include "../../04_Util/util.h"
 
@@ -145,4 +146,9 @@ bool Player::IsDead()
 		isDead = false;
 	}
 	return isDead;
+}
+
+void CalculateEquipStatus()
+{
+	
 }

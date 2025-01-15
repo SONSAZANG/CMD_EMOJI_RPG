@@ -96,6 +96,7 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 		setHp(newHp);
 
 		cout << attacker << UTIL::UString("이 공격합니다.") << std::endl;
+		PlayerManager::GetInstance()->GetPlayer().GetInventory()->UseWeapon();
 		this_thread::sleep_for(chrono::seconds(1));
 
 		cout << damage << UTIL::UString("의 데미지!!") << std::endl;
