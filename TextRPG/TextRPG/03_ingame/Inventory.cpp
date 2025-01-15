@@ -81,7 +81,8 @@ void Inventory::UseWeapon()
 {
 	equip->Use();
 }
-void Inventory::EquipWeapon(std::unique_ptr<Weapon> weapon)
+void Inventory::EquipWeapon(std::unique_ptr<Weapon> weapon, Player* player)
 {
 	equip = std::move(weapon);
+
 }

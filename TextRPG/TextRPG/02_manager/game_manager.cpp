@@ -67,9 +67,9 @@ void GameManager::CreatePlayerBase()
 	playerManager = PlayerManager::GetInstance();
 	playerManager->CreatePlayer();
 
-	Player& player = playerManager->GetPlayer();
+	Player* player = &playerManager->GetPlayer();
 	auto ptr_weapon = make_unique<DefaultWeapon>();
-	player.GetInventory()->EquipWeapon(move(ptr_weapon));
+	player->GetInventory()->EquipWeapon(move(ptr_weapon), player);
 }
 
 void GameManager::SpawnRandomMonster()

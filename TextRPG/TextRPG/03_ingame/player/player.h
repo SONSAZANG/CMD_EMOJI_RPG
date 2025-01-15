@@ -4,6 +4,7 @@
 #include <vector>
 #include "../../03_ingame/inventory.h" 
 #include "../../04_Util/util.h"
+#include "../weapons/weapon.h"
 
 using namespace std;
 
@@ -49,6 +50,8 @@ public:
 	void GainExp(int expAmount);
 
 	void UpdateTitle();
+
+	void SetEquipStaus(Weapon* current, Weapon* newWeapon);
 
 	bool IsDead();
 

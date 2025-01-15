@@ -40,7 +40,7 @@ public:
 
 	Weapon* GetWeapon();
 	void UseWeapon();
-	void EquipWeapon(std::unique_ptr<Weapon> weapon);
+	void EquipWeapon(std::unique_ptr<Weapon> weapon, Player* player);
 
 private:
 	int gold;

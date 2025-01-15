@@ -148,7 +148,16 @@ bool Player::IsDead()
 	return isDead;
 }
 
-void CalculateEquipStatus()
+void Player::SetEquipStaus(Weapon* current, Weapon* newWeapon)
 {
-	
+	if (newWeapon == nullptr)
+	{
+		hp += current->GetHp();
+		attack += current->GetAttack();
+	}
+	else
+	{
+		hp = hp - current->GetHp() + newWeapon->GetHp();
+		attack = attack - current->GetAttack() + newWeapon->GetAttack();
+	}
 }
