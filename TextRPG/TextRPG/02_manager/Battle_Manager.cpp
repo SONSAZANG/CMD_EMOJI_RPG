@@ -15,6 +15,8 @@ void BattleManager::Excute(Monster& monster)
 
 	while (true)
 	{
+		monster.DisplayMonster();
+
 		SelectionBehavior(monster);
 
 		if (monster.IsDead())
@@ -57,21 +59,26 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 	while (true) // 인풋 체크를 위한 반복문
 	{
-		UTIL::UPrint("1. 공격	2. 아이템 사용 ");
-		int selectNumber = 0;
-		selectNumber = UTIL::IntegerVerify(selectNumber, 1, 2);
+		uprintendl("1. 공격		2. 아이템 사용		3. 내 상태 ");
+		
+		int selectNumber = UTIL::IntegerVerify(selectNumber, 1, 3);
 
-		if (selectNumber == 1)
+		switch (selectNumber)
 		{
+		case 1:
 			AttackTarget(true, monster);
+			break;
+		case 2:
+			SelectionItem(monster); // 아이템 사용 후 재행동
+			continue;
+		case 3:
+			PlayerManager::GetInstance()->GetPlayerInfo(); // 상태 확인 후 재행동
+			continue;
+		default:
+			cout << u8"정의되지 않은 동작 " << endl;
+			break;
 		}
-		else
-		{
-			SelectionItem(monster);
 
-			if (!monster.IsDead()) // 몬스터가 죽지 않았으면 아이템 사용 후 재행동
-				continue;		
-		}
 		break;
 	}
 }
@@ -80,7 +87,8 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 {
 	Player& player = PlayerManager::GetInstance()->GetPlayer();
 
-	auto attackAction = [](const string& attacker, auto& target, const auto getAttack, const auto getHp, const auto setHp) // 람다 함수 정의
+	auto attackAction = [](const string& attacker, auto& target,
+		const auto getAttack, const auto getHp, const auto setHp) // 람다 함수 정의
 	{
 		int damage = getAttack();
 		int newHp = getHp() - damage;
@@ -88,6 +96,7 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 		setHp(newHp);
 
 		cout << attacker << UTIL::UString("이 공격합니다.") << std::endl;
+		PlayerManager::GetInstance()->GetPlayer().GetInventory()->UseWeapon();
 		this_thread::sleep_for(chrono::seconds(1));
 
 		cout << damage << UTIL::UString("의 데미지!!") << std::endl;
@@ -119,9 +128,9 @@ void BattleManager::GetVictoryReWard()
 	mt19937 gen(rd());
 	uniform_int_distribution<> dice(10, 20);
 
-	int gold = dice(gen);
+	int gold = dice(gen); // 10 ~ 20 획득 골드 (과제 요구사항)
 
-	player.GainExp(50);
+	player.GainExp(50); // 경험치 50 고정 획득 (과제 요구사항)
 	player.GetInventory()->SetGold(player.GetInventory()->GetGold() + gold);
 
 	player.GetInventory()->DisplayGoldInfo();
