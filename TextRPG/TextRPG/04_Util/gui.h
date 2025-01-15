@@ -1,6 +1,7 @@
 ﻿#include <windows.h>
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 #include "../04_Util/util.h"
 using namespace std;
 class GUI
@@ -15,9 +16,15 @@ public:
 	/// <summary>
 	/// 아무것도 입력 안하면 기본 배경 박스(0, 0, 120, 30)
 	/// </summary>
-	static void DrawBox() 
+	static void DrawFullBox() 
 	{
 		DrawBox(0, 0, 120, 30);
+	}
+
+	static void DrawInGameBox() 
+	{
+		DrawBox(0, 0, 120, 20);
+		DrawBox(0, 20, 120, 10);
 	}
 
 	static void DrawBox(const int x, const int y, const int width, const int height)
@@ -32,6 +39,13 @@ public:
 				cout << "|" << string(width - 2, ' ') << "|";
 			}
 		}
+	}
+
+	static void DrawTextBox(const int x, const int y, const int width, const int height, string inputText = ustring("준비중입니다."))
+	{
+		DrawBox(x, y, width, height);
+		GoToXY(x + 2, y + 2);
+		uprint(inputText);
 	}
 
 	static void PrintTitleText() 
@@ -86,5 +100,63 @@ public:
 		cout << text[3] << endl;
 		GoToXY(36, 9);
 		cout << text[4];
+	}
+
+	static void SettingTitle(string title) 
+	{
+		GoToXY(4, 2);
+		uprintendl(title);
+	}
+
+	// 플레이어와 몬스터를 출력하기 위한 박스
+	static void DrawNamingBox(vector<string> boxNames)
+	{
+		switch (boxNames.size())
+		{
+			case 1:
+				DrawTextBox(46, 5, 28, 5, boxNames[0]);
+				break;
+			case 2:
+				DrawTextBox(28, 5, 28, 5, boxNames[0]);
+				DrawTextBox(72, 5, 28, 5, boxNames[1]);
+				break;
+			default:
+				break;
+		}
+	}
+
+	// 선택 목록을 출력하는 박스(전직소, 상점 등)
+	static void DrawSelectBox(vector<string> boxNames) 
+	{
+		switch (boxNames.size())
+		{
+			case 1:
+				DrawTextBox(50, 12, 20, 5, boxNames[0]);
+				break;
+			case 2:
+				DrawTextBox(26, 12, 20, 5, boxNames[0]);
+				DrawTextBox(74, 12, 20, 5, boxNames[1]);
+				break;
+			case 3:
+				DrawTextBox(14, 12, 20, 5, boxNames[0]);
+				DrawTextBox(50, 12, 20, 5, boxNames[1]);
+				DrawTextBox(86, 12, 20, 5, boxNames[2]);
+				break;
+			default:
+				break;
+		}
+	}
+
+	static void DrawQuestionText(vector<string> questionTexts)
+	{
+		GoToXY(4, 22);
+		uprint(questionTexts[0]);
+		GoToXY(4, 23);
+		uprint(questionTexts[1]);
+		GoToXY(4, 24);
+		uprint(questionTexts[2]);
+
+		GoToXY(4, 27);
+		uprint("-> ");
 	}
 };
