@@ -29,7 +29,7 @@ void JobCenterScene::DrawMainLayout()
 
 	string questionText1 = ustring("전직소입니다.");
 	string questionText2 = ustring("원하는 행동을 입력하세요.");
-	string questionText3 = ustring("1. 궁수로 전직 2. 전사로 전직 3. 도적으로 전직 3. 나가기");
+	string questionText3 = ustring("1. 궁수로 전직 2. 전사로 전직 3. 도적으로 전직 4. 나가기");
 	vector<string> questionTexts = { questionText1, questionText2, questionText3 };
 	GUI::DrawQuestionText(questionTexts);
 

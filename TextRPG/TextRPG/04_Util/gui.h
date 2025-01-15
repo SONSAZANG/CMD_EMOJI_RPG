@@ -205,4 +205,12 @@ public:
 		GoToXY(30, 17);
 		uprint("저기 내가 만든 마을이 보인다!");
 	}
+
+	static void DrawStageBox(vector<string> stageNames)
+	{
+		DrawTextBox(20, 5, 14, 5, stageNames[0]);
+		DrawTextBox(40, 13, 14, 5, stageNames[1]);
+		DrawTextBox(60, 7, 14, 5, stageNames[2]);
+		DrawTextBox(90, 8, 20, 5, stageNames[3]);
+	}
 };
