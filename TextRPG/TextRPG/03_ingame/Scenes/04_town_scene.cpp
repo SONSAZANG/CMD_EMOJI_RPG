@@ -53,13 +53,18 @@ void TownScene::SelectCommand()
 		case 3:
 		{
 			int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
-			if (playerLevel >= 5)
+			bool playerIsChosenJob = PlayerManager::GetInstance()->GetPlayer().IsJobChosen();
+			if (playerLevel >= 5 && !playerIsChosenJob)
 			{
 				SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
 			}
-			else
+			else if (playerLevel < 5)
 			{
-				// 실패
+				// 전직할 수 없습니다. (레벨 5 이상 필요)
+			}
+			else if (playerIsChosenJob)
+			{
+				// 전직할 수 없습니다. (이미 전직 완료)
 			}
 			SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
 			break;

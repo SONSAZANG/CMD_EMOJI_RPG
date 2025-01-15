@@ -77,7 +77,7 @@ void GameManager::CreatePlayerBase()
 	playerManager->CreatePlayer();
 
 	Player& player = playerManager->GetPlayer();
-	//player.GainExp(500);
+	player.GainExp(500);	// 전직 테스트
 }
 
 void GameManager::SpawnRandomMonster()

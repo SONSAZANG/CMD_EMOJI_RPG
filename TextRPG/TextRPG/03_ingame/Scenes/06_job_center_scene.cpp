@@ -29,7 +29,7 @@ void JobCenterScene::DrawMainLayout()
 
 	string questionText1 = ustring("전직소입니다.");
 	string questionText2 = ustring("원하는 행동을 입력하세요.");
-	string questionText3 = ustring("1. 궁수로 전직 2. 전사로 전직 3. 도적으로 전직 3. 나가기");
+	string questionText3 = ustring("1. 궁수로 전직 2. 전사로 전직 3. 도적으로 전직 4. 나가기");
 	vector<string> questionTexts = { questionText1, questionText2, questionText3 };
 	GUI::DrawQuestionText(questionTexts);
 
@@ -38,21 +38,32 @@ void JobCenterScene::DrawMainLayout()
 
 void JobCenterScene::SelectCommand()
 {
-	// TODO: 민수님 여기 전직 기능 연결 부탁드립니다.( 은수 ) 
 	int num;
-	cin >> num;
-	switch (num)
+	PlayerManager* playerManager = PlayerManager::GetInstance();
+	Player& player = playerManager->GetPlayer();
+
+	while (true)
 	{
-		case 1:
-			// 궁수 전직
-			break;
-		case 2:
-			// 전사 전직
-			break;
-		case 3:
-			SceneManager::GetInstance()->LoadScene(EST_LOADING);
-			break;
-		default:
-			break;
+		num = UTIL::IntegerVerify(num, 1, 4);
+
+		switch (num)
+		{
+			case 1:
+				player.ChangeJob("궁수");
+				break;
+			case 2:
+				player.ChangeJob("전사");
+				break;
+			case 3:
+				player.ChangeJob("도적");
+				break;
+			case 4:
+				SceneManager::GetInstance()->LoadScene(EST_LOADING);
+				break;
+			default:
+				UTIL::UPrintEndl("잘못된 입력입니다.");
+				break;
+		}
 	}
+
 }
