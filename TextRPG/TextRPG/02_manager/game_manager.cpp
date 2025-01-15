@@ -13,6 +13,7 @@ void GameManager::Init()
 	{
 		sceneManager = SceneManager::GetInstance();
 	}
+	SetConsoleOutputCP(CP_UTF8);
 
 	sceneManager->LoadScene(EST_START);
 }

@@ -14,6 +14,8 @@ void LoadingScene::Init()
 
 void LoadingScene::DrawMainLayout()
 {
+	SetConsoleOutputCP(CP_UTF8);
+	
 	// 배경 박스
 	GUI::DrawBox();
 
