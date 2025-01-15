@@ -9,7 +9,7 @@ class GUI
 public:
 	static void GoToXY(const int x, const int y)
 	{
-		COORD coord = { x, y };
+		COORD coord = { (SHORT)x, (SHORT)y };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 	}
 	
@@ -106,6 +106,12 @@ public:
 	{
 		GoToXY(4, 2);
 		uprintendl(title);
+	}
+
+	static void SettingDungeonTitle(string stageText)
+	{
+		GoToXY(4, 2);
+		cout << ustring("STAGE - ") << ustring(stageText);
 	}
 
 	// 플레이어와 몬스터를 출력하기 위한 박스

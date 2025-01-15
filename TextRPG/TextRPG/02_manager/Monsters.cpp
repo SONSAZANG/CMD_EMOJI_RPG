@@ -1,5 +1,6 @@
 ﻿#include "Monsters.h"
 #include "../04_Util/util.h"
+#include "../02_manager/player_manager.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -31,13 +32,13 @@ Monster Monster::SelectMonster(const Player& player)
         switch (choice)
         {
         case 1:
-            selectedMonster.SetStatus(MT_SPIDER, player);
+            selectedMonster.SetStatus(MT_SPIDER);
             break;
         case 2:
-            selectedMonster.SetStatus(MT_ORC, player);
+            selectedMonster.SetStatus(MT_ORC);
             break;
         case 3:
-            selectedMonster.SetStatus(MT_TROLL, player);
+            selectedMonster.SetStatus(MT_TROLL);
             break;
         default:
             cout << "잘못된 선택입니다." << endl;
@@ -122,12 +123,9 @@ void Monster::SetTitle(const string& title)
 }
 
 
-void Monster::SetStatus(monsterType type, const Player& player)
+void Monster::SetStatus(monsterType type)
 {
-    Player& SetPlayer = const_cast<Player&>(player);
-
-    int playerLevel = SetPlayer.GetLevel();
-
+    int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
     int Hp = playerLevel * (20 + rand() % 11);
     int Attack = playerLevel * (5 + rand() % 6);
 
@@ -163,5 +161,4 @@ void Monster::SetStatus(monsterType type, const Player& player)
     {
         SetTitle(ustring(" 불타는 "));
     }
-
 }

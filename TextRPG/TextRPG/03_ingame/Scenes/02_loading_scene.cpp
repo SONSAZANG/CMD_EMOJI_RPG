@@ -38,11 +38,12 @@ void LoadingScene::DrawMainLayout()
 		case 1:
 			SceneManager::GetInstance()->LoadScene(EST_PLAYER_SETTING);
 			break;
-		case 3:
-		case 5:
-		case 6:
-		case 7:
+		case 2:
 			SceneManager::GetInstance()->LoadScene(EST_TOWN);
+			break;
+		case 3:
+			SceneManager::GetInstance()->LoadScene(EST_DUNGEON);
+			break;
 		default:
 			break;
 	}

@@ -5,7 +5,7 @@
 #include <conio.h>
 void PlayerSettingScene::Init()
 {
-	SceneManager::GetInstance()->SetStageProgress(3);
+	SceneManager::GetInstance()->SetStageProgress(2);
 
 	DrawMainLayout();
 	SettingPlayerName();

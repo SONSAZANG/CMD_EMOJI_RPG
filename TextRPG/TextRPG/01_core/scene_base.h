@@ -2,7 +2,6 @@
 
 enum ESceneType
 {
-	None,
 	EST_START,
 	EST_LOADING,
 	EST_PLAYER_SETTING,

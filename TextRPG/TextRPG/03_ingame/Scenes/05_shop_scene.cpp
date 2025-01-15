@@ -6,7 +6,7 @@
 #include "../../02_manager/shop_manager.h"
 void ShopScene::Init()
 {
-	SceneManager::GetInstance()->SetStageProgress(5);
+	SceneManager::GetInstance()->SetStageProgress(2);
 
 	DrawMainLayout();
 	SelectCommand();

@@ -5,7 +5,7 @@
 #include "../../02_manager/scene_manager.h"
 void JobCenterScene::Init()
 {
-	SceneManager::GetInstance()->SetStageProgress(6);
+	SceneManager::GetInstance()->SetStageProgress(2);
 
 	DrawMainLayout();
 	SelectCommand();

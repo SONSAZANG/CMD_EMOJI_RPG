@@ -2,11 +2,12 @@
 #include "../../04_Util/gui.h"
 #include "../../04_Util/util.h"
 #include "../../02_manager/scene_manager.h"
+#include "../../02_manager/stage_manager.h"
 
 void SelectStageScene::Init()
 {
-	SceneManager::GetInstance()->SetStageProgress(7);
-	
+	SceneManager::GetInstance()->SetStageProgress(3);
+
 	DrawMainLayout();
 	SelectCommand();
 }
@@ -36,24 +37,26 @@ void SelectStageScene::SelectCommand()
 {
 	int num;
 	cin >> num;
+
 	switch (num)
 	{
 	case 1:
-		// 거미 스테이지
+		StageManager::GetInstance()->SetCurrentStageType(EStage_SPIDER);
 		break;
 	case 2:
-		// 트롤 스테이지
+		StageManager::GetInstance()->SetCurrentStageType(EStage_TROLL);
 		break;
 	case 3:
-		// 오크 스테이지
+		StageManager::GetInstance()->SetCurrentStageType(EStage_ORC);
 		break;
 	case 4:
-		// 보스 몬스터 
+		StageManager::GetInstance()->SetCurrentStageType(EStage_BOSS);
 		break;
 	case 5:
-		SceneManager::GetInstance()->LoadScene(EST_LOADING);
+		SceneManager::GetInstance()->SetStageProgress(2);
 		break;
 	default:
 		break;
 	}
+	SceneManager::GetInstance()->LoadScene(EST_LOADING);
 }
