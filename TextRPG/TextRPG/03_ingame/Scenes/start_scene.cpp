@@ -22,7 +22,7 @@ void StartScene::DrawMainLayout()
 	GUI::DrawBox();
 
 	// 타이틀 박스
-	SetConsoleOutputCP(CP_UTF8);
+	// SetConsoleOutputCP(CP_UTF8);
 	GUI::PrintTitleText();
 
 	// 메뉴 박스
