@@ -133,7 +133,7 @@ void Monster::SetStatus(monsterType type, const Player& player)
     const int maxAttack = playerLevel * 10;
     if (Attack == maxAttack)
     {
-        SetTitle(u8" 불타는 ");
+        SetTitle(ustring(" 불타는 "));
     }
 
 }

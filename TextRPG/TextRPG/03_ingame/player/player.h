@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "../../03_ingame/inventory.h" 
+#include "../../04_Util/util.h"
 
 
 using namespace std;
@@ -10,7 +11,7 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title(u8"초심자")
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title(ustring("초심자"))
 	{
 		inventory = new Inventory();
 	}
@@ -61,7 +62,7 @@ private:
 	string name;
 	string title;
 	string job;
-	vector<string> titles = { u8"초심자", u8"모험가", u8"견습생", u8"도전자" };
+	vector<string> titles = { ustring("초심자"), ustring("모험가"), ustring("견습생"), ustring("도전자") };
 	bool isJobChosen = false;
 	bool isDead = false;
 	Inventory* inventory;
