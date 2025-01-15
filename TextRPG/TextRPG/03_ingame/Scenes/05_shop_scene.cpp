@@ -16,7 +16,7 @@ void ShopScene::DrawMainLayout()
 {
 	GUI::DrawInGameBox();
 
-	string sceneTitle = ustring("🏡 마을");
+	string sceneTitle = ustring("🏪 상점");
 	GUI::SettingTitle(sceneTitle);
 
 	string player = PlayerManager::GetInstance()->GetPlayer().GetName();
