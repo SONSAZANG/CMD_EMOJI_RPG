@@ -25,7 +25,7 @@ void GameManager::Run()
 
 	CreatePlayerBase();
 	IsPlaying = true;
-
+	Player& player = playerManager->GetPlayer();
 	int testCount = 0;
 	while (IsPlaying)
 	{
@@ -44,7 +44,18 @@ void GameManager::Run()
 			VisitShop();
 			break;
 		case 3:
-			UTIL::UPrintEndl("준비중인 기능입니다.");
+			if (player.GetLevel() >= 5 && !player.IsJobChosen())
+			{
+				ChangeJobBase();
+			}
+			else if (player.GetLevel() < 5)
+			{
+				UTIL::UPrintEndl("전직할 수 없습니다. (레벨 5 이상 필요)");
+			}
+			else if (player.IsJobChosen())
+			{
+				UTIL::UPrintEndl("전직할 수 없습니다. (이미 전직 완료)");
+			}
 			break;
 		default:
 			UTIL::UPrintEndl("잘못된 입력입니다.");
@@ -64,6 +75,9 @@ void GameManager::CreatePlayerBase()
 {
 	playerManager = PlayerManager::GetInstance();
 	playerManager->CreatePlayer();
+
+	Player& player = playerManager->GetPlayer();
+	player.GainExp(500);
 }
 
 void GameManager::SpawnRandomMonster()
@@ -112,6 +126,13 @@ void GameManager::VisitShop()
 
 	shopManager->WelcomShop(player.GetInventory());
 	UTIL::UPrintEndl("상점 방문 완료");
+}
+
+void GameManager::ChangeJobBase()
+{
+	jobManager = JobManager::GetInstance();
+	Player& player = playerManager->GetPlayer();
+	player.ChangeJob(jobManager->ChooseJob(&player));
 }
 
 void GameManager::Exit()

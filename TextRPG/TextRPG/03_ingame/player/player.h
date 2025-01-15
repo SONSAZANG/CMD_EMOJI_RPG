@@ -41,7 +41,7 @@ public:
 	void SetPlayerJob(const string& job);
 	string GetPlayerJob() const { return job; }
 
-	Inventory* GetInventory(); 
+	Inventory* GetInventory();
 	void UseItem(Monster& monster);
 
 	void LevelUp();
@@ -52,6 +52,8 @@ public:
 	void UpdateTitle();
 
 	bool IsDead();
+	bool IsJobChosen() { return isJobChosen; }
+	void ChangeJob(string job);
 
 private:
 	int hp;
@@ -62,7 +64,7 @@ private:
 	string name;
 	string title;
 	string job;
-	vector<string> titles = { ustring("초심자"), ustring("모험가"), ustring("견습생"), ustring("도전자") };
+	vector<string> titles = { ustring("초심자"), ustring("모험가"), ustring("도전자"), ustring("베테랑") };
 	bool isJobChosen = false;
 	bool isDead = false;
 	Inventory* inventory;
