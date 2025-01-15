@@ -11,5 +11,7 @@ public:
 
 private:
 	void DrawMainLayout();
+	void SettingPlayerName();
+	void DrawMainLayout2();
 	void SelectCommand();
 };

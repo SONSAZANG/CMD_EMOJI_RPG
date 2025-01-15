@@ -2,9 +2,12 @@
 #include "../../04_Util/gui.h"
 #include "../../04_Util/util.h"
 #include "../../02_manager/game_manager.h"
+#include <conio.h>
 void PlayerSettingScene::Init()
 {
 	DrawMainLayout();
+	SettingPlayerName();
+	DrawMainLayout2();
 	SelectCommand();
 }
 
@@ -25,9 +28,29 @@ void PlayerSettingScene::DrawMainLayout()
 	GUI::DrawQuestionText(questionTexts);
 }
 
-void PlayerSettingScene::SelectCommand()
+void PlayerSettingScene::SettingPlayerName()
 {	
 	GUI::GoToXY(8, 27);
 	uprint(" ");
 	GameManager::GetInstance()->CreatePlayerBase();
+}
+
+void PlayerSettingScene::DrawMainLayout2()
+{
+	system("cls");
+
+	GUI::DrawInGameBox();
+	GUI::DrawStartStory();
+
+	string questionText1 = ustring("마을을 발견했습니다.");
+	string questionText2 = ustring("원하는 행동을 입력하세요.");
+	string questionText3 = ustring("1. 마을로 이동한다.");
+	vector<string> questionTexts = { questionText1, questionText2, questionText3 };
+	GUI::DrawQuestionText(questionTexts);
+}
+
+void PlayerSettingScene::SelectCommand()
+{
+	_getch();
+	SceneManager::GetInstance()->LoadScene(EST_TOWN);
 }
