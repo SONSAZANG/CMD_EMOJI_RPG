@@ -9,6 +9,8 @@ using namespace std;
 
 void StartScene::Init()
 {
+	SceneManager::GetInstance()->SetStageProgress(1);
+	
 	DrawMainLayout();
 	SelectCommand();
 }		

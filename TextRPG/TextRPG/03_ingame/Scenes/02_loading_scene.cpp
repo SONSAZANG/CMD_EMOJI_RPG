@@ -33,6 +33,15 @@ void LoadingScene::DrawMainLayout()
 		UTIL::UPrint("🟧");
 	}
 
-	SceneManager::GetInstance()->LoadScene(EST_PLAYER_SETTING);
+	switch (SceneManager::GetInstance()->GetStageProgress())
+	{
+		case 1:
+			SceneManager::GetInstance()->LoadScene(EST_PLAYER_SETTING);
+			break;
+		case 3:
+			SceneManager::GetInstance()->LoadScene(EST_TOWN);
+		default:
+			break;
+	}
 	// GameManager::GetInstance()->Run();
 }

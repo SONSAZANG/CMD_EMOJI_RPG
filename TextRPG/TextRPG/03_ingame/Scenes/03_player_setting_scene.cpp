@@ -5,6 +5,8 @@
 #include <conio.h>
 void PlayerSettingScene::Init()
 {
+	SceneManager::GetInstance()->SetStageProgress(3);
+
 	DrawMainLayout();
 	SettingPlayerName();
 	DrawMainLayout2();
@@ -52,5 +54,5 @@ void PlayerSettingScene::DrawMainLayout2()
 void PlayerSettingScene::SelectCommand()
 {
 	_getch();
-	SceneManager::GetInstance()->LoadScene(EST_TOWN);
+	SceneManager::GetInstance()->LoadScene(EST_LOADING);
 }
