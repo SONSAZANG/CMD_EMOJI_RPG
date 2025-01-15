@@ -1,15 +1,15 @@
 ﻿#include "inventory.h"
-#include "../04_Util/util.h"
+#include "../04_Util/gui.h"
 
 void Inventory::UseInventoryItem(Player* player, Monster& monster)
 {
 	DisplayInventory();
 
-	if (IsInventoryEmpty()) 
+	if (IsInventoryEmpty())
 	{
 		return;
 	}
-	
+
 	UTIL::UPrint("아이템을 사용할 경우 아이템의 번호, 사용하지 않을 경우 0을 입력해주세요.");
 	while (true)
 	{
@@ -40,19 +40,24 @@ Item* Inventory::GetInventoryItem(int index)
 	return inventory[index];
 }
 
-void Inventory::DisplayInventory() 
+void Inventory::DisplayInventory()
 {
-	UTIL::UPrintEndl("소지한 아이템: ");
-	if(!IsInventoryEmpty())
+	
+	if (!IsInventoryEmpty())
 	{
+		GUI::ClearUI();
+		GUI::GoToXY(4, 21);
+		uprint("인벤토리 아이템 목록:");
 		for (int i = 0; i < inventory.size(); ++i)
 		{
+			GUI::GoToXY(4, 22 + i);
 			cout << i + 1 << ". " << inventory[i]->GetName() << endl;
 
 		}
 	}
 	else
 	{
+		GUI::GoToXY(4, 22);
 		UTIL::UPrintEndl("현재 인벤토리가 비어있습니다!");
 	}
 }

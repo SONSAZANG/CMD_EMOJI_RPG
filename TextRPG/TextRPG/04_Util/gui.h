@@ -12,7 +12,7 @@ public:
 		string blank = "                                                                                ";
 		for (int i = 0; i < 7; ++i)
 		{
-			GoToXY(4, 22 + i);
+			GoToXY(4, 21 + i);
 			uprint(blank);
 		}
 	}
