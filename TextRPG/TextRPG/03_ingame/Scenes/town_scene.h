@@ -11,4 +11,5 @@ public:
 
 private:
 	void DrawMainLayout();
+	void SelectCommand();
 };

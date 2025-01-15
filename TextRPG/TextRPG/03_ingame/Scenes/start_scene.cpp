@@ -19,7 +19,7 @@ void StartScene::Init()
 void StartScene::DrawMainLayout()
 {
 	// 배경 박스
-	GUI::DrawBox();
+	GUI::DrawFullBox();
 
 	// 타이틀 박스
 	SetConsoleOutputCP(CP_UTF8);
