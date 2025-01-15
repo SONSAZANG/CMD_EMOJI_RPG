@@ -23,12 +23,13 @@ void JobCenterScene::DrawMainLayout()
 
 	string archer = ustring("1. 🏹 궁수");
 	string warrior = ustring("2. ⚔ 전사");
-	vector<string> boxNames = { archer, warrior };
+	string assassin = ustring("3. 🗡 도적");
+	vector<string> boxNames = { archer, warrior, assassin };
 	GUI::DrawSelectBox(boxNames);
 
 	string questionText1 = ustring("전직소입니다.");
 	string questionText2 = ustring("원하는 행동을 입력하세요.");
-	string questionText3 = ustring("1. 궁수로 전직 2. 전사로 전직 3. 나가기");
+	string questionText3 = ustring("1. 궁수로 전직 2. 전사로 전직 3. 도적으로 전직 3. 나가기");
 	vector<string> questionTexts = { questionText1, questionText2, questionText3 };
 	GUI::DrawQuestionText(questionTexts);
 

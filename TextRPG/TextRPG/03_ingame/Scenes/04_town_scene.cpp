@@ -48,7 +48,7 @@ void TownScene::SelectCommand()
 			GameManager::GetInstance()->Battle();
 			break;
 		case 2:
-			GameManager::GetInstance()->VisitShop();
+			SceneManager::GetInstance()->LoadScene(EST_SHOP);
 			break;
 		case 3:
 		{
