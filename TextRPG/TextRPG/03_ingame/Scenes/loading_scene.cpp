@@ -17,7 +17,7 @@ void LoadingScene::DrawMainLayout()
 	SetConsoleOutputCP(CP_UTF8);
 	
 	// 배경 박스
-	GUI::DrawBox();
+	GUI::DrawFullBox();
 
 	// 로딩씬 타이틀
 	GUI::PrintLoadingText();
