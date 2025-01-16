@@ -7,9 +7,9 @@ class Mosnter;
 class Inventory
 {
 public:
-	Inventory() 
+	Inventory() : gold(0)
 	{
-		gold = 0;
+		
 	}
 
 	int GetGold() const
@@ -17,6 +17,8 @@ public:
 		return gold ;
 	}
 	void SetGold(int gold) {
+		if (gold < 0)
+			this->gold = 0;
 		this->gold = gold;
 	}
 

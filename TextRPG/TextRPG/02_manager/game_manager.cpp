@@ -30,7 +30,7 @@ void GameManager::Test()
 	PlayerManager::GetInstance()->GetPlayer().SetName("test11");
 	
 	// 원하는 씬으로 설정
-	sceneManager->LoadScene(EST_SELECT_STAGE);
+	sceneManager->LoadScene(EST_SHOP);
 }
 
 void GameManager::Run()

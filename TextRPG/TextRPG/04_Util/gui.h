@@ -10,9 +10,28 @@ using namespace std;
 class GUI
 {
 public:
+	static void DrawAskText(string str) {
+		GUI::GoToXY(4, 26);
+		uprint(str);
+		GUI::GoToXY(4, 27);
+		UTIL::UPrint("->");
+	}
+
+	static void DrawConfirmAsk()
+	{
+		int back = 0;
+		while (back != 1)
+		{
+			DrawAskText("확인 시 1 누르세요.");
+			back = UTIL::IntegerVerify(back, 1, 1);
+		}
+	}
+
 
 	static void DrawGoldInfo() 
 	{
+		GUI::GoToXY(106, 2);
+		uprint("           ");
 		GUI::GoToXY(106, 2);
 		int intGold = PlayerManager::GetInstance()->GetPlayer().GetInventory()->GetGold();
 		string gold = ustring("💰 골드 " + to_string(intGold));
@@ -21,7 +40,7 @@ public:
 	static void ClearUI() //하단 텍스트 창만 초기화
 	{
 		string blank = "                                                                                ";
-		for (int i = 0; i < 7; ++i)
+		for (int i = 0; i < 8; ++i)
 		{
 			GoToXY(4, 21 + i);
 			uprint(blank);

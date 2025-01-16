@@ -90,19 +90,10 @@ void ShopManager::BuyWeapon(Inventory* inventory)
 	while (true) {
 		shop->DisplayWeapons();
 
-		GUI::GoToXY(4, 26);
-		uprint("구매할 무기의 번호를 선택해주세요 : ");
-		GUI::GoToXY(4, 27);
-		UTIL::UPrint("->");
+		GUI::DrawAskText("구매할 무기의 번호를 선택해주세요. ");
 		buyChoice = UTIL::IntegerVerify(buyChoice, 1, shop->GetSize());
 
 		shop->BuyWeapon(buyChoice, inventory);
-
-		GUI::ClearUI();
-		GUI::GoToXY(4, 26);
-		uprintendl("구매 완료");
 		break;
 	}
-
-	uprintendl("구매를 종료합니다");
 }
