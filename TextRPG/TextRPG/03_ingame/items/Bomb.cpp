@@ -8,7 +8,7 @@ void Bomb::Use(Player* player, Monster& monster)
 		GUI::GoToXY(4, 22);
 		cout << ustring("폭탄으로 ") << monster.GetName() << ustring("에게 ") << attack << ustring("데미지를 입혔습니다.");
 		monster.SetHp(monster.GetHp() - attack);
-		GUI::DrawBattleHpBox(monster);
+		GUI::DrawBattleHpBox();
 	}
 	else
 	{

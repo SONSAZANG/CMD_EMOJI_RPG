@@ -5,7 +5,6 @@
     <ClCompile Include="02_manager\battle_manager.cpp" />
     <ClCompile Include="02_manager\game_manager.cpp" />
     <ClCompile Include="02_manager\monsters.cpp" />
-    <ClCompile Include="02_manager\monster_spawn_manager.cpp" />
     <ClCompile Include="02_manager\player_manager.cpp" />
     <ClCompile Include="02_manager\scene_manager.cpp" />
     <ClCompile Include="02_manager\shop_manager.cpp" />
@@ -30,6 +29,7 @@
     <ClCompile Include="04_Util\gui.h" />
     <ClCompile Include="04_Util\util.h" />
     <ClCompile Include="TextRPG.cpp" />
+    <ClCompile Include="02_manager\monster_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="01_core\scene_base.h" />
@@ -37,7 +37,7 @@
     <ClInclude Include="01_core\item_base.h" />
     <ClInclude Include="02_manager\game_manager.h" />
     <ClInclude Include="02_manager\monsters.h" />
-    <ClInclude Include="02_manager\monster_spawn_manager.h" />
+    <ClInclude Include="02_manager\monster_manager.h" />
     <ClInclude Include="02_manager\player_manager.h" />
     <ClInclude Include="02_manager\scene_manager.h" />
     <ClInclude Include="02_manager\shop_manager.h" />

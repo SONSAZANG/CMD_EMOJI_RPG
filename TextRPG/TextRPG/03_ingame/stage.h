@@ -16,20 +16,10 @@ class Stage
 {
 protected:
     string _name;
-    Monster _monster;
 
 public:
-    Stage() : _name("default"), _monster(Monster()) {}
-    Stage(const string& stageName, const Monster& monster)
-        : _name(stageName), _monster(monster) {}
-    Stage(const string& stageName, const BossMonster& monster)
-        : _name(stageName), _monster(monster) {
-    }
+    Stage() : _name("default") {}
+    Stage(const string& stageName) : _name(stageName){}
     virtual ~Stage() {}
     string GetName() const { return _name; }
-
-    const Monster& GetMonster() const {
-        return _monster;
-    }
-
 };

@@ -103,6 +103,7 @@ void EndScene::DrawClearLayout()
 	uprint("스파르타 코딩클럽 내일 배움 캠프 언리얼 1기 17조");
 
 	_getch();
+	exit(0);
 }
 
 void EndScene::DrawFailLayout()

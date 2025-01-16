@@ -5,6 +5,7 @@
 #include "../../02_manager/player_manager.h"
 #include "../../02_manager/stage_manager.h"
 #include "../../02_manager/Battle_Manager.h"
+#include "../../02_manager/monster_Manager.h"
 #include "../../03_ingame/Stage.h"
 #include "../../03_ingame/boss_monster.h"
 #include <conio.h>
@@ -22,6 +23,8 @@ void DungeonScene::Init()
 
 void DungeonScene::DrawMainLayout()
 {
+	Monster& monster = MonsterManager::GetInstance()->GetMonster();
+	
 	GUI::DrawInGameBox();
 	// 스테이지 타이틀 설정(왼쪽 상단)
 	string stageName = _currentStage.GetName();
@@ -29,20 +32,20 @@ void DungeonScene::DrawMainLayout()
 
 	// 몬스터, 플레이어 이름 GUI
 	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
-	string monsterName = _currentStage.GetMonster().GetName();
+	string monsterName = monster.GetName();
 	GUI::DrawBattleNameingBox(playerName, monsterName);
 	int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
 	int playerExp = PlayerManager::GetInstance()->GetPlayer().GetExp();
 	GUI::DrawLevelBox(20, 3, 28, 3, playerLevel, playerExp);
 
 	// 몬스터, 플레이어 HP GUI
-	GUI::DrawBattleHpBox(_currentStage.GetMonster());
+	GUI::DrawBattleHpBox();
 }
 
 void DungeonScene::SelectCommand()
 {
 	int num;
-	Monster monster = _currentStage.GetMonster();
+	Monster& monster = MonsterManager::GetInstance()->GetMonster();
 	while (true)
 	{
 		GUI::ClearUI();
@@ -71,7 +74,7 @@ void DungeonScene::SelectCommand()
 				break;
 			case 2:
 				// 확인 필요
-				BattleManager::GetInstance()->SelectionItem(monster);
+				BattleManager::GetInstance()->SelectionItem();
 				break;
 			case 3:
 				SceneManager::GetInstance()->LoadScene(EST_LOADING);
@@ -99,20 +102,18 @@ void DungeonScene::DrawBossAttack()
 	string bossName = ustring("🐉버그왕 흑염룡🐉");
 	GUI::DrawBossBox(bossName);
 	
-	Monster monsterr = _currentStage.GetMonster();
-	Monster* monster = &monsterr;
-	BossMonster* boss = (BossMonster*)monster;
+	BossMonster& bossMonster = MonsterManager::GetInstance()->GetBossMonster();
+	
+	bossMonster.BossAttack();
 
-	boss->BossAttack();
-
-	if (boss->IsDead())
+	if (bossMonster.IsDead())
 	{
 		StageManager::GetInstance()->SetClearStageNum(4);
 		SceneManager::GetInstance()->LoadScene(EST_END);
 	}
 
 	DrawMainLayout();
-	GUI::DrawBattleHpBox((Monster)*boss);
+	GUI::DrawBattleHpBox();
 }
 
 void DungeonScene::DrawStartText()

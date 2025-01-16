@@ -78,6 +78,7 @@ void ShopScene::SelectCommand()
         GUI::ClearUI();
         DrawMainLayout();
         DrawStartText();
+
         num = UTIL::IntegerVerify(num, 1, 3);
 
         switch (num)

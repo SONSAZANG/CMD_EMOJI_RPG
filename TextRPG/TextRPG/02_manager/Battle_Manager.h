@@ -6,12 +6,10 @@
 class BattleManager : public SingletonBase<BattleManager>
 {
 public:	
-	void Excute(Monster& monster);
 	bool GetIsWin() const;
-	void SelectionBehavior(Monster& monster); // 던전씬 접근
-	void AttackTarget(const bool& playerFlag, Monster& monster);
+	void AttackTarget(const bool& playerFlag);
 	void GetVictoryReWard();
-	void SelectionItem(Monster& monster);
+	void SelectionItem();
 	
 private:
 	bool isWin;

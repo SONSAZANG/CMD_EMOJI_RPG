@@ -15,11 +15,17 @@ class Monster
 public:
     Monster() {}
     Monster(monsterType type, int hp, int attack, int exp);
-
+    Monster(const Monster& other)
+        : _type(other._type), _hp(other._hp), _maxHp(other._maxHp),
+        _attack(other._attack), _exp(other._exp), _title(other._title) {
+    }
 
     static Monster SelectMonster(const Player& player);
 
-    int GetHp() const { return _hp; }
+    int GetHp() const 
+    { 
+        return _hp; 
+    }
     int GetAttack() const { return _attack; }
     int GetMaxHp() const;
     int GetExp() const { return _exp; }
@@ -36,7 +42,17 @@ public:
     void SetStatus(monsterType type);
 
     bool IsDead() const;
-    void SetDamage(const int& damage) { damage > _hp ? _hp = 0 : _hp -= damage; }
+    void SetDamage(const int damage) 
+    { 
+        if (damage > _hp)
+        {
+            _hp = 0;
+        }
+        else
+        {
+            _hp -= damage;
+        }
+    }
     bool IsBoss() const;
 
 private:

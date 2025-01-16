@@ -1,5 +1,6 @@
 #include "stage_manager.h"
 #include "player_manager.h"
+#include "monster_manager.h"
 #include "../03_ingame/stage.h"
 
 using namespace std;
@@ -14,24 +15,28 @@ unique_ptr<Stage> StageManager::CreateStage(EStageType stageType)
 {
     auto stage = make_unique<Stage>();
     Monster selectedMonster(MT_SPIDER, 0, 0, 0);
-
+	
 	switch (stageType)
 	{
 	case EStage_SPIDER:
 		selectedMonster.SetStatus(MT_SPIDER);
-		*stage = Stage(ustring("SPIDER"), selectedMonster);
+		MonsterManager::GetInstance()->SetMonster(selectedMonster);
+		*stage = Stage(ustring("SPIDER"));
 		break;
 	case EStage_TROLL:
 		selectedMonster.SetStatus(MT_TROLL);
-		*stage = Stage(ustring("TROLL"), selectedMonster);
+		MonsterManager::GetInstance()->SetMonster(selectedMonster);
+		*stage = Stage(ustring("TROLL"));
 		break;
 	case EStage_ORC:
 		selectedMonster.SetStatus(MT_ORC);
-		*stage = Stage(ustring("ORC"), selectedMonster);
+		MonsterManager::GetInstance()->SetMonster(selectedMonster);
+		*stage = Stage(ustring("ORC"));
 		break;
 	case EStage_BOSS:
 		BossMonster bossMonster(PlayerManager::GetInstance()->GetPlayer());
-		*stage = Stage(ustring("BOSS"), bossMonster);
+		MonsterManager::GetInstance()->SetMonster(bossMonster);
+		*stage = Stage(ustring("BOSS"));
 		break;
 	}
 

@@ -6,6 +6,7 @@
 #include "../04_Util/util.h"
 #include "../02_manager/stage_manager.h"
 #include "../02_manager/player_manager.h"
+#include "../02_manager/monster_manager.h"
 using namespace std;
 class GUI
 {
@@ -256,10 +257,18 @@ public:
 		DrawTextBox(72, 5, 28, 5, monsterName);
 	}
 
-	static void DrawBattleHpBox(Monster monster)
+	static void DrawBattleHpBox()
 	{
-		int monsterHp = monster.GetHp();
-		int monsterMaxHp = monster.GetMaxHp();
+		int monsterHp, monsterMaxHp;
+		if (MonsterManager::GetInstance()->GetMonster().IsBoss())
+		{
+			monsterHp = MonsterManager::GetInstance()->GetBossMonster().GetBossHp();
+		}
+		else
+		{
+			monsterHp = MonsterManager::GetInstance()->GetMonster().GetHp();
+		}
+		monsterMaxHp = MonsterManager::GetInstance()->GetMonster().GetMaxHp();
 
 		int playerHp = PlayerManager::GetInstance()->GetPlayer().GetHp();
 		int playerHpMaxHp = PlayerManager::GetInstance()->GetPlayer().GetMaxHp();
@@ -366,15 +375,15 @@ public:
 
 	static void DrawBossAttack(vector<string> bossAttackTexts)
 	{
-		GUI::GoToXY(24, 13);
+		GUI::GoToXY(14, 13);
 		uprint("나의 공격을 받아라");
 		Sleep(1000);
 
-		GUI::GoToXY(18, 16);
+		GUI::GoToXY(14, 16);
 		uprint(bossAttackTexts[0]);
 		Sleep(1000);
 
-		GUI::GoToXY(24, 19);
+		GUI::GoToXY(14, 19);
 		uprint(bossAttackTexts[1]);
 		Sleep(1000);
 

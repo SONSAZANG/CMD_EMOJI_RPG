@@ -7,7 +7,7 @@
 #include <chrono>
 
 BossMonster::BossMonster(const Player& player)
-    : Monster(MT_BOSSMONSTER, player.GetLevel() * 50, player.GetLevel() * 50, 1000) // 체력, 공격력, 경험치 설정
+    : Monster(MT_BOSSMONSTER, 1500, player.GetLevel() * 50, 1000) // 체력, 공격력, 경험치 설정
 {
     SetType(MT_BOSSMONSTER);
 }
@@ -32,7 +32,7 @@ void BossMonster::BossAttack()
     // 입력 속도가 늦었으면 끝
     if (elapsed > attackTimeLimit)
     {
-        GUI::GoToXY(40, 22);
+        GUI::GoToXY(50, 23);
         uprint("느려! 보스의 강력한 공격을 받았다!");
         PlayerManager::GetInstance()->GetPlayer().SetDamage(GetAttack());
 
@@ -42,7 +42,7 @@ void BossMonster::BossAttack()
     // 입력 텍스트를 성공하면
     if (inputText == randSkill.evadeText)
     {
-        GUI::GoToXY(40, 23);
+        GUI::GoToXY(50, 24);
         uprint("성공적으로 회피했다! 보스에게 반격을 시도했다!");
         SetDamage(PlayerManager::GetInstance()->GetPlayer().GetAttack());
 
@@ -50,7 +50,7 @@ void BossMonster::BossAttack()
     }
     else
     {
-        GUI::GoToXY(40, 24);
+        GUI::GoToXY(50, 24);
         uprint("회피 실패! 보스의 강력한 공격을 받았다!");
         PlayerManager::GetInstance()->GetPlayer().SetDamage(GetAttack());
 
@@ -87,7 +87,9 @@ void BossMonster::CheckStatus()
 
 void BossMonster::BossHardMode()
 {
+    GUI::GoToXY(45, 10);
     uprint("음... (타자) 좀 치잖아..?");
+    GUI::GoToXY(45, 11);
     uprint("이제부터 전력을 다해야 할거야...");
     
     attackTimeLimit = 3;
@@ -97,34 +99,38 @@ BossSkill BossMonster::GetRandomSkill(EBossSkillType skillType)
 {
     switch (skillType)
     {
-    case FIRE:
-        return BossSkill(FIRE, "Fire Wave", "Dodge", "🔥🔥🔥 불길이 퍼집니다! 🔥🔥🔥");
-        break;
-    case ICE:
-        return BossSkill(ICE, "Ice Spear", "Shield", "❄️❄️❄️ 얼음 창이 날아옵니다! ❄️❄️❄️");
-        break;
-    case THUNDER:
-        return BossSkill(THUNDER, "Thunder Burst", "Counter", "⚡⚡⚡ 천둥이 울립니다! ⚡⚡⚡");
-        break;
-    case SHADOW:
-        return BossSkill(SHADOW, "Shadow Strike", "Roll", "🌑🌑🌑 그림자가 다가옵니다! 🌑🌑🌑");
-        break;
-    case EARTHQUAKE:
-        return BossSkill(EARTHQUAKE, "Earthquake", "Jump", "🌍🌍🌍 대지가 흔들립니다! 🌍🌍🌍");
-        break;
-    case POISON:
-        return BossSkill(POISON, "Poison Cloud", "Mask", "☠️☠️☠️ 독 구름이 퍼집니다! ☠️☠️☠️");
-        break;
-    case WIND:
-        return BossSkill(WIND, "Wind Blade", "Parry", "💨💨💨 바람의 칼날이 휘몰아칩니다! 💨💨💨");
-        break;
-    case HOLY:
-        return BossSkill(HOLY, "Holy Smite", "Pray", "✨✨✨ 신성한 빛이 내려옵니다! ✨✨✨");
-        break;
-    case DARK:
-        return BossSkill(DARK, "Dark Pulse", "Focus", "🌌🌌🌌 어둠의 파동이 느껴집니다! 🌌🌌🌌");
-        break;
+        case FIRE:
+            return BossSkill(FIRE, "Fire Wave", "Dodge", "🔥🔥🔥 불길이 퍼집니다! 🔥🔥🔥");
+            break;
+        case ICE:
+            return BossSkill(ICE, "Ice Spear", "Shield", "❄️❄️❄️ 얼음 창이 날아옵니다! ❄️❄️❄️");
+            break;
+        case THUNDER:
+            return BossSkill(THUNDER, "Thunder Burst", "Counter", "⚡⚡⚡ 천둥이 울립니다! ⚡⚡⚡");
+            break;
+        case SHADOW:
+            return BossSkill(SHADOW, "Shadow Strike", "Roll", "🌑🌑🌑 그림자가 다가옵니다! 🌑🌑🌑");
+            break;
+        case EARTHQUAKE:
+            return BossSkill(EARTHQUAKE, "Earthquake", "Jump", "🌍🌍🌍 대지가 흔들립니다! 🌍🌍🌍");
+            break;
+        case POISON:
+            return BossSkill(POISON, "Poison Cloud", "Mask", "☠️☠️☠️ 독 구름이 퍼집니다! ☠️☠️☠️");
+            break;
+        case WIND:
+            return BossSkill(WIND, "Wind Blade", "Parry", "💨💨💨 바람의 칼날이 휘몰아칩니다! 💨💨💨");
+            break;
+        case HOLY:
+            return BossSkill(HOLY, "Holy Smite", "Pray", "✨✨✨ 신성한 빛이 내려옵니다! ✨✨✨");
+            break;
+        case DARK:
+            return BossSkill(DARK, "Dark Pulse", "Focus", "🌌🌌🌌 어둠의 파동이 느껴집니다! 🌌🌌🌌");
+            break;
+        default:
+            return BossSkill(FIRE, "Fire Wave", "Dodge", "🔥🔥🔥 불길이 퍼집니다! 🔥🔥🔥");
+            break;
     }
+    return BossSkill(FIRE, "Fire Wave", "Dodge", "🔥🔥🔥 불길이 퍼집니다! 🔥🔥🔥");
 }
 
 
