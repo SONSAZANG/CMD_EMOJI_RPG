@@ -23,7 +23,7 @@ void ShopScene::DrawMainLayout()
 	GUI::DrawNamingBox(playerName);
 
 
-    PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
+    //PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
 
     GUI::DrawGoldInfo();
 
@@ -54,9 +54,6 @@ void DrawWeaponShopMain()
 
     string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
     GUI::DrawNamingBox(playerName);
-
-
-    PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
 
     GUI::DrawGoldInfo();
 
