@@ -13,6 +13,7 @@ enum monsterType
 class Monster
 {
 public:
+    Monster() {}
     Monster(monsterType type, int hp, int attack, int exp);
 
     static Monster SelectMonster(const Player& player);
@@ -29,7 +30,7 @@ public:
     void SetType(monsterType type) { _type = type; }
 
     void DisplayMonster() const;
-    void SetStatus(monsterType type, const Player& player);
+    void SetStatus(monsterType type);
 
     bool IsDead() const;
 

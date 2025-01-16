@@ -5,7 +5,7 @@
 #include "../../02_manager/scene_manager.h"
 void JobCenterScene::Init()
 {
-	SceneManager::GetInstance()->SetStageProgress(6);
+	SceneManager::GetInstance()->SetStageProgress(2);
 
 	DrawMainLayout();
 	SelectCommand();
@@ -18,8 +18,8 @@ void JobCenterScene::DrawMainLayout()
 	string sceneTitle = ustring("🏛 전직소");
 	GUI::SettingTitle(sceneTitle);
 
-	string player = PlayerManager::GetInstance()->GetPlayer().GetName();
-	GUI::DrawNamingBox(vector<string> { player });
+	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
+	GUI::DrawNamingBox(playerName);
 
 	string archer = ustring("1. 🏹 궁수");
 	string warrior = ustring("2. ⚔ 전사");

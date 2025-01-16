@@ -20,6 +20,20 @@ void GameManager::Init()
 	sceneManager->LoadScene(EST_START);
 }
 
+void GameManager::Test()
+{
+	if (sceneManager == nullptr)
+	{
+		sceneManager = SceneManager::GetInstance();
+	}
+	SetConsoleOutputCP(CP_UTF8);
+
+	PlayerManager::GetInstance()->GetPlayer().SetName("test11");
+	
+	// 원하는 씬으로 설정
+	sceneManager->LoadScene(EST_SELECT_STAGE);
+}
+
 void GameManager::Run()
 {
 	system("cls");

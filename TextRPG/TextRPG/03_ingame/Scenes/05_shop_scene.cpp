@@ -6,7 +6,7 @@
 
 void ShopScene::Init()
 {
-    SceneManager::GetInstance()->SetStageProgress(5);
+	SceneManager::GetInstance()->SetStageProgress(2);
 
     DrawMainLayout();
     SelectCommand();
@@ -19,8 +19,8 @@ void ShopScene::DrawMainLayout()
     string sceneTitle = ustring("🏪 상점");
     GUI::SettingTitle(sceneTitle);
 
-    string player = PlayerManager::GetInstance()->GetPlayer().GetName();
-    GUI::DrawNamingBox(vector<string> { player });
+	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
+	GUI::DrawNamingBox(playerName);
 
 
     PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
