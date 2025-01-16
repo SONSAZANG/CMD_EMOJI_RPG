@@ -28,7 +28,7 @@ void SelectStageScene::DrawMainLayout()
 
 	string questionText1 = ustring("스테이지 선택 입니다.");
 	string questionText2 = ustring("입장하려는 던전을 입력하세요.");
-	string questionText3 = ustring("1. 거미 2. 트롤 3. 오크 4. 보스 몬스터 5. 나가기");
+	string questionText3 = ustring("1. 거미 2. 트롤 3. 오크 4. 보스 몬스터(10레벨 이전 입장시 마을로 귀환) 5. 나가기");
 	vector<string> questionTexts = { questionText1, questionText2, questionText3 };
 	GUI::DrawQuestionText(questionTexts);
 
@@ -38,7 +38,7 @@ void SelectStageScene::DrawMainLayout()
 void SelectStageScene::SelectCommand()
 {
 	int num;
-	cin >> num;
+	num = UTIL::IntegerVerify(num, 1, 5);
 
 	switch (num)
 	{
@@ -52,7 +52,16 @@ void SelectStageScene::SelectCommand()
 		StageManager::GetInstance()->SetCurrentStageType(EStage_ORC);
 		break;
 	case 4:
-		StageManager::GetInstance()->SetCurrentStageType(EStage_BOSS);
+		if (PlayerManager::GetInstance()->GetPlayer().GetLevel() < 10)
+		{
+			SceneManager::GetInstance()->SetStageProgress(2);
+			SceneManager::GetInstance()->LoadScene(EST_LOADING);
+		}
+		else 
+		{
+			StageManager::GetInstance()->SetCurrentStageType(EStage_BOSS);
+		}
+
 		break;
 	case 5:
 		SceneManager::GetInstance()->SetStageProgress(2);
