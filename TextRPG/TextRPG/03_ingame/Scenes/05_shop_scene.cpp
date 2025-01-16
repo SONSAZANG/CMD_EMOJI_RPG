@@ -25,10 +25,7 @@ void ShopScene::DrawMainLayout()
 
     PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
 
-    GUI::GoToXY(106, 2);
-    int intGold = PlayerManager::GetInstance()->GetPlayer().GetInventory()->GetGold();
-    string gold = ustring("💰 골드 " + to_string(intGold));
-    uprint(gold);
+    GUI::DrawGoldInfo();
 
     string dungeon = ustring("1. 🍷HP포션");
     string shop = ustring("2. 🧪DMG포션");

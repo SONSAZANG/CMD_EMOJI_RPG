@@ -31,10 +31,7 @@ void Shop::BuyItem(int index, Inventory* inventory)
 	inventory->SetGold(inventory->GetGold() - availableItems[index]->GetPrice());
 	inventory->AddToInventory(availableItems[index]);
 
-	GUI::GoToXY(106, 2);
-	int intGold = inventory->GetGold();
-	string gold = ustring("💰 골드 " + to_string(intGold) + "  ");
-	uprint(gold);
+	GUI::DrawGoldInfo();
 }
 
 void Shop::SellItem(int index, Inventory* inventory)
@@ -42,12 +39,10 @@ void Shop::SellItem(int index, Inventory* inventory)
 	if (!inventory->IsInventoryEmpty())
 	{
 		int sellPrice = (int)(inventory->GetInventoryItem(index)->GetPrice() * 0.6);
+		inventory->SetGold(inventory->GetGold() + sellPrice);
 		inventory->DeleteFromInventory(index);
 
-		GUI::GoToXY(106, 2);
-		int intGold = inventory->GetGold();
-		string gold = ustring("💰 골드 " + to_string(intGold) + "  ");
-		uprint(gold);
+		GUI::DrawGoldInfo();
 	}
 }
 

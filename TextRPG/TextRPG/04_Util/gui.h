@@ -9,6 +9,14 @@ using namespace std;
 class GUI
 {
 public:
+
+	static void DrawGoldInfo() 
+	{
+		GUI::GoToXY(106, 2);
+		int intGold = PlayerManager::GetInstance()->GetPlayer().GetInventory()->GetGold();
+		string gold = ustring("💰 골드 " + to_string(intGold));
+		uprint(gold);
+	}
 	static void ClearUI() //하단 텍스트 창만 초기화
 	{
 		string blank = "                                                                                ";
