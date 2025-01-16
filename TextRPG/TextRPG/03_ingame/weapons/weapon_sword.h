@@ -7,7 +7,7 @@ public:
 	Sword()
 	{
 		Init();
-		price = 1000;
+		price = 200;
 	}
 
 	void Init() override

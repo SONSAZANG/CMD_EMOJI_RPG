@@ -7,7 +7,7 @@ public:
 	Bow()
 	{
 		Init();
-		price = 1000;
+		price = 300;
 	}
 
 	void Init() override
