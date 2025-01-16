@@ -29,8 +29,9 @@ void LoadingScene::DrawMainLayout()
 	for (int i = 0; i < 19; i++) 
 	{
 		Sleep(100);
-		UTIL::UPrint("🟨");
-		UTIL::UPrint("🟧");
+		UTIL::UPrint("🟦");
+		//UTIL::UPrint("🟨");
+		//UTIL::UPrint("🟧");
 	}
 
 	switch (SceneManager::GetInstance()->GetStageProgress())

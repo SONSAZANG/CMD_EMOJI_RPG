@@ -111,7 +111,7 @@ public:
 		cout << text[3] << endl;
 		GoToXY(31, 9);
 		cout << text[4] << endl;
-		GoToXY(31, 10);
+		GoToXY(31, 11);
 		for (int i = 0; i < 8; i++)
 		{
 			UTIL::UPrint("✨ ♦ ♦ ");
@@ -145,7 +145,7 @@ public:
 		cout << text[3] << endl;
 		GoToXY(39, 9);
 		cout << text[4] << endl;
-		GoToXY(31, 10);
+		GoToXY(31, 11);
 		for (int i = 0; i < 6; i++)
 		{
 			UTIL::UPrint("🌟 🎉 🏆 ");
@@ -179,7 +179,7 @@ public:
 		cout << text[3] << endl;
 		GoToXY(36, 9);
 		cout << text[4];
-		GoToXY(31, 10);
+		GoToXY(31, 11);
 		for (int i = 0; i < 6; i++)
 		{
 			UTIL::UPrint("⏳ 🔄 🚀 ");
@@ -202,7 +202,7 @@ public:
 			"|  _/ ___ \\ | || |___| |___| |_| |",
 			"|_|/_/   \\_\\___|_____|_____|____/ ",
 		};
-		GoToXY(31, 10);
+		GoToXY(31, 11);
 		for (int i = 0; i < 6; i++)
 		{
 			UTIL::UPrint("☠️ ❌ ⚠️ ");
