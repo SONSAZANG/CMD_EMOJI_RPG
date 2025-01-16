@@ -25,4 +25,9 @@ public:
 	{
 		UTIL::UPrintEndl("짱돌을 던집니다.");
 	}
+
+	string GetSoundString()
+	{
+		return "짱돌을 던집니다.";
+	}
 };

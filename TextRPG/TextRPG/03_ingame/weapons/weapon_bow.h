@@ -27,6 +27,11 @@ public:
 		UTIL::UPrintEndl("활을 당겨 적중시킵니다.");
 	}
 
+	string GetSoundString()
+	{
+		return "활을 당겨 적중시킵니다.";
+	}
+
 private:
 	bool skillFlag;
 };

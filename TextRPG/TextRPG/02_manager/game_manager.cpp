@@ -8,6 +8,7 @@
 #include "windows.h"
 #include "../04_Util/util.h"
 #include "../03_ingame/weapons/weapon_shop.h"
+#include "../03_ingame/boss_monster.h"
 
 void GameManager::Init()
 {
@@ -20,6 +21,7 @@ void GameManager::Test()
 	SetConsoleOutputCP(CP_UTF8);
 	PlayerManager::GetInstance()->GetPlayer().SetName("test11");
 	// 원하는 씬으로 설정
+	PlayerManager::GetInstance()->GetPlayer().SetLevel(5);
 	SceneManager::GetInstance()->LoadScene(EST_SELECT_STAGE);
 }
 
@@ -110,8 +112,7 @@ void GameManager::Battle()
 	{
 		BossMonster bossMonster(player);
 		uprintendl("보스 전투 시작!");
-		bossMonster.DisplayBossUI();
-		BattleManager::GetInstance()->BossBattle(player, bossMonster);
+		bossMonster.BossAttack();
 	}
 
 	if (!BattleManager::GetInstance()->GetIsWin())

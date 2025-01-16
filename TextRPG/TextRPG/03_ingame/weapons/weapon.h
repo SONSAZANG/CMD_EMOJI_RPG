@@ -12,6 +12,7 @@ public:
 	virtual void Init() = 0;
 	virtual void Use() = 0;
 	virtual void Sound() = 0;
+	virtual string GetSoundString() = 0;
 
 	std::string GetName() const
 	{

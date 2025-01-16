@@ -27,7 +27,6 @@ public:
 		}
 	}
 
-
 	static void DrawGoldInfo() 
 	{
 		GUI::GoToXY(106, 2);
@@ -239,11 +238,9 @@ public:
 		DrawTextBox(46, 5, 28, 5, names);
 	}
 
-	static void DrawShopBox(string names, int gold)
+	static void DrawBossBox(string names)
 	{
-		DrawTextBox(46, 5, 28, 5, names);
-		GoToXY(49, 8);
-		uprint("💸 보유 골드: " + gold);
+		DrawTextBox(50, 5, 21, 5, names);
 	}
 
 	static void DrawBattleNameingBox(string playerName, string monsterName)
@@ -252,15 +249,16 @@ public:
 		DrawTextBox(72, 5, 28, 5, monsterName);
 	}
 
-	static void DrawBattleHpBox()
+	static void DrawBattleHpBox(Monster monster)
 	{
-		const Monster& monster = StageManager::GetInstance()->GetStage().GetMonster();
-
 		int monsterHp = monster.GetHp();
 		int monsterMaxHp = monster.GetMaxHp();
 
 		int playerHp = PlayerManager::GetInstance()->GetPlayer().GetHp();
 		int playerHpMaxHp = PlayerManager::GetInstance()->GetPlayer().GetMaxHp();
+
+		GoToXY(23, 10);
+		cout << "                                                                                ";
 
 		GoToXY(23, 10);
 		cout << "HP: " << playerHp << "/" << playerHpMaxHp;
@@ -288,6 +286,18 @@ public:
 			default:
 				break;
 		}
+	}
+	static void DrawAttackText(vector<string> attackTexts)
+	{
+		GoToXY(4, 22);
+		uprint(attackTexts[0]);
+		Sleep(1000);
+		GoToXY(4, 23);
+		uprint(attackTexts[1]);
+		Sleep(1000);
+		GoToXY(4, 24);
+		uprint(attackTexts[2]);
+		Sleep(2500);
 	}
 
 	static void DrawQuestionText(vector<string> questionTexts)
@@ -355,5 +365,26 @@ public:
 		DrawTextBox(40, 13, 14, 5, stageNames[1]);
 		DrawTextBox(60, 7, 14, 5, stageNames[2]);
 		DrawTextBox(90, 8, 20, 5, stageNames[3]);
+	}
+
+	static void DrawBossAttack(vector<string> bossAttackTexts)
+	{
+		GUI::GoToXY(48, 13);
+		uprint("캬하하하하하하");
+		Sleep(1000);
+
+		GUI::GoToXY(48, 16);
+		uprint("쿄호호호호호호");
+		Sleep(1000);
+
+		GUI::GoToXY(48, 19);
+		uprint("켜허허허허허허");
+		Sleep(1000);
+
+		GUI::GoToXY(48, 24);
+		uprint("회피 방법을 입력하세요");
+		GUI::GoToXY(48, 25);
+		uprint("->");
+		GUI::GoToXY(52, 25);
 	}
 };

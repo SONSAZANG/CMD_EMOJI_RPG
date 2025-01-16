@@ -103,7 +103,9 @@ void Player::LevelUp()
 		attack += level * 5;
 
 		if (level == 5 && !isJobChosen)
-		{
+		{	
+			GUI::ClearUI();
+			GUI::GoToXY(4, 27);
 			cout << ustring("축하합니다! 전직이 가능합니다. 전직소를 방문하세요!") << endl;
 		}
 	}

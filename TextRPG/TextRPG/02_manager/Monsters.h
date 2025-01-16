@@ -36,6 +36,8 @@ public:
     void SetStatus(monsterType type);
 
     bool IsDead() const;
+    void SetDamage(const int& damage) { damage > _hp ? _hp = 0 : _hp -= damage; }
+    bool IsBoss() const;
 
 private:
     void SetTitle(const string& title);
@@ -47,12 +49,4 @@ private:
     int _attack;
     int _exp;
     string _title;
-};
-
-class BossMonster : public Monster
-{
-public :
-    BossMonster(const Player& player);
-
-    void DisplayBossUI() const;
 };
