@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "../../04_Util/util.h"
-#include "../../01_core/item_base.h"
 
 class Weapon
 {

@@ -50,7 +50,7 @@ public:
 
 	void UpdateTitle();
 
-	void SetEquipStaus();
+	void SetEquipStaus(Weapon* newWeapon);
 
 	bool IsDead();
 	bool IsJobChosen() { return isJobChosen; }

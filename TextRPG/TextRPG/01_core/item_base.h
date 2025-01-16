@@ -10,7 +10,6 @@ class Monster;
 enum ItemType{
 	ITEM_Attack,
 	ITEM_Potion,
-	ITEM_WEAPON
 };
 
 class Item 

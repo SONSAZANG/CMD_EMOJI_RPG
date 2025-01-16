@@ -117,12 +117,5 @@ void ShopScene::DrawEnhance(Inventory* inven)
     GUI::DrawConfirmAsk();
 }
 
-void ShopScene::DrawWeaponBuy(Inventory* inven)
-{
-    GUI::ClearUI();
-
-    ShopManager::GetInstance()->BuyWeapon(inven);
-}
-
 
 
