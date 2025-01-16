@@ -11,5 +11,8 @@ public:
 
 private:
 	void DrawMainLayout();
-	void SelectCommand();
+	void DrawBossClearLayout();
+	void DrawBrokenLayout();
+	void DrawClearLayout();
+	void DrawFailLayout();
 };
