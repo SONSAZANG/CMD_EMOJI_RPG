@@ -25,10 +25,7 @@ void ShopScene::DrawMainLayout()
 
     PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
 
-    GUI::GoToXY(106, 2);
-    int intGold = PlayerManager::GetInstance()->GetPlayer().GetInventory()->GetGold();
-    string gold = ustring("💰 골드 " + to_string(intGold));
-    uprint(gold);
+    GUI::DrawGoldInfo();
 
     string dungeon = ustring("1. 🍷HP포션");
     string shop = ustring("2. 🧪DMG포션");
@@ -88,7 +85,8 @@ void ShopScene::DrawBuy(Inventory* inven)
 
     int input = 0;
     GUI::GoToXY(4, 22);
-    UTIL::UPrintEndl("1. 소모품 2. 무기 ");
+    UTIL::UPrint("1. 소모품 2. 무기 ");
+    GUI::DrawAskText("무엇을 구매하시겠습니까. ");
 
     input = UTIL::IntegerVerify(input,1,2);
 
@@ -116,14 +114,7 @@ void ShopScene::DrawEnhance(Inventory* inven)
     UTIL::UPrintEndl("아직 준비되지 않았습니다.");
     int back = 0;
 
-    while (back != 1)
-    {
-        GUI::GoToXY(4, 26);
-        UTIL::UPrintEndl("뒤로 가려면 1 누르세요.");
-        GUI::GoToXY(4, 27);
-        UTIL::UPrint("->");
-        back = UTIL::IntegerVerify(back, 1, 1);
-    }
+    GUI::DrawConfirmAsk();
 }
 
 void ShopScene::DrawWeaponBuy(Inventory* inven)

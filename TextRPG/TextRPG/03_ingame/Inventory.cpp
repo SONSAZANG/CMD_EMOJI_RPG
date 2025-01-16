@@ -48,11 +48,13 @@ void Inventory::DisplayInventory()
 		GUI::ClearUI();
 		GUI::GoToXY(4, 21);
 		uprint("인벤토리 아이템 목록");
+		int j = 0;
 		for (int i = 0; i < inventory.size(); ++i)
 		{
-			GUI::GoToXY(4, 22 + i);
+			if (i!=0 && i % 3 ==0)
+				++j;
+			GUI::GoToXY(4 + j*25, 22 + (i % 3));
 			cout << i + 1 << ". " << inventory[i]->GetName() << endl;
-
 		}
 	}
 	else

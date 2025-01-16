@@ -28,9 +28,8 @@ public:
 
 	void DisplayWeapons() const
 	{
-		GUI::ClearUI();
 		GUI::GoToXY(4, 21);
-		uprint("인벤토리 아이템 목록");
+		uprint("무기 아이템 목록");
 		for (int i = 0; i < weapons.size(); ++i)
 		{
 			const auto& weapon = weapons[i];
@@ -43,18 +42,26 @@ public:
 
 	void BuyWeapon(const int& select, Inventory* inventory)
 	{
+		GUI::ClearUI();
+		GUI::GoToXY(4, 22);
 		if (weapons[select - 1]->GetPrice() > inventory->GetGold())
 		{
 			std::cout << "골드가 부족합니다." << std::endl;
-			return;
+		}
+		else
+		{
+			std::cout << weapons[select - 1]->GetName() << "을(를) 구매했습니다!" << std::endl;
+			inventory->SetGold(inventory->GetGold() - weapons[select - 1]->GetPrice());
+			GUI::DrawGoldInfo();
+
+			GUI::GoToXY(4, 24);
+			inventory->EquipWeapon(std::move(weapons[select - 1]));
+			PlayerManager::GetInstance()->GetPlayer().SetEquipStaus();
+			weapons.erase(weapons.begin() + select - 1);
+			//무기 구매 시 상단에 구매 정보와 플레이어 스탯 정보 출력
 		}
 
-		std::cout << weapons[select - 1]->GetName() << "을(를) 구매했습니다!" << std::endl;
-		inventory->SetGold(inventory->GetGold() - weapons[select - 1]->GetPrice());
-		
-		inventory->EquipWeapon(std::move(weapons[select - 1]));
-		PlayerManager::GetInstance()->GetPlayer().SetEquipStaus();
-		weapons.erase(weapons.begin() + select - 1);
+		GUI::DrawConfirmAsk();
 	}
 
 private:

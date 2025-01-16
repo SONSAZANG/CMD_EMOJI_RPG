@@ -10,6 +10,8 @@ public:
 		availableItems.push_back(new HealthPotion(20));
 		availableItems.push_back(new AttackBoost(10));
 		availableItems.push_back(new Bomb());
+		availableItems.push_back(new HealthPotion(30));
+		availableItems.push_back(new HealthPotion(50));
 	}
 	~Shop() {
 		for (Item* availableItem : availableItems) {
@@ -23,6 +25,7 @@ public:
 	bool CanBuy(int index, Inventory* inventory);
 	void BuyItem(int index, Inventory* inventory);
 	void SellItem(int index, Inventory* inventory);
+	int GetShopItemSize();
 
 private:
 	vector<Item*> availableItems;
