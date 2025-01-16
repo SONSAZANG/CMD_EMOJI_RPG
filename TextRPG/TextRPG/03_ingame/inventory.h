@@ -38,12 +38,12 @@ public:
 	void AddToInventory(Item* item);
 	void DeleteFromInventory(int index);
 
-	Weapon* GetWeapon();
 	void UseWeapon();
-	void EquipWeapon(std::unique_ptr<Weapon> weapon, Player* player);
+	void EquipWeapon(unique_ptr<Weapon> weapon);
+	Weapon* GetWeapon();
 
 private:
 	int gold;
 	vector<Item*> inventory;
-	std::unique_ptr<Weapon> equip;
+	unique_ptr<Weapon> equip;
 };

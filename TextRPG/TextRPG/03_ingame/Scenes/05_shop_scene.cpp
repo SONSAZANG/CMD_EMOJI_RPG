@@ -83,9 +83,20 @@ void ShopScene::DrawBuy(Inventory* inven)
 {
     GUI::ClearUI();
 
-    ShopManager::GetInstance()->BuyItem(inven);
+    int input = 0;
+    GUI::GoToXY(4, 22);
+    UTIL::UPrintEndl("1. 소모품 2. 무기 ");
 
-    //uprint("->");
+    input = UTIL::IntegerVerify(input,1,2);
+
+    if (input == 1)
+    {
+        ShopManager::GetInstance()->BuyItem(inven);
+    }
+    else
+    {
+        ShopManager::GetInstance()->BuyWeapon(inven);
+    }
 }
 
 void ShopScene::DrawSell(Inventory* inven)
@@ -110,7 +121,13 @@ void ShopScene::DrawEnhance(Inventory* inven)
         UTIL::UPrint("->");
         back = UTIL::IntegerVerify(back, 1, 1);
     }
+}
 
+void ShopScene::DrawWeaponBuy(Inventory* inven)
+{
+    GUI::ClearUI();
+
+    ShopManager::GetInstance()->BuyWeapon(inven);
 }
 
 

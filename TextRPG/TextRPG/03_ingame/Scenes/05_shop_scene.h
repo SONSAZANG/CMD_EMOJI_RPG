@@ -19,4 +19,5 @@ private:
 	void DrawBuy(Inventory* inven);
 	void DrawSell(Inventory* inven);
 	void DrawEnhance(Inventory* inven);
+	void DrawWeaponBuy(Inventory* inven);
 };

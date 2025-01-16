@@ -147,19 +147,14 @@ bool Player::IsDead()
 	return isDead;
 }
 
-void Player::SetEquipStaus(Weapon* current, Weapon* newWeapon)
+void Player::SetEquipStaus()
 {
-	if (newWeapon == nullptr)
-	{
-		hp += current->GetHp();
-		attack += current->GetAttack();
-	}
-	else
-	{
-		hp = hp - current->GetHp() + newWeapon->GetHp();
-		attack = attack - current->GetAttack() + newWeapon->GetAttack();
-	}
+	maxHp = maxHp + inventory->GetWeapon()->GetHp();
+	hp = maxHp;
+
+	maxHp = attack + inventory->GetWeapon()->GetAttack();
 }
+
 void Player::ChangeJob(string job)
 {
 	if (level >= 5 && !isJobChosen)

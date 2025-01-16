@@ -190,6 +190,7 @@
     <ClInclude Include="03_ingame\weapons\weapon.h" />
     <ClInclude Include="03_ingame\weapons\weapon_bow.h" />
     <ClInclude Include="03_ingame\weapons\weapon_default.h" />
+    <ClInclude Include="03_ingame\weapons\weapon_shop.h" />
     <ClInclude Include="03_ingame\weapons\weapon_sword.h" />
     <ClInclude Include="02_manager\job_manager.h" />
   </ItemGroup>
