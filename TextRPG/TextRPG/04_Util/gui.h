@@ -119,9 +119,44 @@ public:
 		}
 		UTIL::UPrint("✨");
 	}
+
+	static void PrintClearText()
+	{
+		string text[] = {
+			"  ____ _     _____    _    ____    _   _ ",
+			" / ___| |   | ____|  / \\  |  _ \\  | | | |",
+			"| |   | |   |  _|   / _ \\ | |_) | | | | |",
+			"| |___| |___| |___ / ___ \\|  _ <  |_| |_|",
+			" \\____|_____|_____/_/   \\_\\_| \\_\\ (_) (_)",
+		};
+
+		GoToXY(31, 4);
+		for (int i = 0; i < 6; i++)
+		{
+			UTIL::UPrint("🌟 🎉 🏆 ");
+		}
+		UTIL::UPrint("🌟");
+		GoToXY(39, 5);
+		cout << text[0] << endl;
+		GoToXY(39, 6);
+		cout << text[1] << endl;
+		GoToXY(39, 7);
+		cout << text[2] << endl;
+		GoToXY(39, 8);
+		cout << text[3] << endl;
+		GoToXY(39, 9);
+		cout << text[4] << endl;
+		GoToXY(31, 10);
+		for (int i = 0; i < 6; i++)
+		{
+			UTIL::UPrint("🌟 🎉 🏆 ");
+		}
+		UTIL::UPrint("🌟");
+	}
 	
 	static void PrintLoadingText()
 	{
+		
 		string text[] = {
 			" _     ___    _    ____ ___ _   _  ____   _   _ ",
 			"| |   / _ \\  / \\  |  _ \\_ _| \\ | |/ ___| | | | |",
@@ -129,6 +164,12 @@ public:
 			"| |__| |_| / ___ \\| |_| | || |\\  | |_| | |_| |_|",
 			"|_____\\___/_/   \\_\\____/___|_| \\_|\\____| (_) (_)",
 		};
+		GoToXY(31, 4);
+		for (int i = 0; i < 6; i++)
+		{
+			UTIL::UPrint("⏳ 🔄 🚀 ");
+		}
+		UTIL::UPrint("⏳");
 		GoToXY(36, 5);
 		cout << text[0] << endl;
 		GoToXY(36, 6);
@@ -138,6 +179,45 @@ public:
 		GoToXY(36, 8);
 		cout << text[3] << endl;
 		GoToXY(36, 9);
+		cout << text[4];
+		GoToXY(31, 10);
+		for (int i = 0; i < 6; i++)
+		{
+			UTIL::UPrint("⏳ 🔄 🚀 ");
+		}
+		UTIL::UPrint("⏳");
+	}
+
+	static void PrintFailText()
+	{
+		GoToXY(31, 4);
+		for (int i = 0; i < 6; i++)
+		{
+			UTIL::UPrint("☠️ ❌ ⚠️ ");
+		}
+		UTIL::UPrint("☠️");
+		string text[] = {
+			" _____ _    ___ _     _____ ____  ",
+			"|  ___/ \\  |_ _| |   | ____|  _ \\ ",
+			"| |_ / _ \\  | || |   |  _| | | | |",
+			"|  _/ ___ \\ | || |___| |___| |_| |",
+			"|_|/_/   \\_\\___|_____|_____|____/ ",
+		};
+		GoToXY(31, 10);
+		for (int i = 0; i < 6; i++)
+		{
+			UTIL::UPrint("☠️ ❌ ⚠️ ");
+		}
+		UTIL::UPrint("☠️");
+		GoToXY(42, 5);
+		cout << text[0] << endl;
+		GoToXY(42, 6);
+		cout << text[1] << endl;
+		GoToXY(42, 7);
+		cout << text[2] << endl;
+		GoToXY(42, 8);
+		cout << text[3] << endl;
+		GoToXY(42, 9);
 		cout << text[4];
 	}
 
