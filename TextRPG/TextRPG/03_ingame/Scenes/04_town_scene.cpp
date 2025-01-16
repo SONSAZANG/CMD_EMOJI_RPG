@@ -32,16 +32,14 @@ void TownScene::DrawMainLayout()
 	GUI::DrawSelectBox(boxNames);
 
 	DrawBottomLayout();
-
-	GUI::GoToXY(8, 27);
 }
 
 void TownScene::SelectCommand()
 {
 	int num;
-	cin >> num;
 	while (true)
 	{
+		num = UTIL::IntegerVerify(num, 1, 4);
 		switch (num)
 		{
 			case 1:
@@ -66,7 +64,6 @@ void TownScene::SelectCommand()
 				{
 					HandleInvalidJobSelection("전직할 수 없습니다. (이미 전직 완료)");
 				}
-				//SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
 				break;
 			}
 			default:
@@ -84,19 +81,16 @@ void TownScene::DrawBottomLayout()
 	string questionText3 = ustring("1. 던전탐험 2. 상점 방문 3. 전직소 방문(5레벨 부터 이용 가능)");
 	vector<string> questionTexts = { questionText1, questionText2, questionText3 };
 	GUI::DrawQuestionText(questionTexts);
+
+	GUI::GoToXY(8, 27);
 }
 
 void TownScene::HandleInvalidJobSelection(string message)
 {
-	int input = 0;
-	while (input != 1)
-	{
-		GUI::ClearUI();
-		GUI::GoToXY(4, 22);
-		cout << ustring(message);
-		GUI::DrawAskText("나가려면 1을 입력하세요.");
-		input = UTIL::IntegerVerify(input, 1, 1);
-	}
+	GUI::ClearUI();
+	GUI::GoToXY(4, 22);
+	cout << ustring(message);
+	GUI::DrawConfirmAsk();
 	GUI::ClearUI();
 	DrawBottomLayout();
 }

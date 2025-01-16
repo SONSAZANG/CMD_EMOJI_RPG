@@ -4,6 +4,7 @@
 #include "../../04_Util/util.h"
 #include "../../04_Util/gui.h"
 #include "../Scenes/06_job_center_scene.h"
+#include "../Scenes/04_town_scene.h"
 
 
 constexpr int MAX_LEVEL = 10;
@@ -184,14 +185,29 @@ void Player::ChangeJob(string job, string jobName)
 	{
 		SetPlayerJob(job);
 		cout << ustring("축하합니다! ") << jobName << "(" << job << ustring(")로 전직했습니다!") << endl;
-		cout << GetName() << endl;
+		ResetGUI();
 	}
 	else if (level < 5)
 	{
 		cout << ustring("전직할 수 없습니다. (레벨 5 이상 필요)") << endl;
+		ResetGUI();
 	}
 	else if (isJobChosen)
 	{
 		cout << ustring("전직할 수 없습니다. (이미 전직 완료)") << endl;
+		ResetGUI();
 	}
+}
+
+void Player::ResetGUI()
+{
+	GUI::DrawConfirmAsk();
+	GUI::ClearUI();
+	string questionText1 = ustring("전직소입니다.");
+	string questionText2 = ustring("원하는 행동을 입력하세요.");
+	string questionText3 = ustring("1. 궁수로 전직 2. 전사로 전직 3. 도적으로 전직 4. 나가기");
+	vector<string> questionTexts = { questionText1, questionText2, questionText3 };
+	GUI::DrawQuestionText(questionTexts);
+
+	GUI::GoToXY(8, 27);
 }

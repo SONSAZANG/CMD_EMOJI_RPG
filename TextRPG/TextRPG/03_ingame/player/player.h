@@ -56,6 +56,8 @@ public:
 	bool IsJobChosen() { return isJobChosen; }
 	void ChangeJob(string job, string jobName);
 
+	void ResetGUI();
+
 private:
 	int hp;
 	int maxHp;
