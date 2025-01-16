@@ -6,6 +6,7 @@
 #include "../../02_manager/stage_manager.h"
 #include "../../02_manager/Battle_Manager.h"
 #include "../../03_ingame/Stage.h"
+#include "../../03_ingame/boss_monster.h"
 #include <conio.h>
 
 void DungeonScene::Init()
@@ -58,8 +59,15 @@ void DungeonScene::SelectCommand()
 		switch (num)
 		{
 			case 1:
-				BattleManager::GetInstance()->AttackTarget(true, monster);
-				BattleManager::GetInstance()->AttackTarget(false, monster);
+				if (!monster.IsBoss()) 
+				{
+					BattleManager::GetInstance()->AttackTarget(true, monster);
+					BattleManager::GetInstance()->AttackTarget(false, monster);
+				}
+				else
+				{
+					DrawBossAttack();
+				}
 				break;
 			case 2:
 				// 확인 필요
@@ -90,11 +98,21 @@ void DungeonScene::DrawBossAttack()
 
 	string bossName = ustring("🐉버그왕 흑염룡🐉");
 	GUI::DrawBossBox(bossName);
-
-	GUI::DrawBossAttack({});
 	
-	string typing;
-	cin >> typing;
+	Monster monsterr = _currentStage.GetMonster();
+	Monster* monster = &monsterr;
+	BossMonster* boss = (BossMonster*)monster;
+
+	boss->BossAttack();
+
+	if (boss->IsDead())
+	{
+		StageManager::GetInstance()->SetClearStageNum(4);
+		SceneManager::GetInstance()->LoadScene(EST_END);
+	}
+
+	DrawMainLayout();
+	GUI::DrawBattleHpBox((Monster)*boss);
 }
 
 void DungeonScene::DrawStartText()

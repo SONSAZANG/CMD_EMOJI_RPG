@@ -15,7 +15,7 @@ public:
 private:
     bool isBerserk;
     const int bossMaxHp = GetHp();
-    double attackTimeLimit = 2.0;
+    double attackTimeLimit;
     string inputText;
     BossSkill _skill;
 };

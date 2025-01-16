@@ -77,7 +77,7 @@ const char* Monster::GetBaseName() const
     case MT_TROLL:
         return "Troll";
     case MT_BOSSMONSTER:
-        return "The Boss";
+        return "🐉버그왕 흑염룡🐉";
     default:
         return "Unknown";
     }
@@ -121,6 +121,7 @@ void Monster::SetStatus(monsterType type)
     int Hp = playerLevel * (20 + rand() % 11);
     int Attack = playerLevel * (5 + rand() % 6);
 
+    SetType(type);
     SetHp(Hp);
     SetMaxHp(Hp);
     SetAttack(Attack);
@@ -139,6 +140,10 @@ void Monster::SetStatus(monsterType type)
         _exp = 50;
         break;
 
+    case MT_BOSSMONSTER:
+        _exp = 50;
+        break;
+
     default:
         SetHp(0);
         SetAttack(0);
@@ -147,7 +152,7 @@ void Monster::SetStatus(monsterType type)
     }
 
     const int maxAttack = playerLevel * 10;
-    if (Attack == maxAttack)
+    if (Attack == maxAttack && type != MT_BOSSMONSTER)
     {
         SetTitle(ustring("[🔥불타는]"));
     }

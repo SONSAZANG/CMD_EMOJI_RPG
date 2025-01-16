@@ -90,6 +90,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 {
+	Player& player = PlayerManager::GetInstance()->GetPlayer();
 	string attackText, targetName;
 	int damage = 0;
 	int hp = 0;
@@ -97,20 +98,26 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 	if (playerFlag)
 	{
 		// 플레이어가 공격
-		monster.SetDamage(PlayerManager::GetInstance()->GetPlayer().GetAttack());
+		monster.SetDamage(player.GetAttack());
 	}
 	else
 	{
 		// 몬스터가 공격
-		PlayerManager::GetInstance()->GetPlayer().SetDamage(monster.GetAttack());
+		player.SetDamage(monster.GetAttack());
 	}
 
-	string atkString = PlayerManager::GetInstance()->GetPlayer().GetInventory()->GetWeapon()->GetSoundString();
+	string atkString = "공격합니다.";
+	
+	player.GetInventory()->GetWeapon();
+	if (player.GetInventory()->GetWeapon() != nullptr)
+	{
+		atkString = player.GetInventory()->GetWeapon()->GetSoundString();
+	}
 
-	attackText = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetName() + "가 " + atkString : monster.GetName() + "가 공격합니다.";
-	targetName = playerFlag ? monster.GetName() : PlayerManager::GetInstance()->GetPlayer().GetName();
-	damage = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetAttack() : monster.GetAttack();
-	hp = playerFlag ? monster.GetHp() : PlayerManager::GetInstance()->GetPlayer().GetHp();
+	attackText = playerFlag ? player.GetName() + "가 " + atkString : monster.GetName() + "가 공격합니다.";
+	targetName = playerFlag ? monster.GetName() : player.GetName();
+	damage = playerFlag ? player.GetAttack() : monster.GetAttack();
+	hp = playerFlag ? monster.GetHp() : player.GetHp();
 
 	GUI::ClearUI();
 	string attackText1 = ustring(attackText);
