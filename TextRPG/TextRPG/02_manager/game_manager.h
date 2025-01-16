@@ -21,6 +21,8 @@ public:
 	void Exit();
 	void Init();
 
+	void Test();
+
 private:
 	bool IsPlaying;
 	PlayerManager* playerManager;
