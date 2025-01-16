@@ -20,8 +20,8 @@ void TownScene::DrawMainLayout()
 	string sceneTitle = ustring("🏡 마을");
 	GUI::SettingTitle(sceneTitle);
 
-	string player = PlayerManager::GetInstance()->GetPlayer().GetName();
-	GUI::DrawNamingBox(vector<string> { player });
+	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
+	GUI::DrawNamingBox(playerName);
 
 	string dungeon = ustring("1. 🏰 던전");
 	string shop = ustring("2. 🏪 상점");

@@ -17,9 +17,10 @@ void SelectStageScene::DrawMainLayout()
 	GUI::DrawInGameBox();
 	GUI::SettingTitle("🗺️ 스테이지 선택");
 
-	string stageText1 = ustring("🕷️거미") + "(✅)";
-	string stageText2 = ustring("👹트롤") + "(✅)";
-	string stageText3 = ustring("🧌오크") + "(✅)";
+	int clearStageNum = StageManager::GetInstance()->GetClearStageNum();
+	string stageText1 = ustring("🕷️거미") + (clearStageNum >= 1 ? "(✅)" : "");
+	string stageText2 = ustring("👹트롤") + (clearStageNum >= 2 ? "(✅)" : "");
+	string stageText3 = ustring("🧌오크") + (clearStageNum >= 3 ? "(✅)" : "");
 	string stageText4 = ustring("[ 🐉보스몬스터 ]");
 	vector<string> stageTexts = { stageText1, stageText2, stageText3, stageText4 };
 	GUI::DrawStageBox(stageTexts);

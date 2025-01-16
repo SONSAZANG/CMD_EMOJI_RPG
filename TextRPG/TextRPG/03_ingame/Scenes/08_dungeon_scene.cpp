@@ -6,8 +6,7 @@
 #include "../../02_manager/stage_manager.h"
 void DungeonScene::Init()
 {
-	SceneManager::GetInstance()->SetStageProgress(8);
-
+	SceneManager::GetInstance()->SetStageProgress(2);
 
 	DrawMainLayout();
 	SelectCommand();
@@ -22,8 +21,14 @@ void DungeonScene::DrawMainLayout()
 
 	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
 	string monsterName = stage.GetMonster().GetName();
-	GUI::DrawNamingBox({ playerName, monsterName });
+	GUI::DrawBattleNameingBox(playerName, monsterName);
 
+	// 턴 지날때마다 호출 필요 -> HP 그려줌
+	GUI::DrawBattleHpBox();
+}
+
+void DungeonScene::SelectCommand()
+{
 	string questionText1 = ustring("원하는 동작을 입력하세요.");
 	string questionText2 = ustring("1. 공격하기 2. 아이템 사용 3. 도망가기");
 	string questionText3 = ustring("");
@@ -31,9 +36,4 @@ void DungeonScene::DrawMainLayout()
 	GUI::DrawQuestionText(questionTexts);
 
 	GUI::GoToXY(8, 27);
-}
-
-void DungeonScene::SelectCommand()
-{
-	while(cin);
 }

@@ -14,23 +14,18 @@ enum EStageType
 class Stage
 {
 protected:
-	string name;
-	Monster monster;
-	bool isClear;
+	string _name;
+	Monster _monster;
 
 public:
-	Stage() {}
+	Stage() { _name = "default"; }
 	Stage(const string& stageName, Monster& monster)
 	{
-		name = stageName;
-		monster = monster;
-		isClear = false;
+		_name = stageName;
+		_monster = monster;
 	}
 
 	virtual ~Stage() {}
-
-	void SetClear(bool clear) { isClear = clear; }
-	bool IsClear() const { return isClear; }
-	string GetName() const { return name; }
-	const Monster GetMonster() const { return monster; }
+	string GetName() const { return _name; }
+	const Monster GetMonster() const { return _monster; }
 };

@@ -19,8 +19,8 @@ void ShopScene::DrawMainLayout()
 	string sceneTitle = ustring("🏪 상점");
 	GUI::SettingTitle(sceneTitle);
 
-	string player = PlayerManager::GetInstance()->GetPlayer().GetName();
-	GUI::DrawNamingBox(vector<string> { player });
+	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
+	GUI::DrawNamingBox(playerName);
 
 	// 골드표시
 

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "../04_Util/util.h"
+#include "../02_manager/stage_manager.h"
+#include "../02_manager/player_manager.h"
 using namespace std;
 class GUI
 {
@@ -115,20 +117,34 @@ public:
 	}
 
 	// 플레이어와 몬스터를 출력하기 위한 박스
-	static void DrawNamingBox(vector<string> boxNames)
+	static void DrawNamingBox(string names)
 	{
-		switch (boxNames.size())
-		{
-			case 1:
-				DrawTextBox(46, 5, 28, 5, boxNames[0]);
-				break;
-			case 2:
-				DrawTextBox(28, 5, 28, 5, boxNames[0]);
-				DrawTextBox(72, 5, 28, 5, boxNames[1]);
-				break;
-			default:
-				break;
-		}
+		DrawTextBox(46, 5, 28, 5, names);
+	}
+
+	static void DrawShopBox(string names, int gold)
+	{
+		DrawTextBox(46, 5, 28, 5, names);
+		GoToXY(49, 8);
+		uprint("💸 보유 골드: " + gold);
+	}
+
+	static void DrawBattleNameingBox(string playerName, string monsterName)
+	{
+		DrawTextBox(20, 5, 28, 5, playerName);
+		DrawTextBox(72, 5, 28, 5, monsterName);
+	}
+
+	static void DrawBattleHpBox()
+	{
+		int monsterHp = StageManager::GetInstance()->GetStage().GetMonster().GetHp();
+		int playerHp = PlayerManager::GetInstance()->GetPlayer().GetHp();
+		int playerHpMaxHp = PlayerManager::GetInstance()->GetPlayer().GetMaxHp();
+
+		GoToXY(23, 10);
+		cout << "HP: " << playerHp << "/" << playerHpMaxHp;
+		GoToXY(75, 10);
+		uprint("HP: " + to_string(monsterHp));
 	}
 
 	// 선택 목록을 출력하는 박스(전직소, 상점 등)
