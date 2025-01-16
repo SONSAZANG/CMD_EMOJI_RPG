@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
+#include <conio.h>
 using namespace std;
 
 void TownScene::Init()
@@ -29,6 +31,51 @@ void TownScene::DrawMainLayout()
 	vector<string> boxNames = { dungeon, shop, jobChangeCenter };
 	GUI::DrawSelectBox(boxNames);
 
+	DrawBottomLayout();
+}
+
+void TownScene::SelectCommand()
+{
+	int num;
+	while (true)
+	{
+		num = UTIL::IntegerVerify(num, 1, 4);
+		switch (num)
+		{
+			case 1:
+				SceneManager::GetInstance()->LoadScene(EST_SELECT_STAGE);
+				break;
+			case 2:
+				SceneManager::GetInstance()->LoadScene(EST_SHOP);
+				break;
+			case 3:
+			{
+				int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
+				bool playerIsChosenJob = PlayerManager::GetInstance()->GetPlayer().IsJobChosen();
+				if (playerLevel >= 5 && !playerIsChosenJob)
+				{
+					SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
+				}
+				else if (playerLevel < 5)
+				{
+					HandleInvalidJobSelection("전직할 수 없습니다. (레벨 5 이상 필요)");
+				}
+				else if (playerIsChosenJob)
+				{
+					HandleInvalidJobSelection("전직할 수 없습니다. (이미 전직 완료)");
+				}
+				break;
+			}
+			default:
+				UTIL::UPrintEndl("잘못된 입력입니다.");
+				break;
+		}
+	}
+
+}
+
+void TownScene::DrawBottomLayout()
+{
 	string questionText1 = ustring("마을입니다.");
 	string questionText2 = ustring("원하는 행동을 입력하세요.");
 	string questionText3 = ustring("1. 던전탐험 2. 상점 방문 3. 전직소 방문(5레벨 부터 이용 가능)");
@@ -38,39 +85,12 @@ void TownScene::DrawMainLayout()
 	GUI::GoToXY(8, 27);
 }
 
-void TownScene::SelectCommand()
+void TownScene::HandleInvalidJobSelection(string message)
 {
-	int num;
-	cin >> num;
-	switch (num)
-	{
-		case 1:
-			SceneManager::GetInstance()->LoadScene(EST_SELECT_STAGE);
-			break;
-		case 2:
-			SceneManager::GetInstance()->LoadScene(EST_SHOP);
-			break;
-		case 3:
-		{
-			int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
-			bool playerIsChosenJob = PlayerManager::GetInstance()->GetPlayer().IsJobChosen();
-			if (playerLevel >= 5 && !playerIsChosenJob)
-			{
-				SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
-			}
-			else if (playerLevel < 5)
-			{
-				// 전직할 수 없습니다. (레벨 5 이상 필요)
-			}
-			else if (playerIsChosenJob)
-			{
-				// 전직할 수 없습니다. (이미 전직 완료)
-			}
-			SceneManager::GetInstance()->LoadScene(EST_JOB_CENTER);
-			break;
-		}
-		default:
-			UTIL::UPrintEndl("잘못된 입력입니다.");
-			break;
-	}
+	GUI::ClearUI();
+	GUI::GoToXY(4, 22);
+	cout << ustring(message);
+	GUI::DrawConfirmAsk();
+	GUI::ClearUI();
+	DrawBottomLayout();
 }
