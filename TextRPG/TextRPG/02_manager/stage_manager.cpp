@@ -1,20 +1,22 @@
 #include "stage_manager.h"
 #include "../03_ingame/stage.h"
-#include "Monsters.h"
+
 using namespace std;
+
 Stage& StageManager::GetStage()
-{	
-	if (!currentStage)
-	{
-		currentStage = CreateStage(stageType);
-		if (!currentStage) runtime_error("Failed to Create Stage");
-	}
-	return *currentStage;
+{
+    if (!currentStage) 
+    {
+        currentStage = CreateStage(stageType); 
+        if (!currentStage) throw runtime_error("Failed to Create Stage");
+    }
+    return *currentStage;
 }
+
 unique_ptr<Stage> StageManager::CreateStage(EStageType stageType)
 {
-	auto stage = make_unique<Stage>();
-	Monster selectedMonster(MT_SPIDER, 0, 0, 0);
+    auto stage = make_unique<Stage>();
+    Monster selectedMonster(MT_SPIDER, 0, 0, 0);
 
 	switch (stageType)
 	{
@@ -36,5 +38,5 @@ unique_ptr<Stage> StageManager::CreateStage(EStageType stageType)
 		break;
 	}
 
-	return stage;
+    return stage;
 }

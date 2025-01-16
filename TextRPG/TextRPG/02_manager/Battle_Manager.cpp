@@ -3,6 +3,7 @@
 #include "game_manager.h"
 #include "player_manager.h"
 #include "../04_Util/util.h"
+#include "../04_Util/gui.h"
 #include <thread>
 #include <chrono>
 #include <random>
@@ -15,8 +16,6 @@ void BattleManager::Excute(Monster& monster)
 
 	while (true)
 	{
-		monster.DisplayMonster();
-
 		SelectionBehavior(monster);
 
 		if (monster.IsDead())
@@ -51,7 +50,7 @@ void BattleManager::Excute(Monster& monster)
 
 bool BattleManager::GetIsWin() const
 {
-	return isWin;
+	return !PlayerManager::GetInstance()->GetPlayer().IsDead();
 }
 
 void BattleManager::SelectionBehavior(Monster& monster)
@@ -59,10 +58,16 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 	while (true) // 인풋 체크를 위한 반복문
 	{
-		uprintendl("1. 공격		2. 아이템 사용		3. 내 상태 ");
-		
-		int selectNumber = UTIL::IntegerVerify(selectNumber, 1, 3);
+        string questionText1 = ustring("원하는 동작을 입력하세요.");
+        string questionText2 = ustring("1. 공격하기 2. 아이템 사용 3. 도망가기");
+        string questionText3 = ustring("");
+        vector<string> questionTexts = { questionText1, questionText2, questionText3 };
+        GUI::DrawQuestionText(questionTexts);
 
+        GUI::GoToXY(8, 27);
+
+		int selectNumber = UTIL::IntegerVerify(selectNumber, 1, 3);
+        
 		switch (selectNumber)
 		{
 		case 1:
@@ -85,40 +90,34 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 {
-	Player& player = PlayerManager::GetInstance()->GetPlayer();
+	string attackName, targetName;
+	int damage = 0;
+	int hp = 0;
 
-	auto attackAction = [](const string& attacker, auto& target,
-		const auto getAttack, const auto getHp, const auto setHp) // 람다 함수 정의
+	if (playerFlag)
 	{
-		int damage = getAttack();
-		int newHp = getHp() - damage;
-		newHp = (newHp < 0) ? 0 : newHp;
-		setHp(newHp);
-
-		cout << attacker << UTIL::UString("이 공격합니다.") << std::endl;
+		// 플레이어가 공격
+		monster.SetDamage(PlayerManager::GetInstance()->GetPlayer().GetAttack());
 		PlayerManager::GetInstance()->GetPlayer().GetInventory()->UseWeapon();
-		this_thread::sleep_for(chrono::seconds(1));
-
-		cout << damage << UTIL::UString("의 데미지!!") << std::endl;
-		this_thread::sleep_for(chrono::seconds(1));
-
-		cout << target.GetName() << UTIL::UString(" 남은 체력: ") << newHp << std::endl;
-	};
-
-	if (playerFlag) // 공격하는 객체와 타겟을 결정하는 flag
-	{
-		attackAction(player.GetName(), monster,
-			[&]() { return player.GetAttack(); },
-			[&]() { return monster.GetHp(); },
-			[&](int hp) { monster.SetHp(hp); });
 	}
 	else
 	{
-		attackAction(monster.GetName(), player,
-			[&]() { return monster.GetAttack(); },
-			[&]() { return player.GetHp(); },
-			[&](int hp) { player.SetHp(hp); });
+		// 몬스터가 공격
+		PlayerManager::GetInstance()->GetPlayer().SetDamage(monster.GetAttack());
 	}
+
+	attackName = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetName() : monster.GetName();
+	targetName = playerFlag ? monster.GetName() : PlayerManager::GetInstance()->GetPlayer().GetName();
+	damage = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetAttack() : monster.GetAttack();
+	hp = playerFlag ? monster.GetHp() : PlayerManager::GetInstance()->GetPlayer().GetHp();
+
+	GUI::ClearUI();
+	string attackText1 = ustring(attackName + "가 공격합니다.");
+	GUI::DrawBattleHpBox(monster);
+	string attackText2 = ustring(to_string(damage) + "의 데미지!!");
+	string attackText3 = ustring(targetName + "남은 체력: " + to_string(hp));
+	vector<string> attackTexts = { attackText1, attackText2, attackText3 };
+	GUI::DrawAttackText(attackTexts);
 }
 
 void BattleManager::GetVictoryReWard()

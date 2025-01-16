@@ -27,7 +27,6 @@ public:
 		}
 	}
 
-
 	static void DrawGoldInfo() 
 	{
 		GUI::GoToXY(106, 2);
@@ -250,19 +249,21 @@ public:
 		DrawTextBox(72, 5, 28, 5, monsterName);
 	}
 
-	static void DrawBattleHpBox()
+	static void DrawBattleHpBox(Monster monster)
 	{
-		GoToXY(23, 10);
-		uprint("                                                              ");
+		int monsterHp = monster.GetHp();
+		int monsterMaxHp = monster.GetMaxHp();
 
-		int monsterHp = StageManager::GetInstance()->GetStage().GetMonster().GetHp();
 		int playerHp = PlayerManager::GetInstance()->GetPlayer().GetHp();
 		int playerHpMaxHp = PlayerManager::GetInstance()->GetPlayer().GetMaxHp();
 
 		GoToXY(23, 10);
+		cout << "                                                                                ";
+
+		GoToXY(23, 10);
 		cout << "HP: " << playerHp << "/" << playerHpMaxHp;
 		GoToXY(75, 10);
-		uprint("HP: " + to_string(monsterHp));
+		cout << "Monster HP: " << monsterHp << "/" << monsterMaxHp;
 	}
 
 	// 선택 목록을 출력하는 박스(전직소, 상점 등)
@@ -285,6 +286,18 @@ public:
 			default:
 				break;
 		}
+	}
+	static void DrawAttackText(vector<string> attackTexts)
+	{
+		GoToXY(4, 22);
+		uprint(attackTexts[0]);
+		Sleep(700);
+		GoToXY(4, 23);
+		uprint(attackTexts[1]);
+		Sleep(700);
+		GoToXY(4, 24);
+		uprint(attackTexts[2]);
+		Sleep(2000);
 	}
 
 	static void DrawQuestionText(vector<string> questionTexts)

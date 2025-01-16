@@ -3,6 +3,7 @@
 #include "../../04_Util/util.h"
 #include "../../02_manager/scene_manager.h"
 #include "../../02_manager/stage_manager.h"
+#include "../../02_manager/Battle_Manager.h"
 
 void SelectStageScene::Init()
 {
@@ -59,5 +60,7 @@ void SelectStageScene::SelectCommand()
 	default:
 		break;
 	}
-	SceneManager::GetInstance()->LoadScene(EST_LOADING);
+
+	SceneManager::GetInstance()->LoadScene(EST_DUNGEON);
+
 }

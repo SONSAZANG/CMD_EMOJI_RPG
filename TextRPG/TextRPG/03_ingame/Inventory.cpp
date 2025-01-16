@@ -89,6 +89,8 @@ Weapon* Inventory::GetWeapon()
 
 void Inventory::UseWeapon()
 {
+	if (equip == nullptr)
+		return;
 	equip->Use();
 }
 

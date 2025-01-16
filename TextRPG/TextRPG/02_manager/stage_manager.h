@@ -14,12 +14,13 @@ public:
 	unique_ptr<Stage> CreateStage(EStageType stageType);
 	string GetCurrentStageName() { return currentStage->GetName(); }
 	EStageType GetCurrentStageType() { return stageType; }
-	void SetCurrentStageType(EStageType stageType ) { this->stageType = stageType; }
-	void SetClearStageNum(int num) { if(clearStageNum < num) clearStageNum = num; }
+	void SetCurrentStageType(EStageType stageType) { this->stageType = stageType; }
+	void SetClearStageNum(int num) { if (clearStageNum < num) clearStageNum = num; }
 	int GetClearStageNum() { return clearStageNum; }
 
 private:
 	unique_ptr<Stage> currentStage;
 	EStageType stageType;
 	int clearStageNum = 0;
+
 };
