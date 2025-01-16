@@ -56,11 +56,11 @@ void SelectStageScene::SelectCommand()
 		break;
 	case 5:
 		SceneManager::GetInstance()->SetStageProgress(2);
+		SceneManager::GetInstance()->LoadScene(EST_LOADING);
 		break;
 	default:
 		break;
 	}
 
 	SceneManager::GetInstance()->LoadScene(EST_DUNGEON);
-
 }
