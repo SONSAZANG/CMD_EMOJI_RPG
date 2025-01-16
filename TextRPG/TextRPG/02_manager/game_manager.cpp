@@ -19,12 +19,13 @@ void GameManager::Init()
 void GameManager::Test()
 {
 	SetConsoleOutputCP(CP_UTF8);
-	PlayerManager::GetInstance()->GetPlayer().SetName("test11");
-	PlayerManager::GetInstance()->GetPlayer().SetHp(3000);
-	PlayerManager::GetInstance()->GetPlayer().SetMaxHp(3000);
+	PlayerManager::GetInstance()->GetPlayer().SetName("손사장");
+	PlayerManager::GetInstance()->GetPlayer().SetMaxHp(500);
+	PlayerManager::GetInstance()->GetPlayer().SetHp(500);
 	PlayerManager::GetInstance()->GetPlayer().SetAttack(600);
 	// 원하는 씬으로 설정
 	PlayerManager::GetInstance()->GetPlayer().SetLevel(10);
+	StageManager::GetInstance()->SetClearStageNum(3);
 	SceneManager::GetInstance()->LoadScene(EST_SELECT_STAGE);
 }
 

@@ -90,6 +90,14 @@ void DungeonScene::SelectCommand()
 		BattleManager::GetInstance()->GetVictoryReWard();
 		StageManager::GetInstance()->SetClearStageNum(StageManager::GetInstance()->GetCurrentStageType());
 	}
+	else
+	{	
+		// 보스전에서 지면 끝남
+		if (monster.IsBoss())
+		{
+			SceneManager::GetInstance()->LoadScene(EST_END);
+		}
+	}
 
 	Sleep(1000);
 	SceneManager::GetInstance()->LoadScene(EST_LOADING);
