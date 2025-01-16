@@ -79,6 +79,9 @@ void Inventory::DeleteFromInventory(int index)
 
 Weapon* Inventory::GetWeapon()
 {
+	if (equip == nullptr)
+		return nullptr;
+
 	return equip.get();
 }
 
@@ -86,8 +89,8 @@ void Inventory::UseWeapon()
 {
 	equip->Use();
 }
-void Inventory::EquipWeapon(std::unique_ptr<Weapon> weapon, Player* player)
-{
-	equip = std::move(weapon);
 
+void Inventory::EquipWeapon(unique_ptr<Weapon> weapon)
+{
+	equip = move(weapon);
 }

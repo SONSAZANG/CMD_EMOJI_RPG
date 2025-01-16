@@ -7,8 +7,7 @@
 #include "../03_ingame/player/player.h"
 #include "windows.h"
 #include "../04_Util/util.h"
-#include "../03_ingame/weapons/weapon_default.h"
-
+#include "../03_ingame/weapons/weapon_shop.h"
 
 void GameManager::Init()
 {
@@ -33,6 +32,7 @@ void GameManager::Run()
 	IsPlaying = true;
 	Player& player = PlayerManager::GetInstance()->GetPlayer();
 	int testCount = 0;
+
 	while (IsPlaying)
 	{
 		if (testCount > 6) IsPlaying = false;
@@ -82,8 +82,7 @@ void GameManager::CreatePlayerBase()
 	PlayerManager::GetInstance()->CreatePlayer();
 
 	Player* player = &PlayerManager::GetInstance()->GetPlayer();
-	auto ptr_weapon = make_unique<DefaultWeapon>();
-	player->GetInventory()->EquipWeapon(move(ptr_weapon), player);
+	player->GetInventory()->EquipWeapon(make_unique<DefaultWeapon>());
 }
 
 void GameManager::SpawnRandomMonster()

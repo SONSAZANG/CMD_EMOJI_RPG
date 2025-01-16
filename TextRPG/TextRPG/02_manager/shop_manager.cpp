@@ -1,6 +1,7 @@
 ﻿#include "shop_manager.h"
+#include "../04_Util/util.h"
 #include "../04_Util/gui.h"
-
+#include "../03_ingame/weapons/weapon_shop.h"
 
 void ShopManager::WelcomShop(Inventory* inventory)
 {
@@ -116,4 +117,30 @@ void ShopManager::SellItem(Inventory* inventory)
 		if (input == 'n' || input == 'N')
 			break;
 	}
+}
+
+void ShopManager::BuyWeapon(Inventory* inventory)
+{
+	GUI::ClearUI();
+	int buyChoice = 0;
+	unique_ptr<WeaponShop> shop = make_unique<WeaponShop>();
+
+	while (true) {
+		shop->DisplayWeapons();
+
+		GUI::GoToXY(4, 26);
+		uprint("구매할 무기의 번호를 선택해주세요 : ");
+		GUI::GoToXY(4, 27);
+		UTIL::UPrint("->");
+		buyChoice = UTIL::IntegerVerify(buyChoice, 1, shop->GetSize());
+
+		shop->BuyWeapon(buyChoice, inventory);
+
+		GUI::ClearUI();
+		GUI::GoToXY(4, 26);
+		uprintendl("구매 완료");
+		break;
+	}
+
+	uprintendl("구매를 종료합니다");
 }

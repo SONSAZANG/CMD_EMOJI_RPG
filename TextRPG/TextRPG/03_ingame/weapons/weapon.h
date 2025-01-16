@@ -1,30 +1,39 @@
 ﻿#pragma once
 #include "../../04_Util/util.h"
+#include "../../01_core/item_base.h"
 
 class Weapon
 {
 public:
-	Weapon() : m_name(""), m_atk(0), m_hp(0)
+	Weapon() : m_name(""), m_atk(0), m_hp(0), price(0)
 	{
+
 	}
 
 	virtual void Init() = 0;
 	virtual void Use() = 0;
 	virtual void Sound() = 0;
 
-	std::string& GetName()
+	std::string GetName() const
 	{
 		return m_name;
 	}
-	int GetHp()
+
+	int GetHp() const
 	{
 		return m_hp;
 	}
-	int GetAttack()
+	 
+	int GetAttack() const 
 	{
 		return m_atk;
 	}
 
+	int GetPrice() const
+	{
+		return price;
+	}
+	
 	void SetName(const std::string& name)
 	{
 		m_name = name;
@@ -49,4 +58,7 @@ private:
 	std::string m_name;
 	int m_hp;
 	int m_atk;
+
+protected:
+	int price;
 };
