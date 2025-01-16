@@ -127,8 +127,6 @@ void GameManager::VisitShop()
 	}
 	Player& player = playerManager->GetPlayer();
 
-	shopManager->WelcomShop(player.GetInventory());
-	UTIL::UPrintEndl("상점 방문 완료");
 }
 
 void GameManager::ChangeJobBase()
