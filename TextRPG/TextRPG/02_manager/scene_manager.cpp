@@ -25,6 +25,8 @@ void SceneManager::LoadScene(ESceneType sceneType)
 
 	switch (sceneType)
 	{
+		case None:
+			break;
 		case EST_START:
 			newScene = new StartScene();
 			break;

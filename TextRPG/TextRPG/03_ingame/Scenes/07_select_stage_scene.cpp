@@ -2,11 +2,12 @@
 #include "../../04_Util/gui.h"
 #include "../../04_Util/util.h"
 #include "../../02_manager/scene_manager.h"
+#include "../../02_manager/stage_manager.h"
 
 void SelectStageScene::Init()
 {
-	SceneManager::GetInstance()->SetStageProgress(7);
-	
+	SceneManager::GetInstance()->SetStageProgress(3);
+
 	DrawMainLayout();
 	SelectCommand();
 }
@@ -16,9 +17,10 @@ void SelectStageScene::DrawMainLayout()
 	GUI::DrawInGameBox();
 	GUI::SettingTitle("🗺️ 스테이지 선택");
 
-	string stageText1 = ustring("🕷️거미") + "(✅)";
-	string stageText2 = ustring("👹트롤") + "(✅)";
-	string stageText3 = ustring("🧌오크") + "(✅)";
+	int clearStageNum = StageManager::GetInstance()->GetClearStageNum();
+	string stageText1 = ustring("🕷️거미") + (clearStageNum >= 1 ? "(✅)" : "");
+	string stageText2 = ustring("👹트롤") + (clearStageNum >= 2 ? "(✅)" : "");
+	string stageText3 = ustring("🧌오크") + (clearStageNum >= 3 ? "(✅)" : "");
 	string stageText4 = ustring("[ 🐉보스몬스터 ]");
 	vector<string> stageTexts = { stageText1, stageText2, stageText3, stageText4 };
 	GUI::DrawStageBox(stageTexts);
@@ -36,24 +38,26 @@ void SelectStageScene::SelectCommand()
 {
 	int num;
 	cin >> num;
+
 	switch (num)
 	{
 	case 1:
-		// 거미 스테이지
+		StageManager::GetInstance()->SetCurrentStageType(EStage_SPIDER);
 		break;
 	case 2:
-		// 트롤 스테이지
+		StageManager::GetInstance()->SetCurrentStageType(EStage_TROLL);
 		break;
 	case 3:
-		// 오크 스테이지
+		StageManager::GetInstance()->SetCurrentStageType(EStage_ORC);
 		break;
 	case 4:
-		// 보스 몬스터 
+		StageManager::GetInstance()->SetCurrentStageType(EStage_BOSS);
 		break;
 	case 5:
-		SceneManager::GetInstance()->LoadScene(EST_LOADING);
+		SceneManager::GetInstance()->SetStageProgress(2);
 		break;
 	default:
 		break;
 	}
+	SceneManager::GetInstance()->LoadScene(EST_LOADING);
 }

@@ -4,7 +4,9 @@
 int main()
 {
     GameManager* gameManager = GameManager::GetInstance();
+    
     gameManager->Init();
+    //gameManager->Test();
 
     return 0;
 }

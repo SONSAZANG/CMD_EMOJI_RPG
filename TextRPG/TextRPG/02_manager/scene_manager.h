@@ -20,6 +20,6 @@ public:
 
 private:
 	class SceneBase* scene;
-	ESceneType sceneType = ESceneType::None;
+	ESceneType sceneType;
 	int stageProgress;
 };
