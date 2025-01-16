@@ -17,9 +17,9 @@ void PlayerSettingScene::DrawMainLayout()
 {
 	GUI::DrawInGameBox();
 
-	string sText1 = ustring("으윽..여긴 어디지..? 잠들었었나?");
-	string sText2 = ustring("나 텍스트 RPG 만들고 있었는데...");
-	string sText3 = ustring("뭐야 왜 이렇게 다 까매... 저건..글자?");
+	string sText1 = ustring("😣 으윽..여긴 어디지..? 잠들었었나?");
+	string sText2 = ustring("🙁 나 텍스트 RPG 만들고 있었는데...");
+	string sText3 = ustring("🤨 뭐야 왜 이렇게 다 까매... 저건..글자?");
 	vector<string> storyTexts = { sText1, sText2, sText3 };
 	GUI::DrawStoryBox(storyTexts);
 

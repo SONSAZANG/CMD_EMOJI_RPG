@@ -90,7 +90,7 @@ void EndScene::DrawClearLayout()
 
 	GUI::GoToXY(30, 18);
 	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
-	cout << playerName << ustring(" 당신은 세상을 구했습니다!");
+	cout << playerName << ustring("당신은 cmd로부터 탈출에 성공했습니다!");
 	Sleep(500);
 
 	GUI::GoToXY(30, 20);
