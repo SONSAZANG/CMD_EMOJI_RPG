@@ -20,6 +20,7 @@ public:
 	void WelcomShop(Inventory* inventory);
 	void BuyItem(Inventory* inventory);
 	void SellItem(Inventory* inventory);
+	void BuyWeapon(Inventory* inventory);
 
 private:
 	Shop* shop;
