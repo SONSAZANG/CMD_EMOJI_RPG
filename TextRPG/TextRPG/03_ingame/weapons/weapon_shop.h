@@ -44,7 +44,15 @@ public:
 	{
 		GUI::ClearUI();
 		GUI::GoToXY(4, 22);
-		if (weapons[select - 1]->GetPrice() > inventory->GetGold())
+
+		string currentWeapon = inventory->GetWeapon()->GetName();
+		string newWeapon = weapons[select - 1]->GetName();
+
+		if (currentWeapon == newWeapon)
+		{
+			std::cout << "같은 무기를 사용하고 있습니다." << std::endl;
+		}
+		else if (weapons[select - 1]->GetPrice() > inventory->GetGold())
 		{
 			std::cout << "골드가 부족합니다." << std::endl;
 		}
@@ -55,8 +63,8 @@ public:
 			GUI::DrawGoldInfo();
 
 			GUI::GoToXY(4, 24);
+			PlayerManager::GetInstance()->GetPlayer().SetEquipStaus(weapons[select - 1].get());
 			inventory->EquipWeapon(std::move(weapons[select - 1]));
-			PlayerManager::GetInstance()->GetPlayer().SetEquipStaus();
 			weapons.erase(weapons.begin() + select - 1);
 			//무기 구매 시 상단에 구매 정보와 플레이어 스탯 정보 출력
 		}

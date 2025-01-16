@@ -10,7 +10,7 @@ using namespace std;
 class Player
 {
 public:
-	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title(ustring("초심자"))
+	Player() : hp(200), level(1), attack(30), exp(0), maxHp(200), title(ustring("🌱 초심자"))
 	{
 		inventory = new Inventory();
 	}
@@ -26,7 +26,7 @@ public:
 	int GetMaxHp() const { return maxHp; }
 
 	void SetName(const string& name);
-	string GetName() const { return "[" + title + "] " + name; }
+	string GetName() const;
 
 	void SetLevel(const int& level);
 	int GetLevel() const { return level; }
@@ -50,11 +50,13 @@ public:
 
 	void UpdateTitle();
 
-	void SetEquipStaus();
+	void SetEquipStaus(Weapon* newWeapon);
 
 	bool IsDead();
 	bool IsJobChosen() { return isJobChosen; }
-	void ChangeJob(string job);
+	void ChangeJob(string job, string jobName);
+
+	void ResetGUI();
 
 	void SetDamage(const int & damage) { (hp < damage) ? hp = 0 : hp -= damage; }
 
@@ -67,7 +69,7 @@ private:
 	string name;
 	string title;
 	string job;
-	vector<string> titles = { ustring("초심자"), ustring("모험가"), ustring("도전자"), ustring("베테랑") };
+	vector<string> titles = { ustring("🌱 초심자"), ustring("🌴 모험가"), ustring("🌳 도전자"), ustring("🌍 베테랑") };
 	bool isJobChosen = false;
 	bool isDead = false;
 	Inventory* inventory;

@@ -18,7 +18,6 @@ public:
 
 	void Use() override
 	{
-		// 구현 해야함
 		Sound();
 	}
 

@@ -7,14 +7,14 @@ public:
 	Sword()
 	{
 		Init();
-		price = 100;
+		price = 1000;
 	}
 
 	void Init() override
 	{
 		SetName("양손검");
-		SetHp(10);
-		SetAttackDamage(5);
+		SetHp(100);
+		SetAttackDamage(30);
 	}
 
 	void Use() override

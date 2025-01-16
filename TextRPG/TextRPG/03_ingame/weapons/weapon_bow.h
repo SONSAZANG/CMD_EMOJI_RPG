@@ -7,19 +7,18 @@ public:
 	Bow()
 	{
 		Init();
-		price = 50;
+		price = 1000;
 	}
 
 	void Init() override
 	{
 		SetName("활");
-		SetHp(5);
-		SetAttackDamage(10);
+		SetHp(20);
+		SetAttackDamage(100);
 	}
 
 	void Use() override
 	{
-		// 구현 해야함
 		Sound();
 	}
 
@@ -27,4 +26,7 @@ public:
 	{
 		UTIL::UPrintEndl("활을 당겨 적중시킵니다.");
 	}
+
+private:
+	bool skillFlag;
 };
