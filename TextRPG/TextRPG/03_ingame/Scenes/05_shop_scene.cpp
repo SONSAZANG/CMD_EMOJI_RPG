@@ -45,7 +45,28 @@ void ShopScene::DrawStartText() {
     GUI::DrawQuestionText(questionTexts);
 }
 
+void DrawWeaponShopMain()
+{
+    GUI::DrawInGameBox();
 
+    string sceneTitle = ustring("🏪 무기 상점");
+    GUI::SettingTitle(sceneTitle);
+
+    string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
+    GUI::DrawNamingBox(playerName);
+
+
+    PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
+
+    GUI::DrawGoldInfo();
+
+    string bow = ustring("1. 🏹활");
+    string sword = ustring("2. 🗡️양손검");
+    vector<string> boxNames = { bow, sword };
+    GUI::DrawSelectBox(boxNames);
+
+    GUI::GoToXY(8, 27);
+}
 
 void ShopScene::SelectCommand()
 {
@@ -55,12 +76,13 @@ void ShopScene::SelectCommand()
     while (true)
     {
         GUI::ClearUI();
+        DrawMainLayout();
         DrawStartText();
         num = UTIL::IntegerVerify(num, 1, 4);
 
         switch (num)
         {
-        case 1:
+        case 1:   
             DrawBuy(inven);
             break;
         case 2:
@@ -96,6 +118,7 @@ void ShopScene::DrawBuy(Inventory* inven)
     }
     else
     {
+        DrawWeaponShopMain();
         ShopManager::GetInstance()->BuyWeapon(inven);
     }
 }
