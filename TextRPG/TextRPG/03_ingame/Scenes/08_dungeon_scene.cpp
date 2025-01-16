@@ -30,6 +30,9 @@ void DungeonScene::DrawMainLayout()
 	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
 	string monsterName = _currentStage.GetMonster().GetName();
 	GUI::DrawBattleNameingBox(playerName, monsterName);
+	int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
+	int playerExp = PlayerManager::GetInstance()->GetPlayer().GetExp();
+	GUI::DrawLevelBox(20, 3, 28, 3, playerLevel, playerExp);
 
 	// 몬스터, 플레이어 HP GUI
 	GUI::DrawBattleHpBox(_currentStage.GetMonster());
