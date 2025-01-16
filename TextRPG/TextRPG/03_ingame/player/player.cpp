@@ -175,17 +175,16 @@ bool Player::IsDead()
 
 void Player::SetEquipStaus(Weapon* newWeapon)
 {
-	maxHp = maxHp + inventory->GetWeapon()->GetHp();
 	int currentHp = maxHp - inventory->GetWeapon()->GetHp();
 	int currentAttack = attack - inventory->GetWeapon()->GetAttack();
 
 	maxHp = currentHp;
 	attack = currentAttack;
 
-	maxHp = attack + inventory->GetWeapon()->GetAttack();
+	maxHp = currentHp + inventory->GetWeapon()->GetHp();
 	maxHp += newWeapon->GetHp();
 	hp = maxHp;
-	attack += newWeapon->GetAttack();
+	attack = currentAttack + newWeapon->GetAttack();
 }
 
 void Player::ChangeJob(string job, string jobName)

@@ -42,7 +42,7 @@ void TownScene::SelectCommand()
 	int num;
 	while (true)
 	{
-		num = UTIL::IntegerVerify(num, 1, 4);
+		num = UTIL::IntegerVerify(num, 1, 3);
 		switch (num)
 		{
 			case 1:
