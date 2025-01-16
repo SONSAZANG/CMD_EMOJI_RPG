@@ -27,4 +27,9 @@ public:
 	{
 		UTIL::UPrintEndl("양손으로 검을 내려칩니다.");
 	}
+
+	string GetSoundString()
+	{
+		return "양손으로 검을 내려칩니다.";
+	}
 };

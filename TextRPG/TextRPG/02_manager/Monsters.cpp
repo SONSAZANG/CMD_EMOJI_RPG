@@ -1,6 +1,7 @@
 ﻿#include "Monsters.h"
 #include "../04_Util/util.h"
 #include "../02_manager/player_manager.h"
+#include "../03_ingame/boss_monster.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -57,7 +58,6 @@ Monster Monster::SelectMonster(const Player& player)
     }
 }
 
-
 string Monster::GetName() const
 {
     if (!_title.empty())
@@ -66,7 +66,6 @@ string Monster::GetName() const
     }
     return GetBaseName();
 }
-
 const char* Monster::GetBaseName() const
 {
     switch (_type)
@@ -83,21 +82,6 @@ const char* Monster::GetBaseName() const
         return "Unknown";
     }
 }
-
-BossMonster::BossMonster(const Player& player)
-    : Monster(MT_BOSSMONSTER, player.GetLevel() * 50, player.GetLevel() * 50, 1000) // 체력, 공격력, 경험치 설정
-{
-    SetType(MT_BOSSMONSTER);
-}
-
-void BossMonster::DisplayBossUI() const
-{
-    uprintendl("-------------------------");
-    cout << ustring("보스 체력: ") << GetHp() << endl;
-    cout << ustring("보스 공격력: ") << GetAttack() << endl;
-    uprintendl("-------------------------");
-}
-
 void Monster::DisplayMonster() const
 {
     uprintendl("-------------------------");
@@ -108,7 +92,6 @@ void Monster::DisplayMonster() const
     uprintendl("-------------------------");
 
 }
-
 bool Monster::IsDead() const
 {
     if (_hp <= 0)
@@ -116,8 +99,10 @@ bool Monster::IsDead() const
     else
         return false;
 }
-
-
+bool Monster::IsBoss() const
+{
+    return _type == MT_BOSSMONSTER ? true : false;
+}
 void Monster::SetHp(int hp)
 {
     _hp = hp;
@@ -130,8 +115,6 @@ void Monster::SetTitle(const string& title)
 {
     _title = title;
 }
-
-
 void Monster::SetStatus(monsterType type)
 {
     int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
@@ -166,6 +149,7 @@ void Monster::SetStatus(monsterType type)
     const int maxAttack = playerLevel * 10;
     if (Attack == maxAttack)
     {
-        SetTitle(ustring(" 불타는 "));
+        SetTitle(ustring("[🔥불타는]"));
     }
 }
+

@@ -10,6 +10,7 @@ void Inventory::UseInventoryItem(Player* player, Monster& monster)
 		return;
 	}
 
+	GUI::GoToXY(4, 27);
 	UTIL::UPrint("아이템을 사용할 경우 아이템의 번호, 사용하지 않을 경우 0을 입력해주세요.");
 	while (true)
 	{
@@ -26,8 +27,9 @@ void Inventory::UseInventoryItem(Player* player, Monster& monster)
 			continue;
 		};
 
-
+		GUI::ClearUI();
 		inventory[useIndex - 1]->Use(player, monster);
+		Sleep(2000);
 		DeleteFromInventory(useIndex - 1);
 
 		break;
@@ -42,10 +44,10 @@ Item* Inventory::GetInventoryItem(int index)
 
 void Inventory::DisplayInventory()
 {
-	
+	GUI::ClearUI();
+
 	if (!IsInventoryEmpty())
 	{
-		GUI::ClearUI();
 		GUI::GoToXY(4, 21);
 		uprint("인벤토리 아이템 목록");
 		int j = 0;
@@ -61,12 +63,14 @@ void Inventory::DisplayInventory()
 	{
 		GUI::GoToXY(4, 22);
 		UTIL::UPrintEndl("현재 인벤토리가 비어있습니다!");
+		Sleep(2000);
 	}
 }
 
 void Inventory::DisplayGoldInfo()
 {
-	cout << UTIL::UString("현재 소지 골드: ") << gold << UTIL::UString("골드") << endl;
+	GUI::GoToXY(4, 27);
+	cout << UTIL::UString("현재 소지 골드: ") << gold << UTIL::UString("골드");
 }
 
 void Inventory::AddToInventory(Item* item)

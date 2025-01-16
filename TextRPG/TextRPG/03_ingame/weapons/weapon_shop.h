@@ -52,7 +52,7 @@ public:
 		{
 			std::cout << "같은 무기를 사용하고 있습니다." << std::endl;
 		}
-		else if (weapons[select - 1]->GetPrice() > inventory->GetGold())
+		if (weapons[select - 1]->GetPrice() > inventory->GetGold())
 		{
 			std::cout << "골드가 부족합니다." << std::endl;
 		}

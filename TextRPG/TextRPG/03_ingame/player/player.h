@@ -58,6 +58,8 @@ public:
 
 	void ResetGUI();
 
+	void SetDamage(const int & damage) { (hp < damage) ? hp = 0 : hp -= damage; }
+
 private:
 	int hp;
 	int maxHp;

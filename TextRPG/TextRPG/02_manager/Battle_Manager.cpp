@@ -50,7 +50,7 @@ void BattleManager::Excute(Monster& monster)
 
 bool BattleManager::GetIsWin() const
 {
-	return isWin;
+	return !PlayerManager::GetInstance()->GetPlayer().IsDead();
 }
 
 void BattleManager::SelectionBehavior(Monster& monster)
@@ -88,49 +88,37 @@ void BattleManager::SelectionBehavior(Monster& monster)
 	}
 }
 
-
-
-
-
-
 void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 {
-	Player& player = PlayerManager::GetInstance()->GetPlayer();
+	string attackText, targetName;
+	int damage = 0;
+	int hp = 0;
 
-	auto attackAction = [](const string& attacker, auto& target,
-		const auto getAttack, const auto getHp, const auto setHp) // 람다 함수 정의
+	if (playerFlag)
 	{
-		int damage = getAttack();
-		int newHp = getHp() - damage;
-		newHp = (newHp < 0) ? 0 : newHp;
-		setHp(newHp);
-
-        cout << "" << endl;
-        cout << "" << endl;
-		cout << attacker << UTIL::UString("이 공격합니다.") << std::endl;
-		PlayerManager::GetInstance()->GetPlayer().GetInventory()->UseWeapon();
-		this_thread::sleep_for(chrono::seconds(1));
-
-		cout << damage << UTIL::UString("의 데미지!!") << std::endl;
-		this_thread::sleep_for(chrono::seconds(1));
-
-		cout << target.GetName() << UTIL::UString(" 남은 체력: ") << newHp << std::endl;
-	};
-
-	if (playerFlag) // 공격하는 객체와 타겟을 결정하는 flag
-	{
-		attackAction(player.GetName(), monster,
-			[&]() { return player.GetAttack(); },
-			[&]() { return monster.GetHp(); },
-			[&](int hp) { monster.SetHp(hp); });
+		// 플레이어가 공격
+		monster.SetDamage(PlayerManager::GetInstance()->GetPlayer().GetAttack());
 	}
 	else
 	{
-		attackAction(monster.GetName(), player,
-			[&]() { return monster.GetAttack(); },
-			[&]() { return player.GetHp(); },
-			[&](int hp) { player.SetHp(hp); });
+		// 몬스터가 공격
+		PlayerManager::GetInstance()->GetPlayer().SetDamage(monster.GetAttack());
 	}
+
+	string atkString = PlayerManager::GetInstance()->GetPlayer().GetInventory()->GetWeapon()->GetSoundString();
+
+	attackText = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetName() + "가 " + atkString : monster.GetName() + "가 공격합니다.";
+	targetName = playerFlag ? monster.GetName() : PlayerManager::GetInstance()->GetPlayer().GetName();
+	damage = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetAttack() : monster.GetAttack();
+	hp = playerFlag ? monster.GetHp() : PlayerManager::GetInstance()->GetPlayer().GetHp();
+
+	GUI::ClearUI();
+	string attackText1 = ustring(attackText);
+	GUI::DrawBattleHpBox(monster);
+	string attackText2 = ustring(to_string(damage) + "의 데미지!!");
+	string attackText3 = ustring(targetName + "남은 체력: " + to_string(hp));
+	vector<string> attackTexts = { attackText1, attackText2, attackText3 };
+	GUI::DrawAttackText(attackTexts);
 }
 
 void BattleManager::GetVictoryReWard()
@@ -151,172 +139,4 @@ void BattleManager::GetVictoryReWard()
 void BattleManager::SelectionItem(Monster& monster)
 {
 	PlayerManager::GetInstance()->GetPlayer().UseItem(monster);
-}
-void BattleManager::BossBattle(Player& player, BossMonster& bossMonster)
-{
-    srand(static_cast<unsigned>(time(0)));
-    const int bossMaxHp = bossMonster.GetHp();
-    double TimeLimit = 2.0;
-    bool BossSpeech = false;
-
-    while (bossMonster.GetHp() > 0 && player.GetHp() > 0)
-    {
-        if (bossMonster.GetHp() < bossMaxHp * 0.9 && !BossSpeech)
-        {
-            TimeLimit = 1.5;
-            BossSpeech = true;
-
-            uprintendl("-------------------------");
-            uprintendl("Boss: 음... (타자) 좀 치잖아..?");
-            this_thread::sleep_for(chrono::seconds(2));
-            system("cls");
-            bossMonster.DisplayBossUI();
-            uprintendl("Boss: 이제부터 전력을 다해야 할거야...");
-            this_thread::sleep_for(chrono::seconds(2));
-            system("cls");
-            bossMonster.DisplayBossUI();
-            uprintendl("Boss: 이제부터 전력을 다해야 할거야... ♥");
-            this_thread::sleep_for(chrono::seconds(2));
-            system("cls");
-            bossMonster.DisplayBossUI();
-        }
-
-        int randSkill = rand() % 9;
-        string skill;
-        string evade;
-        switch (randSkill)
-        {
-        case 0:
-            skill = "Fire Wave";
-            evade = "Dodge";
-            break;
-        case 1:
-            skill = "Ice Spear";
-            evade = "Shield";
-            break;
-        case 2:
-            skill = "Thunder Burst";
-            evade = "Counter";
-            break;
-        case 3:
-            skill = "Shadow Strike";
-            evade = "Roll";
-            break;
-        case 4:
-            skill = "Earthquake";
-            evade = "Jump";
-            break;
-        case 5:
-            skill = "Poison Cloud";
-            evade = "Mask";
-            break;
-        case 6:
-            skill = "Wind Blade";
-            evade = "Parry";
-            break;
-        case 7:
-            skill = "Holy Smite";
-            evade = "Pray";
-            break;
-        case 8:
-            skill = "Dark Pulse";
-            evade = "Focus";
-            break;
-        }
-
-        DisplaySkillAnimation(skill);
-
-        cout << "회피 방법 입력 (" << evade << "): ";
-        string playerInput;
-        auto start = chrono::high_resolution_clock::now();
-        cin >> playerInput;
-        auto end = chrono::high_resolution_clock::now();
-        double elapsed = chrono::duration<double>(end - start).count();
-
-        if (elapsed > TimeLimit)
-        {
-            cout << "느려! 보스의 강력한 공격을 받았다!" << endl;
-            int playerHp = player.GetHp() - bossMonster.GetAttack();
-            player.SetHp(playerHp < 0 ? 0 : playerHp);
-
-            this_thread::sleep_for(chrono::seconds(1));
-            system("cls");
-            bossMonster.DisplayBossUI();
-        }
-        else if (playerInput == evade)
-        {
-            cout << "성공적으로 회피했다! 보스에게 반격을 시도했다!" << endl;
-            int bossHp = bossMonster.GetHp() - player.GetAttack();
-            bossMonster.SetHp(bossHp < 0 ? 0 : bossHp);
-
-            this_thread::sleep_for(chrono::seconds(1));
-            system("cls");
-            bossMonster.DisplayBossUI();
-        }
-        else
-        {
-            cout << "회피 실패! 보스의 강력한 공격을 받았다!" << endl;
-            int playerHp = player.GetHp() - bossMonster.GetAttack();
-            player.SetHp(playerHp < 0 ? 0 : playerHp);
-
-            this_thread::sleep_for(chrono::seconds(1));
-            system("cls");
-            bossMonster.DisplayBossUI();
-        }
-
-        if (bossMonster.GetHp() <= 0)
-        {
-            cout << "이걸 이기네?" << endl;
-            break;
-        }
-        if (player.GetHp() <= 0)
-        {
-            cout << "그 정도 타자 속도로는 내 반쪽이 될 자격이 없다.." << endl;
-            break;
-        }
-    }
-}
-
-
-
-void BattleManager::DisplaySkillAnimation(const string& skillName)
-{
-    cout << "보스가 " << skillName << " 스킬을 사용합니다!" << endl;
-    if (skillName == "Fire Wave")
-    {
-        cout << "🔥🔥🔥 불길이 퍼집니다! 🔥🔥🔥" << endl;
-    }
-    else if (skillName == "Ice Spear")
-    {
-        cout << "❄️❄️❄️ 얼음 창이 날아옵니다! ❄️❄️❄️" << endl;
-    }
-    else if (skillName == "Thunder Burst")
-    {
-        cout << "⚡⚡⚡ 천둥이 울립니다! ⚡⚡⚡" << endl;
-    }
-    else if (skillName == "Shadow Strike")
-    {
-        cout << "🌑🌑🌑 그림자가 다가옵니다! 🌑🌑🌑" << endl;
-    }
-    else if (skillName == "Earthquake")
-    {
-        cout << "🌍🌍🌍 대지가 흔들립니다! 🌍🌍🌍" << endl;
-    }
-    else if (skillName == "Poison Cloud")
-    {
-        cout << "☠️☠️☠️ 독 구름이 퍼집니다! ☠️☠️☠️" << endl;
-    }
-    else if (skillName == "Wind Blade")
-    {
-        cout << "💨💨💨 바람의 칼날이 휘몰아칩니다! 💨💨💨" << endl;
-    }
-    else if (skillName == "Holy Smite")
-    {
-        cout << "✨✨✨ 신성한 빛이 내려옵니다! ✨✨✨" << endl;
-    }
-    else if (skillName == "Dark Pulse")
-    {
-        cout << "🌌🌌🌌 어둠의 파동이 느껴집니다! 🌌🌌🌌" << endl;
-    }
-    this_thread::sleep_for(chrono::seconds(1));
 }
