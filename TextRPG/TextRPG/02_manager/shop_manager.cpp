@@ -89,21 +89,23 @@ void ShopManager::SellItem(Inventory* inventory)
 	int answer_size = sizeof(answer) / sizeof(answer[0]);
 
 	while (true) {
-
+		GUI::ClearUI();
 		inventory->DisplayInventory();
 
 		if (!inventory->IsInventoryEmpty())
 		{
+			GUI::ClearUI();
+			inventory->DisplayInventory();
 			GUI::GoToXY(4, 26);
 			uprint("판매할 아이템의 번호를 선택해주세요.");
 			GUI::GoToXY(4, 27);
 			UTIL::UPrint("->");
 			sellChoice = UTIL::IntegerVerify(sellChoice, 1, inventory->GetInventorySize());
-
 			shop->SellItem(sellChoice - 1, inventory);
-
+			GUI::ClearUI();
 			inventory->DisplayInventory();
 		}
+		
 
 		GUI::GoToXY(4, 26);
 		uprint("추가로 판매하시겠습니까? (Y/N)");

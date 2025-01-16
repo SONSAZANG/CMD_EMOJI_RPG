@@ -17,8 +17,7 @@ void GameManager::Init()
 	}
 	SetConsoleOutputCP(CP_UTF8);
 
-	//sceneManager->LoadScene(EST_START);
-	sceneManager->LoadScene(EST_SHOP);
+	sceneManager->LoadScene(EST_START);
 }
 
 void GameManager::Run()

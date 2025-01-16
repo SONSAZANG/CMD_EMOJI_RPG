@@ -25,8 +25,6 @@ bool Shop::CanBuy(int index, Inventory* inventory) {
 
 void Shop::BuyItem(int index, Inventory* inventory)
 {
-	GUI::GoToXY(4, 22);
-	cout << availableItems[index]->GetName() << ustring("을 구매했습니다.") << endl;
 	inventory->SetGold(inventory->GetGold() - availableItems[index]->GetPrice());
 	inventory->AddToInventory(availableItems[index]);
 
@@ -41,12 +39,6 @@ void Shop::SellItem(int index, Inventory* inventory)
 	if (!inventory->IsInventoryEmpty())
 	{
 		int sellPrice = (int)(inventory->GetInventoryItem(index)->GetPrice() * 0.6);
-		GUI::GoToXY(4, 22);
-		cout << inventory->GetInventoryItem(index)->GetName() << ustring("을 판매했습니다.") << endl;
-		GUI::GoToXY(4, 23);
-		cout << sellPrice << ustring("골드를 얻어 현재");
-		inventory->SetGold(inventory->GetGold() + sellPrice);
-		cout << inventory->GetGold() << ustring("골드가 되었습니다.") << endl;
 		inventory->DeleteFromInventory(index);
 
 		GUI::GoToXY(106, 2);
