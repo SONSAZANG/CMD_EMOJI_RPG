@@ -232,6 +232,13 @@ public:
 		cout << ustring("STAGE - ") << ustring(stageText);
 	}
 
+	static void DrawLevelBox(const int x, const int y, const int width, const int height, int level, int exp)
+	{
+		DrawBox(x, y, width, height);
+		GoToXY(x + 2, y + 1);
+		cout << ustring("[Lv.") << level << ustring("] exp: ") << exp << ustring("/100");
+	}
+
 	// 플레이어와 몬스터를 출력하기 위한 박스
 	static void DrawNamingBox(string names)
 	{
@@ -327,36 +334,26 @@ public:
 
 	static void DrawStartStory()
 	{
-		GoToXY(30, 3);
-		uprint("플레이어 ? 내가 플레이어가 된건가 ?");
 		GoToXY(30, 4);
-		uprint("어라.. ? 저 문구...텍스트 RPG 만들면서 썼던 문구 아닌가 ?");
-		GoToXY(30, 5);
-		uprint("어 저기에 또 뭔가 써있어");
+		uprint("😨 플레이어 ? 내가 플레이어가 된건가 ?");
 		Sleep(1000);
 
 		GoToXY(30, 7);
 		uprint("*보스 몬스터 주의*");
 		GoToXY(30, 8);
-		uprint("요즘들어 보스 몬스터가 출몰해 피해를 입히고 있으니");
-		GoToXY(30, 9);
-		uprint("레벨 10 미만의 분들은 외출에 주의하시기 바랍니다.");
+		uprint("레벨 10 미만의 분들은 보스 몬스터에 주의하시기 바랍니다.");
 		Sleep(1000);
 
 		GoToXY(30, 11);
-		uprint("엥 저건 내가 만든 보스 몬스터잖아 ?!");
-		GoToXY(30, 12);
-		uprint("뭐야 나 지금 내가 만든 게임에 들어와 있는거야 ??");
-		GoToXY(30, 13);
-		uprint("이게 가능한가.. ?");
+		uprint("😮 엥 저건 내가 만든 보스 몬스터잖아 ?!");
+		Sleep(1500);
+
+		GoToXY(30, 14);
+		uprint("🤨 일단 보스 몬스터 잡으면 끝나는 게임이니까");
 		Sleep(1000);
 
-		GoToXY(30, 15);
-		uprint("일단 보스 몬스터 잡으면 끝나는 게임이니까");
 		GoToXY(30, 16);
-		uprint("레벨을 올려서 보스 몬스터를 잡자...!");
-		GoToXY(30, 17);
-		uprint("저기 내가 만든 마을이 보인다!");
+		uprint("😠 레벨을 올려서 보스 몬스터를 잡자...!");
 	}
 
 	static void DrawStageBox(vector<string> stageNames)

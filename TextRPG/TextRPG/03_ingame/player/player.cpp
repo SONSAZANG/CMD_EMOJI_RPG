@@ -114,6 +114,8 @@ void Player::LevelUp()
 	{
 		hp = maxHp;
 		UpdateTitle();
+		GUI::GoToXY(4, 22);
+		cout << UTIL::UString("레벨 업!");
 		//cout << ustring("레벨 업! 현재 레벨: ") << level << endl;
 		//cout << ustring(GetName()) << endl;
 		//cout << ustring("체력: ") << hp << "/" << maxHp << endl;
@@ -219,4 +221,16 @@ void Player::ResetGUI()
 	GUI::DrawQuestionText(questionTexts);
 
 	GUI::GoToXY(8, 27);
+}
+
+void Player::DisplayExpInfo()
+{
+	GUI::GoToXY(4, 25);
+	cout << UTIL::UString("현재 경험치: ") << exp;
+}
+
+void Player::DisplayLevelInfo()
+{
+	GUI::GoToXY(4, 23);
+	cout << UTIL::UString("레벨: ") << level;
 }

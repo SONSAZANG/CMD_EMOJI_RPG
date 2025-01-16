@@ -88,7 +88,7 @@ void GameManager::CreatePlayerBase()
 
 	Player* player = &PlayerManager::GetInstance()->GetPlayer();
 	player->GetInventory()->EquipWeapon(make_unique<DefaultWeapon>());
-	player->GainExp(400);
+	//player->GainExp(400);
 }
 
 void GameManager::SpawnRandomMonster()

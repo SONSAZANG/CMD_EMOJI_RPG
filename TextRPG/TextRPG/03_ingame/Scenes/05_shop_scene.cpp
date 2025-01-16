@@ -20,16 +20,19 @@ void ShopScene::DrawMainLayout()
     GUI::SettingTitle(sceneTitle);
 
 	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
+    int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
+    int playerExp = PlayerManager::GetInstance()->GetPlayer().GetExp();
+    GUI::DrawLevelBox(46, 3, 28, 3, playerLevel, playerExp);
 	GUI::DrawNamingBox(playerName);
 
 
-    PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
+    //PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
 
     GUI::DrawGoldInfo();
 
-    string dungeon = ustring("1. 🍷HP포션");
-    string shop = ustring("2. 🧪DMG포션");
-    string jobChangeCenter = ustring("3. 💣폭탄");
+    string dungeon = ustring("1. 🍷 HP포션");
+    string shop = ustring("2. 🧪 DMG포션");
+    string jobChangeCenter = ustring("3. 💣 폭탄");
     vector<string> boxNames = { dungeon, shop, jobChangeCenter };
     GUI::DrawSelectBox(boxNames);
 
@@ -40,7 +43,7 @@ void ShopScene::DrawMainLayout()
 void ShopScene::DrawStartText() {
     string questionText1 = ustring("상점에 오신걸 환영합니다.");
     string questionText2 = ustring("원하는 행동을 입력하세요.");
-    string questionText3 = ustring("1. 구매 2. 판매 3. 강화 4. 나가기");
+    string questionText3 = ustring("1. 구매 2. 판매 3. 나가기");
     vector<string> questionTexts = { questionText1, questionText2, questionText3 };
     GUI::DrawQuestionText(questionTexts);
 }
@@ -55,13 +58,10 @@ void DrawWeaponShopMain()
     string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
     GUI::DrawNamingBox(playerName);
 
-
-    PlayerManager::GetInstance()->GetPlayer().GetInventory()->SetGold(200);
-
     GUI::DrawGoldInfo();
 
-    string bow = ustring("1. 🏹활");
-    string sword = ustring("2. 🗡️양손검");
+    string bow = ustring("1. 🏹 활");
+    string sword = ustring("2. 🗡️ 양손검");
     vector<string> boxNames = { bow, sword };
     GUI::DrawSelectBox(boxNames);
 
@@ -78,7 +78,7 @@ void ShopScene::SelectCommand()
         GUI::ClearUI();
         DrawMainLayout();
         DrawStartText();
-        num = UTIL::IntegerVerify(num, 1, 4);
+        num = UTIL::IntegerVerify(num, 1, 3);
 
         switch (num)
         {
@@ -89,9 +89,6 @@ void ShopScene::SelectCommand()
             DrawSell(inven);
             break;
         case 3:
-            DrawEnhance(inven);
-            break;
-        case 4:
             SceneManager::GetInstance()->LoadScene(EST_LOADING);
             return;
         default:

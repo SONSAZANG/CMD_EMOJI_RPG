@@ -23,6 +23,9 @@ void TownScene::DrawMainLayout()
 	GUI::SettingTitle(sceneTitle);
 
 	string playerName = PlayerManager::GetInstance()->GetPlayer().GetName();
+	int playerLevel = PlayerManager::GetInstance()->GetPlayer().GetLevel();
+	int playerExp = PlayerManager::GetInstance()->GetPlayer().GetExp();
+	GUI::DrawLevelBox(46, 3, 28, 3, playerLevel, playerExp);
 	GUI::DrawNamingBox(playerName);
 
 	string dungeon = ustring("1. 🏰 던전");

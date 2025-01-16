@@ -30,6 +30,7 @@ void LoadingScene::DrawMainLayout()
 	{
 		Sleep(100);
 		UTIL::UPrint("🟦");
+		UTIL::UPrint("🟦");
 		//UTIL::UPrint("🟨");
 		//UTIL::UPrint("🟧");
 	}
