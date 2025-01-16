@@ -6,11 +6,7 @@ using namespace std;
 
 Stage& StageManager::GetStage()
 {
-    if (!currentStage) 
-    {
-        currentStage = CreateStage(stageType); 
-        if (!currentStage) throw runtime_error("Failed to Create Stage");
-    }
+	currentStage = CreateStage(stageType);
     return *currentStage;
 }
 
