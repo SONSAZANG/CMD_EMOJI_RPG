@@ -16,16 +16,19 @@ public:
     Monster() {}
     Monster(monsterType type, int hp, int attack, int exp);
 
+
     static Monster SelectMonster(const Player& player);
 
     int GetHp() const { return _hp; }
     int GetAttack() const { return _attack; }
+    int GetMaxHp() const;
     int GetExp() const { return _exp; }
     int GetType() const { return _type; }
 
     string GetName() const;
 
     void SetAttack(int attack);
+    void SetMaxHp(int maxHp);
     void SetHp(int hp);
     void SetType(monsterType type) { _type = type; }
 
@@ -40,6 +43,7 @@ private:
 
     monsterType _type;
     int _hp;
+    int _maxHp;
     int _attack;
     int _exp;
     string _title;

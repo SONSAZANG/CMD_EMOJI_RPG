@@ -11,6 +11,7 @@ public:
 
 	void DisplaySkillAnimation(const string& skillName);
 	void BossBattle(Player& player, BossMonster& bossMonster);
+	void SelectionBehavior(Monster& monster); // 던전씬 접근
 	
 private:
 	bool isWin;
@@ -18,5 +19,4 @@ private:
 	void GetVictoryReWard();
 	void AttackTarget(const bool& playerFlag, Monster& monster);
 	void SelectionItem(Monster& monster);
-	void SelectionBehavior(Monster& monster);
 };

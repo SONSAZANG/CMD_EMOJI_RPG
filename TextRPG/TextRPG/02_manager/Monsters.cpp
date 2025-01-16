@@ -5,8 +5,17 @@
 #include <ctime>
 
 Monster::Monster(monsterType type, int hp, int attack, int exp)
-    : _type(type), _hp(hp), _attack(attack), _exp(exp)
+    : _type(type), _hp(hp), _maxHp(hp), _attack(attack), _exp(exp)
 {
+}
+
+
+int Monster::GetMaxHp() const {
+    return _maxHp;
+}
+
+void Monster::SetMaxHp(int maxHp) {
+    _maxHp = maxHp;
 }
 
 Monster Monster::SelectMonster(const Player& player)
@@ -129,23 +138,21 @@ void Monster::SetStatus(monsterType type)
     int Hp = playerLevel * (20 + rand() % 11);
     int Attack = playerLevel * (5 + rand() % 6);
 
+    SetHp(Hp);
+    SetMaxHp(Hp);
+    SetAttack(Attack);
+
     switch (type)
     {
     case MT_SPIDER:
-        SetHp(Hp);
-        SetAttack(Attack);
         _exp = 50;
         break;
 
     case MT_ORC:
-        SetHp(Hp);
-        SetAttack(Attack);
         _exp = 50;
         break;
 
     case MT_TROLL:
-        SetHp(Hp);
-        SetAttack(Attack);
         _exp = 50;
         break;
 

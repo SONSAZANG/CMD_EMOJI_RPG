@@ -254,14 +254,18 @@ public:
 
 	static void DrawBattleHpBox()
 	{
-		int monsterHp = StageManager::GetInstance()->GetStage().GetMonster().GetHp();
+		const Monster& monster = StageManager::GetInstance()->GetStage().GetMonster();
+
+		int monsterHp = monster.GetHp();
+		int monsterMaxHp = monster.GetMaxHp();
+
 		int playerHp = PlayerManager::GetInstance()->GetPlayer().GetHp();
 		int playerHpMaxHp = PlayerManager::GetInstance()->GetPlayer().GetMaxHp();
 
 		GoToXY(23, 10);
 		cout << "HP: " << playerHp << "/" << playerHpMaxHp;
 		GoToXY(75, 10);
-		uprint("HP: " + to_string(monsterHp));
+		cout << "Monster HP: " << monsterHp << "/" << monsterMaxHp;
 	}
 
 	// 선택 목록을 출력하는 박스(전직소, 상점 등)

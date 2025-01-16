@@ -20,7 +20,7 @@ void GameManager::Test()
 	SetConsoleOutputCP(CP_UTF8);
 	PlayerManager::GetInstance()->GetPlayer().SetName("test11");
 	// 원하는 씬으로 설정
-	SceneManager::GetInstance()->LoadScene(EST_START);
+	SceneManager::GetInstance()->LoadScene(EST_SELECT_STAGE);
 }
 
 void GameManager::Run()
