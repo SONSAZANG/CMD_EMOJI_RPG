@@ -64,8 +64,9 @@ void DungeonScene::SelectCommand()
 			case 1:
 				if (!monster.IsBoss()) 
 				{
-					BattleManager::GetInstance()->AttackTarget(true, monster);
-					BattleManager::GetInstance()->AttackTarget(false, monster);
+					BattleManager::GetInstance()->AttackTarget(true);
+					if (monster.IsDead()) break;
+					BattleManager::GetInstance()->AttackTarget(false);
 				}
 				else
 				{
