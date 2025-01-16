@@ -14,21 +14,25 @@ BossMonster::BossMonster(const Player& player)
 
 void BossMonster::BossAttack()
 {
+    // 랜덤 난수 시드 설정
+    srand(static_cast<unsigned int>(time(nullptr)));
     // 버서커 상태 확인 후 하드모드 적용
-    if (IsBerserk()) BossHardMode();
+    if (IsBerserk())  BossHardMode();
+    else attackTimeLimit = 4;
 
     BossSkill randSkill = GetRandomSkill((EBossSkillType)(rand() % 10));
 
     string skillText = ustring(randSkill.skillText);
-    
     // "회피 방법 입력 (" << {evadeText} << "): "
-    string evadeText = ustring(randSkill.evadeText);
+    string evadeText = ustring("회피 방법 입력: (" + randSkill.evadeText + ")");
+
+    GUI::DrawBossAttack({skillText, evadeText});
 
     double elapsed = getElapsed();
-
     // 입력 속도가 늦었으면 끝
     if (elapsed > attackTimeLimit)
     {
+        GUI::GoToXY(40, 22);
         uprint("느려! 보스의 강력한 공격을 받았다!");
         PlayerManager::GetInstance()->GetPlayer().SetDamage(GetAttack());
 
@@ -36,8 +40,9 @@ void BossMonster::BossAttack()
     }
 
     // 입력 텍스트를 성공하면
-    if (inputText == evadeText)
+    if (inputText == randSkill.evadeText)
     {
+        GUI::GoToXY(40, 23);
         uprint("성공적으로 회피했다! 보스에게 반격을 시도했다!");
         SetDamage(PlayerManager::GetInstance()->GetPlayer().GetAttack());
 
@@ -45,6 +50,7 @@ void BossMonster::BossAttack()
     }
     else
     {
+        GUI::GoToXY(40, 24);
         uprint("회피 실패! 보스의 강력한 공격을 받았다!");
         PlayerManager::GetInstance()->GetPlayer().SetDamage(GetAttack());
 
@@ -84,7 +90,7 @@ void BossMonster::BossHardMode()
     uprint("음... (타자) 좀 치잖아..?");
     uprint("이제부터 전력을 다해야 할거야...");
     
-    attackTimeLimit = 1.5;
+    attackTimeLimit = 3;
 }
 
 BossSkill BossMonster::GetRandomSkill(EBossSkillType skillType)

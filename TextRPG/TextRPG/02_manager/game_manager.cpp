@@ -20,8 +20,11 @@ void GameManager::Test()
 {
 	SetConsoleOutputCP(CP_UTF8);
 	PlayerManager::GetInstance()->GetPlayer().SetName("test11");
+	PlayerManager::GetInstance()->GetPlayer().SetHp(3000);
+	PlayerManager::GetInstance()->GetPlayer().SetMaxHp(3000);
+	PlayerManager::GetInstance()->GetPlayer().SetAttack(100);
 	// 원하는 씬으로 설정
-	PlayerManager::GetInstance()->GetPlayer().SetLevel(5);
+	PlayerManager::GetInstance()->GetPlayer().SetLevel(10);
 	SceneManager::GetInstance()->LoadScene(EST_SELECT_STAGE);
 }
 

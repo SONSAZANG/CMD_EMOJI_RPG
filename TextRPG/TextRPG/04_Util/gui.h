@@ -369,22 +369,22 @@ public:
 
 	static void DrawBossAttack(vector<string> bossAttackTexts)
 	{
-		GUI::GoToXY(48, 13);
-		uprint("캬하하하하하하");
+		GUI::GoToXY(24, 13);
+		uprint("나의 공격을 받아라");
 		Sleep(1000);
 
-		GUI::GoToXY(48, 16);
-		uprint("쿄호호호호호호");
+		GUI::GoToXY(18, 16);
+		uprint(bossAttackTexts[0]);
 		Sleep(1000);
 
-		GUI::GoToXY(48, 19);
-		uprint("켜허허허허허허");
+		GUI::GoToXY(24, 19);
+		uprint(bossAttackTexts[1]);
 		Sleep(1000);
 
-		GUI::GoToXY(48, 24);
+		GUI::GoToXY(68, 16);
 		uprint("회피 방법을 입력하세요");
-		GUI::GoToXY(48, 25);
+		GUI::GoToXY(68, 17);
 		uprint("->");
-		GUI::GoToXY(52, 25);
+		GUI::GoToXY(72, 17);
 	}
 };

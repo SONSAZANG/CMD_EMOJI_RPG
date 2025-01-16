@@ -1,4 +1,5 @@
 #include "stage_manager.h"
+#include "player_manager.h"
 #include "../03_ingame/stage.h"
 
 using namespace std;
@@ -33,8 +34,8 @@ unique_ptr<Stage> StageManager::CreateStage(EStageType stageType)
 		*stage = Stage(ustring("ORC"), selectedMonster);
 		break;
 	case EStage_BOSS:
-		selectedMonster.SetStatus(MT_BOSSMONSTER);
-		*stage = Stage(ustring("BOSS"), selectedMonster);
+		BossMonster bossMonster(PlayerManager::GetInstance()->GetPlayer());
+		*stage = Stage(ustring("BOSS"), bossMonster);
 		break;
 	}
 
