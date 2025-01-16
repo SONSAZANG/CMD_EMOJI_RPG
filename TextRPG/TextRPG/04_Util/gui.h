@@ -232,6 +232,13 @@ public:
 		cout << ustring("STAGE - ") << ustring(stageText);
 	}
 
+	static void DrawLevelBox(const int x, const int y, const int width, const int height, int level, int exp)
+	{
+		DrawBox(x, y, width, height);
+		GoToXY(x + 2, y + 1);
+		cout << ustring("[Lv.") << level << ustring("] exp: ") << exp << ustring("/100");
+	}
+
 	// 플레이어와 몬스터를 출력하기 위한 박스
 	static void DrawNamingBox(string names)
 	{

@@ -60,6 +60,9 @@ public:
 
 	void SetDamage(const int & damage) { (hp < damage) ? hp = 0 : hp -= damage; }
 
+	void DisplayExpInfo();
+	void DisplayLevelInfo();
+
 private:
 	int hp;
 	int maxHp;

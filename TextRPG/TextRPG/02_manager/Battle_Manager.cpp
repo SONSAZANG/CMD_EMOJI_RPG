@@ -131,6 +131,9 @@ void BattleManager::GetVictoryReWard()
 	int gold = dice(gen); // 10 ~ 20 획득 골드 (과제 요구사항)
 
 	player.GainExp(50); // 경험치 50 고정 획득 (과제 요구사항)
+	player.DisplayExpInfo();
+	player.DisplayLevelInfo();
+
 	player.GetInventory()->SetGold(player.GetInventory()->GetGold() + gold);
 
 	player.GetInventory()->DisplayGoldInfo();
