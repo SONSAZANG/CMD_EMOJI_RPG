@@ -20,6 +20,7 @@ public:
 	virtual int GetAmount() const = 0;
 	virtual ItemType GetItemType () const = 0;
 	virtual void Use(Player* player, Monster& monster) = 0;
+	virtual void GetDescription() = 0;
 
 
 	virtual ~Item() {}

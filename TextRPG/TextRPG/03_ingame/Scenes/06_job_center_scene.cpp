@@ -38,21 +38,32 @@ void JobCenterScene::DrawMainLayout()
 
 void JobCenterScene::SelectCommand()
 {
-	// TODO: 민수님 여기 전직 기능 연결 부탁드립니다.( 은수 ) 
 	int num;
-	cin >> num;
-	switch (num)
+	PlayerManager* playerManager = PlayerManager::GetInstance();
+	Player& player = playerManager->GetPlayer();
+
+	while (true)
 	{
-		case 1:
-			// 궁수 전직
-			break;
-		case 2:
-			// 전사 전직
-			break;
-		case 3:
-			SceneManager::GetInstance()->LoadScene(EST_LOADING);
-			break;
-		default:
-			break;
+		num = UTIL::IntegerVerify(num, 1, 4);
+
+		switch (num)
+		{
+			case 1:
+				player.ChangeJob("궁수");
+				break;
+			case 2:
+				player.ChangeJob("전사");
+				break;
+			case 3:
+				player.ChangeJob("도적");
+				break;
+			case 4:
+				SceneManager::GetInstance()->LoadScene(EST_LOADING);
+				break;
+			default:
+				UTIL::UPrintEndl("잘못된 입력입니다.");
+				break;
+		}
 	}
+
 }

@@ -7,11 +7,11 @@ class ShopManager : public SingletonBase<ShopManager> {
 	friend class SingletonBase<ShopManager>;
 
 private:
-	ShopManager() 
+	ShopManager()
 	{
 		shop = new Shop();
 	}
-	~ShopManager() 
+	~ShopManager()
 	{
 		delete shop;
 	}

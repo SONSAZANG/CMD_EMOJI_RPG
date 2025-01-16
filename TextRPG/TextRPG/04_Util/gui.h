@@ -9,6 +9,15 @@ using namespace std;
 class GUI
 {
 public:
+	static void ClearUI() //하단 텍스트 창만 초기화
+	{
+		string blank = "                                                                                ";
+		for (int i = 0; i < 7; ++i)
+		{
+			GoToXY(4, 21 + i);
+			uprint(blank);
+		}
+	}
 	static void GoToXY(const int x, const int y)
 	{
 		COORD coord = { (SHORT)x, (SHORT)y };
