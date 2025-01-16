@@ -18,15 +18,11 @@ public:
 	void Battle();
 	void VisitShop();
 	void ChangeJobBase();
-	void Exit();
+	void Clear();
 	void Init();
 
 	void Test();
 
 private:
 	bool IsPlaying;
-	PlayerManager* playerManager;
-	ShopManager* shopManager;
-	SceneManager* sceneManager;
-	JobManager* jobManager;
 };

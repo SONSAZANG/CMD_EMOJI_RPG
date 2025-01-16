@@ -3,6 +3,7 @@
 #include "player_manager.h"
 #include "Monster_Spawn_Manager.h"
 #include "battle_manager.h"
+#include "stage_manager.h"
 #include "../03_ingame/player/player.h"
 #include "windows.h"
 #include "../04_Util/util.h"
@@ -11,27 +12,16 @@
 
 void GameManager::Init()
 {
-	if (sceneManager == nullptr)
-	{
-		sceneManager = SceneManager::GetInstance();
-	}
 	SetConsoleOutputCP(CP_UTF8);
-
-	sceneManager->LoadScene(EST_START);
+	SceneManager::GetInstance()->LoadScene(EST_START);
 }
 
 void GameManager::Test()
 {
-	if (sceneManager == nullptr)
-	{
-		sceneManager = SceneManager::GetInstance();
-	}
 	SetConsoleOutputCP(CP_UTF8);
-
 	PlayerManager::GetInstance()->GetPlayer().SetName("test11");
-	
 	// 원하는 씬으로 설정
-	sceneManager->LoadScene(EST_SELECT_STAGE);
+	SceneManager::GetInstance()->LoadScene(EST_START);
 }
 
 void GameManager::Run()
@@ -41,7 +31,7 @@ void GameManager::Run()
 
 	CreatePlayerBase();
 	IsPlaying = true;
-	Player& player = playerManager->GetPlayer();
+	Player& player = PlayerManager::GetInstance()->GetPlayer();
 	int testCount = 0;
 	while (IsPlaying)
 	{
@@ -83,16 +73,15 @@ void GameManager::Run()
 
 	if (!IsPlaying)
 	{
-		Exit();
+		Clear();
 	}
 }
 
 void GameManager::CreatePlayerBase()
 {
-	playerManager = PlayerManager::GetInstance();
-	playerManager->CreatePlayer();
+	PlayerManager::GetInstance()->CreatePlayer();
 
-	Player* player = &playerManager->GetPlayer();
+	Player* player = &PlayerManager::GetInstance()->GetPlayer();
 	auto ptr_weapon = make_unique<DefaultWeapon>();
 	player->GetInventory()->EquipWeapon(move(ptr_weapon), player);
 }
@@ -107,7 +96,7 @@ void GameManager::Battle()
 {
 	system("cls");
 
-	Player& player = playerManager->GetPlayer();
+	Player& player = PlayerManager::GetInstance()->GetPlayer();
 	player.SetLevel(10);
 
 	if (player.GetLevel() < 10)
@@ -134,27 +123,29 @@ void GameManager::Battle()
 void GameManager::VisitShop()
 {
 	uprintendl("--------------------------------");
-	if (shopManager == nullptr)
-	{
-		shopManager = ShopManager::GetInstance();
+	Player& player = PlayerManager::GetInstance()->GetPlayer();
 
-	}
-	Player& player = playerManager->GetPlayer();
-
-	shopManager->WelcomShop(player.GetInventory());
+	ShopManager::GetInstance()->WelcomShop(player.GetInventory());
 	UTIL::UPrintEndl("상점 방문 완료");
 }
 
 void GameManager::ChangeJobBase()
 {
-	jobManager = JobManager::GetInstance();
-	Player& player = playerManager->GetPlayer();
-	player.ChangeJob(jobManager->ChooseJob(&player));
+	Player& player = PlayerManager::GetInstance()->GetPlayer();
+	player.ChangeJob(JobManager::GetInstance()->ChooseJob(&player));
 }
 
-void GameManager::Exit()
+void GameManager::Clear()
 {
-	UTIL::UPrintEndl("게임이 종료되었습니다.");
+	BattleManager::GetInstance()->DeleteInstance();
+	JobManager::GetInstance()->DeleteInstance();
+	MonsterSpawnManager::GetInstance()->DeleteInstance();
+	PlayerManager::GetInstance()->DeleteInstance();
+	SceneManager::GetInstance()->DeleteInstance();
+	ShopManager::GetInstance()->DeleteInstance();
+	StageManager::GetInstance()->DeleteInstance();
+
+	Init();
 }
 
 
