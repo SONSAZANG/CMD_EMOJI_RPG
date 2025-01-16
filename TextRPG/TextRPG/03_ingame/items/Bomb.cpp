@@ -17,3 +17,10 @@ void Bomb::Use(Player* player, Monster& monster)
 	cout << monster.GetName() << ustring(" 남은 체력: ") << ((monster.GetHp() < 0) ? 0:monster.GetHp()) << endl;
 }
 
+void Bomb::GetDescription()
+{
+	{
+		uprint(description);
+	}
+}
+

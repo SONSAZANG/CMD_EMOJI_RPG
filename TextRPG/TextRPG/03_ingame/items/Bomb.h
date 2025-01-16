@@ -7,10 +7,11 @@ class Bomb : public Item{
 public:
 	Bomb(int amount = 100, float multiply = 0.5)
 	{
-		name = "Bomb";
 		attack = amount;
 		price = (int)(amount * multiply);
-
+		name = "Bomb";
+		description = "적에게 " + to_string(amount);
+		description += "데미지를 입힙니다.";
 		itemType = ITEM_Attack;
 	}
 
@@ -33,10 +34,13 @@ public:
 
 	void Use(Player* player, Monster& monster);
 
+	void GetDescription();
+
 	~Bomb() {}
 
 private:
 	string name;
+	string description;
 	ItemType itemType;
 	int attack;
 	int price;
