@@ -56,6 +56,8 @@ public:
 	bool IsJobChosen() { return isJobChosen; }
 	void ChangeJob(string job);
 
+	void SetDamage(const int & damage) { (hp < damage) ? hp = 0 : hp -= damage; }
+
 private:
 	int hp;
 	int maxHp;

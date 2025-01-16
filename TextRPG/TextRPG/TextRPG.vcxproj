@@ -137,6 +137,7 @@
     <ClCompile Include="02_manager\scene_manager.cpp" />
     <ClCompile Include="02_manager\shop_manager.cpp" />
     <ClCompile Include="02_manager\stage_manager.cpp" />
+    <ClCompile Include="03_ingame\boss_monster.cpp" />
     <ClCompile Include="03_ingame\inventory.cpp" />
     <ClCompile Include="03_ingame\items\attack_boost.cpp" />
     <ClCompile Include="03_ingame\items\Bomb.cpp" />
@@ -150,8 +151,7 @@
     <ClCompile Include="03_ingame\Scenes\06_job_center_scene.cpp" />
     <ClCompile Include="03_ingame\Scenes\07_select_stage_scene.cpp" />
     <ClCompile Include="03_ingame\Scenes\08_dungeon_scene.cpp" />
-    <ClCompile Include="03_ingame\Scenes\09_boss_scene.cpp" />
-    <ClCompile Include="03_ingame\Scenes\10_end_scene.cpp" />
+    <ClCompile Include="03_ingame\Scenes\09_end_scene.cpp" />
     <ClCompile Include="03_ingame\shop.cpp" />
     <ClCompile Include="02_manager\job_manager.cpp" />
     <ClCompile Include="04_Util\gui.h" />
@@ -169,6 +169,8 @@
     <ClInclude Include="02_manager\scene_manager.h" />
     <ClInclude Include="02_manager\shop_manager.h" />
     <ClInclude Include="02_manager\stage_manager.h" />
+    <ClInclude Include="03_ingame\boss_monster.h" />
+    <ClInclude Include="03_ingame\boss_skill.h" />
     <ClInclude Include="03_ingame\inventory.h" />
     <ClInclude Include="03_ingame\items\attack_boost.h" />
     <ClInclude Include="03_ingame\items\Bomb.h" />
@@ -182,8 +184,7 @@
     <ClInclude Include="03_ingame\Scenes\06_job_center_scene.h" />
     <ClInclude Include="03_ingame\Scenes\07_select_stage_scene.h" />
     <ClInclude Include="03_ingame\Scenes\08_dungeon_scene.h" />
-    <ClInclude Include="03_ingame\Scenes\09_boss_scene.h" />
-    <ClInclude Include="03_ingame\Scenes\10_end_scene.h" />
+    <ClInclude Include="03_ingame\Scenes\09_end_scene.h" />
     <ClInclude Include="03_ingame\shop.h" />
     <ClInclude Include="03_ingame\Job.h" />
     <ClInclude Include="03_ingame\stage.h" />

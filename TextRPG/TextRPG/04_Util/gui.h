@@ -239,11 +239,9 @@ public:
 		DrawTextBox(46, 5, 28, 5, names);
 	}
 
-	static void DrawShopBox(string names, int gold)
+	static void DrawBossBox(string names)
 	{
-		DrawTextBox(46, 5, 28, 5, names);
-		GoToXY(49, 8);
-		uprint("💸 보유 골드: " + gold);
+		DrawTextBox(50, 5, 21, 5, names);
 	}
 
 	static void DrawBattleNameingBox(string playerName, string monsterName)
@@ -254,6 +252,9 @@ public:
 
 	static void DrawBattleHpBox()
 	{
+		GoToXY(23, 10);
+		uprint("                                                              ");
+
 		int monsterHp = StageManager::GetInstance()->GetStage().GetMonster().GetHp();
 		int playerHp = PlayerManager::GetInstance()->GetPlayer().GetHp();
 		int playerHpMaxHp = PlayerManager::GetInstance()->GetPlayer().GetMaxHp();
@@ -351,5 +352,26 @@ public:
 		DrawTextBox(40, 13, 14, 5, stageNames[1]);
 		DrawTextBox(60, 7, 14, 5, stageNames[2]);
 		DrawTextBox(90, 8, 20, 5, stageNames[3]);
+	}
+
+	static void DrawBossAttack(vector<string> bossAttackTexts)
+	{
+		GUI::GoToXY(48, 13);
+		uprint("캬하하하하하하");
+		Sleep(1000);
+
+		GUI::GoToXY(48, 16);
+		uprint("쿄호호호호호호");
+		Sleep(1000);
+
+		GUI::GoToXY(48, 19);
+		uprint("켜허허허허허허");
+		Sleep(1000);
+
+		GUI::GoToXY(48, 24);
+		uprint("회피 방법을 입력하세요");
+		GUI::GoToXY(48, 25);
+		uprint("->");
+		GUI::GoToXY(52, 25);
 	}
 };

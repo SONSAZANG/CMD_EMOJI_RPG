@@ -4,17 +4,19 @@
 #include "../../02_manager/scene_manager.h"
 #include "../../02_manager/player_manager.h"
 #include "../../02_manager/stage_manager.h"
+#include <conio.h>
+
 void DungeonScene::Init()
 {
 	SceneManager::GetInstance()->SetStageProgress(2);
 
+	//DrawBossAttack();
 	DrawMainLayout();
 	SelectCommand();
 }
 
 void DungeonScene::DrawMainLayout()
 {
-	GUI::DrawInGameBox();
 	Stage stage = StageManager::GetInstance()->GetStage();
 	string stageName = StageManager::GetInstance()->GetCurrentStageName();
 	GUI::SettingDungeonTitle(stageName);
@@ -25,6 +27,12 @@ void DungeonScene::DrawMainLayout()
 
 	// 턴 지날때마다 호출 필요 -> HP 그려줌
 	GUI::DrawBattleHpBox();
+
+	//// 몬스터가 보스면
+	//if (stage.GetMonster().IsBoss())
+	//{
+	//	DrawBossAttack();
+	//}
 }
 
 void DungeonScene::SelectCommand()
@@ -36,4 +44,19 @@ void DungeonScene::SelectCommand()
 	GUI::DrawQuestionText(questionTexts);
 
 	GUI::GoToXY(8, 27);
+}
+
+void DungeonScene::DrawBossAttack()
+{
+	
+	system("cls");
+	GUI::DrawFullBox();
+
+	string bossName = ustring("🐉버그왕 흑염룡🐉");
+	GUI::DrawBossBox(bossName);
+
+	GUI::DrawBossAttack({});
+	
+	string typing;
+	cin >> typing;
 }

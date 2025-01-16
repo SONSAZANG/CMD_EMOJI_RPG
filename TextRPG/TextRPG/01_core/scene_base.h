@@ -11,7 +11,6 @@ enum ESceneType
 	EST_JOB_CENTER,
 	EST_SELECT_STAGE,
 	EST_DUNGEON,
-	EST_BOSS,
 	EST_END,
 };
 

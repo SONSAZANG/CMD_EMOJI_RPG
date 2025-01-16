@@ -12,4 +12,5 @@ public:
 private:
 	void DrawMainLayout();
 	void SelectCommand();
+	void DrawBossAttack();
 };

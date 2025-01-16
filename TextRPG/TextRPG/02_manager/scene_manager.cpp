@@ -7,8 +7,7 @@
 #include "../03_ingame/Scenes/06_job_center_scene.h"
 #include "../03_ingame/Scenes/07_select_stage_scene.h"
 #include "../03_ingame/Scenes/08_dungeon_scene.h"
-#include "../03_ingame/Scenes/09_boss_scene.h"
-#include "../03_ingame/Scenes/10_end_scene.h"
+#include "../03_ingame/Scenes/09_end_scene.h"
 #include <windows.h>
 
 void SceneManager::Init()
@@ -50,9 +49,6 @@ void SceneManager::LoadScene(ESceneType sceneType)
 			break;
 		case EST_DUNGEON:
 			newScene = new DungeonScene();
-			break;
-		case EST_BOSS:
-			newScene = new BossScene();
 			break;
 		case EST_END:
 			newScene = new EndScene();

@@ -34,8 +34,6 @@ unique_ptr<Stage> StageManager::CreateStage(EStageType stageType)
 		selectedMonster.SetStatus(MT_BOSSMONSTER);
 		*stage = Stage(ustring("BOSS"), selectedMonster);
 		break;
-	default:
-		break;
 	}
 
 	return stage;
