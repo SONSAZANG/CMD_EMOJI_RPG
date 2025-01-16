@@ -2,6 +2,8 @@
 #include "player.h"
 #include "../../02_manager/job_manager.h"
 #include "../../04_Util/util.h"
+#include "../../04_Util/gui.h"
+#include "../Scenes/06_job_center_scene.h"
 
 
 constexpr int MAX_LEVEL = 10;
@@ -26,6 +28,18 @@ void Player::SetMaxHp(const int& maxHp)
 void Player::SetName(const string& name)
 {
 	this->name = name;
+}
+
+string Player::GetName() const
+{
+	if (isJobChosen)
+	{
+		return "[" + title + "] " + name + " (" + job + ")";
+	}
+	else
+	{
+		return "[" + title + "] " + name;
+	}
 }
 
 void Player::SetLevel(const int& level)
@@ -97,11 +111,11 @@ void Player::LevelUp()
 	{
 		hp = maxHp;
 		UpdateTitle();
-		cout << ustring("레벨 업! 현재 레벨: ") << level << endl;
-		cout << ustring(GetName()) << endl;
-		cout << ustring("체력: ") << hp << "/" << maxHp << endl;
-		cout << ustring("공격력: ") << attack << endl;
-		cout << ustring("경험치: ") << exp << endl;
+		//cout << ustring("레벨 업! 현재 레벨: ") << level << endl;
+		//cout << ustring(GetName()) << endl;
+		//cout << ustring("체력: ") << hp << "/" << maxHp << endl;
+		//cout << ustring("공격력: ") << attack << endl;
+		//cout << ustring("경험치: ") << exp << endl;
 	}
 }
 
@@ -113,7 +127,7 @@ bool Player::CanLevelUp() const
 void Player::GainExp(int expAmount)
 {
 	exp += expAmount;
-	cout << ustring("경험치 ") << expAmount << ustring(" 획득! 현재 경험치: ") << exp << endl;
+	//cout << ustring("경험치 ") << expAmount << ustring(" 획득! 현재 경험치: ") << exp << endl;
 
 	if (CanLevelUp())
 	{
@@ -123,14 +137,21 @@ void Player::GainExp(int expAmount)
 
 void Player::UpdateTitle()
 {
-	if (isJobChosen && level >= 5)
+	if (level >= 1 && level <= 3)
 	{
-		JobManager* jobManager = JobManager::GetInstance();
-		title = jobManager->GetJobTitle(job, level);
+		title = titles[0];
 	}
-	else if (level >= 1 && level <= titles.size())
+	else if (level >= 4 && level <= 6)
 	{
-		title = titles[level - 1];
+		title = titles[1];
+	}
+	else if (level >= 7 && level <= 9)
+	{
+		title = titles[2];
+	}
+	else if (level >= 10)
+	{
+		title = titles[3];
 	}
 }
 
@@ -155,12 +176,15 @@ void Player::SetEquipStaus()
 	maxHp = attack + inventory->GetWeapon()->GetAttack();
 }
 
-void Player::ChangeJob(string job)
+void Player::ChangeJob(string job, string jobName)
 {
+	GUI::ClearUI();
+	GUI::GoToXY(4, 22);
 	if (level >= 5 && !isJobChosen)
 	{
 		SetPlayerJob(job);
-		cout << ustring("축하합니다! '") << job << ustring("'로 전직했습니다!") << endl;
+		cout << ustring("축하합니다! ") << jobName << "(" << job << ustring(")로 전직했습니다!") << endl;
+		cout << GetName() << endl;
 	}
 	else if (level < 5)
 	{

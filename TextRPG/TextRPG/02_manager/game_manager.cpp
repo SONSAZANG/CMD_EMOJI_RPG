@@ -83,6 +83,7 @@ void GameManager::CreatePlayerBase()
 
 	Player* player = &PlayerManager::GetInstance()->GetPlayer();
 	player->GetInventory()->EquipWeapon(make_unique<DefaultWeapon>());
+	player->GainExp(400);
 }
 
 void GameManager::SpawnRandomMonster()
@@ -129,7 +130,6 @@ void GameManager::VisitShop()
 void GameManager::ChangeJobBase()
 {
 	Player& player = PlayerManager::GetInstance()->GetPlayer();
-	player.ChangeJob(JobManager::GetInstance()->ChooseJob(&player));
 }
 
 void GameManager::Clear()

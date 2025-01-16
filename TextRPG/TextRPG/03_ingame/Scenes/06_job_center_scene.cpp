@@ -3,6 +3,10 @@
 #include "../../04_Util/util.h"
 #include "../../02_manager/player_manager.h"
 #include "../../02_manager/scene_manager.h"
+#include <string>
+
+using namespace std;
+
 void JobCenterScene::Init()
 {
 	SceneManager::GetInstance()->SetStageProgress(2);
@@ -39,9 +43,6 @@ void JobCenterScene::DrawMainLayout()
 void JobCenterScene::SelectCommand()
 {
 	int num;
-	PlayerManager* playerManager = PlayerManager::GetInstance();
-	Player& player = playerManager->GetPlayer();
-
 	while (true)
 	{
 		num = UTIL::IntegerVerify(num, 1, 4);
@@ -49,13 +50,13 @@ void JobCenterScene::SelectCommand()
 		switch (num)
 		{
 			case 1:
-				player.ChangeJob("궁수");
+				ChangePlayerJob("🏹", "궁수");
 				break;
 			case 2:
-				player.ChangeJob("전사");
+				ChangePlayerJob("⚔️", "전사");
 				break;
 			case 3:
-				player.ChangeJob("도적");
+				ChangePlayerJob("🗡️", "도적");
 				break;
 			case 4:
 				SceneManager::GetInstance()->LoadScene(EST_LOADING);
@@ -66,4 +67,10 @@ void JobCenterScene::SelectCommand()
 		}
 	}
 
+}
+
+void JobCenterScene::ChangePlayerJob(string job, string jobName)
+{
+	PlayerManager::GetInstance()->GetPlayer().ChangeJob(job, jobName);
+	
 }

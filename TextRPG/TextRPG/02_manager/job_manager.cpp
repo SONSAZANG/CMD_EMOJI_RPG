@@ -27,19 +27,19 @@ string JobManager::ChooseJob(Player* player)
 	}
 }
 
-string JobManager::GetJobTitle(string job, int level) const
-{
-	if (level < 5 || level > 10)
-	{
-		return "";
-	}
-
-	for (int i = 0; i < jobs.size(); i++)
-	{
-		if (job == jobs[i])
-		{
-			return jobTitles[i][level - 5];
-		}
-	}
-	return "";
-}
+//string JobManager::GetJobTitle(string job, int level) const
+//{
+//	if (level < 5 || level > 10)
+//	{
+//		return "";
+//	}
+//
+//	for (int i = 0; i < jobs.size(); i++)
+//	{
+//		if (job == jobs[i])
+//		{
+//			return jobTitles[i][level - 5];
+//		}
+//	}
+//	return "";
+//}
