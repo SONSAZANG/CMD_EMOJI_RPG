@@ -291,13 +291,13 @@ public:
 	{
 		GoToXY(4, 22);
 		uprint(attackTexts[0]);
-		Sleep(700);
+		Sleep(1000);
 		GoToXY(4, 23);
 		uprint(attackTexts[1]);
-		Sleep(700);
+		Sleep(1000);
 		GoToXY(4, 24);
 		uprint(attackTexts[2]);
-		Sleep(2000);
+		Sleep(2500);
 	}
 
 	static void DrawQuestionText(vector<string> questionTexts)

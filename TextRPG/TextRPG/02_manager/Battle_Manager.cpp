@@ -90,7 +90,7 @@ void BattleManager::SelectionBehavior(Monster& monster)
 
 void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 {
-	string attackName, targetName;
+	string attackText, targetName;
 	int damage = 0;
 	int hp = 0;
 
@@ -98,7 +98,6 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 	{
 		// 플레이어가 공격
 		monster.SetDamage(PlayerManager::GetInstance()->GetPlayer().GetAttack());
-		PlayerManager::GetInstance()->GetPlayer().GetInventory()->UseWeapon();
 	}
 	else
 	{
@@ -106,13 +105,15 @@ void BattleManager::AttackTarget(const bool& playerFlag, Monster& monster)
 		PlayerManager::GetInstance()->GetPlayer().SetDamage(monster.GetAttack());
 	}
 
-	attackName = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetName() : monster.GetName();
+	string atkString = PlayerManager::GetInstance()->GetPlayer().GetInventory()->GetWeapon()->GetSoundString();
+
+	attackText = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetName() + "가 " + atkString : monster.GetName() + "가 공격합니다.";
 	targetName = playerFlag ? monster.GetName() : PlayerManager::GetInstance()->GetPlayer().GetName();
 	damage = playerFlag ? PlayerManager::GetInstance()->GetPlayer().GetAttack() : monster.GetAttack();
 	hp = playerFlag ? monster.GetHp() : PlayerManager::GetInstance()->GetPlayer().GetHp();
 
 	GUI::ClearUI();
-	string attackText1 = ustring(attackName + "가 공격합니다.");
+	string attackText1 = ustring(attackText);
 	GUI::DrawBattleHpBox(monster);
 	string attackText2 = ustring(to_string(damage) + "의 데미지!!");
 	string attackText3 = ustring(targetName + "남은 체력: " + to_string(hp));
