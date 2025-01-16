@@ -10,8 +10,7 @@ public:
 		attack = amount;
 		price = (int)(amount * multiply);
 		name = "Bomb";
-		description = "적에게 " + to_string(amount);
-		description += "데미지를 입힙니다.";
+		description = to_string(amount) + "데미지";
 		itemType = ITEM_Attack;
 	}
 

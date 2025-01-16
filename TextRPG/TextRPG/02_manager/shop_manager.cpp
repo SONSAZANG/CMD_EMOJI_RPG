@@ -16,7 +16,7 @@ void ShopManager::BuyItem(Inventory* inventory)
 		uprint("구매할 아이템의 번호를 선택해주세요. ");
 		GUI::GoToXY(4, 27);
 		UTIL::UPrint("->");
-		buyChoice = UTIL::IntegerVerify(buyChoice, 1, 3); // 임시로 끝 파라미터 3 입력, 아이템 종류 개수 넣으면 될 같음
+		buyChoice = UTIL::IntegerVerify(buyChoice, 1, shop->GetShopItemSize()); 
 
 		GUI::ClearUI();
 		if (shop->CanBuy(buyChoice - 1, inventory))

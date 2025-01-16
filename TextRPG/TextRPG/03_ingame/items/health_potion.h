@@ -8,8 +8,7 @@ public:
 	HealthPotion(int amount = 20, float multiple = 0.5) 
 	{
 		name = "HealthPotion" + to_string(amount);
-		description = "체력을 " + to_string(amount);
-		description += " 회복시킵니다.";
+		description = "체력 +" + to_string(amount);
 		healthRestore = amount;
 		price = (int)(amount * multiple);
 		itemType = ITEM_Potion;

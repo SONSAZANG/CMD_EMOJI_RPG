@@ -8,9 +8,12 @@ void Shop::DisplayItems()
 		GUI::ClearUI();
 		GUI::GoToXY(4, 21);
 		uprint("상점 아이템 목록");
+		int j = 0;
 		for (int i = 0; i < availableItems.size(); ++i)
 		{
-			GUI::GoToXY(4, 22 + i);
+			if (i != 0 && i % 3 == 0)
+				++j;
+			GUI::GoToXY(4 + j * 40, 22 + (i % 3));
 			cout << i + 1 << ". " << availableItems[i]->GetName() << " "
 				<< "<" << availableItems[i]->GetPrice() << ustring("골드") << "> ";
 			availableItems[i]->GetDescription();
@@ -46,4 +49,9 @@ void Shop::SellItem(int index, Inventory* inventory)
 		string gold = ustring("💰 골드 " + to_string(intGold) + "  ");
 		uprint(gold);
 	}
+}
+
+int Shop::GetShopItemSize()
+{
+	return (int)availableItems.size();
 }

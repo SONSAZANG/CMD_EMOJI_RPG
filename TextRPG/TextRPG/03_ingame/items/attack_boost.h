@@ -11,8 +11,7 @@ public:
 		attackIncrease = amount;
 		price = (int)(amount * multiply);
 		name = "AttackBoost" + to_string(amount);
-		description = "공격력을 " + to_string(amount);
-		description += " 증가시킵니다.";
+		description = "공격력 +" + to_string(amount);
 
 		itemType = ITEM_Potion;
 	}
